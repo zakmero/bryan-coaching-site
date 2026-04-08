@@ -11,7 +11,7 @@ import {
   UserX,
   AlertCircle
 } from 'lucide-react';
-import bryanPic from '../data/bryan pic.png';
+import bryanPic from '../data/Bryan pic.png';
 
 const ICON_STROKE = 1.25;
 

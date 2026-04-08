@@ -18,7 +18,7 @@ import {
   RotateCcw,
   Gauge
 } from 'lucide-react';
-import bryanPic from '../data/bryan pic.png';
+import bryanPic from '../data/Bryan pic.png';
 import storyBryan from '../data/story-bryan.png';
 import tesolCert from '../data/World120hrTESOL_TEFLcert.pdf';
 import tesolTranscript from '../data/Yong Ping Bryan Teng - TESOL Grades Transcript - WTA.pdf';
