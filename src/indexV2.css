@@ -1126,7 +1126,8 @@ object {
     width: 100%;
     max-height: 170px;
     justify-self: end;
-    align-self: start;
+    align-self: end;
+    margin-bottom: 0.2rem;
     margin-right: 0.1rem;
   }
   .v2-proof-trigger {
