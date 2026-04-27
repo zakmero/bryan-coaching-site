@@ -9,7 +9,6 @@ import {
   ChevronRight,
   UserCheck,
   UserX,
-  AlertCircle,
   ScanSearch,
   ShieldCheck,
   FileCheck2,
@@ -50,7 +49,7 @@ const EngagementBand = ({ title, subtitle, cta = 'Apply for Coaching' }) => (
       <p className="v2-engagement-title">{title}</p>
       <p className="v2-engagement-subtitle">{subtitle}</p>
     </div>
-    <a href={APPLY_HASH} className="v2-btn v2-btn-primary" style={{ whiteSpace: 'nowrap' }}>
+    <a href={APPLY_HASH} className="v2-btn v2-btn-primary v2-engagement-cta">
       {cta} <ChevronRight size={16} strokeWidth={ICON_STROKE} />
     </a>
   </div>
@@ -193,7 +192,7 @@ const Header = ({ isApplyPage }) => (
   <header className="v2-header">
     <div className="v2-container v2-header-content">
       <div className="v2-logo">Elite English Edge</div>
-      <a href={isApplyPage ? '#' : APPLY_HASH} className="v2-btn v2-btn-primary" style={{ padding: '0.6rem 2rem', fontSize: '0.75rem' }}>
+      <a href={isApplyPage ? '#' : APPLY_HASH} className="v2-btn v2-btn-primary v2-header-cta">
         {isApplyPage ? 'Back Home' : 'Apply'}
       </a>
     </div>
@@ -202,12 +201,12 @@ const Header = ({ isApplyPage }) => (
 
 // 1. ABOVE THE FOLD
 const Hero = () => (
-  <section className="v2-section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '8rem', position: 'relative' }} id="home">
+  <section className="v2-section v2-hero-section" id="home">
     {/* Dot grid */}
     <div style={{ position: 'absolute', inset: 0, opacity: 0.07, backgroundImage: 'radial-gradient(#c0392b 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
     
     <div className="v2-container" style={{ position: 'relative', zIndex: 1 }}>
-      <div className="v2-card" style={{ maxWidth: '900px', margin: '0 auto', borderTop: '3px solid var(--v2-accent)', padding: '4rem' }}>
+      <div className="v2-card v2-hero-card" style={{ maxWidth: '900px', margin: '0 auto', borderTop: '3px solid var(--v2-accent)' }}>
         <div className="v2-hero-intro v2-mb-4">
           <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
             <img className="v2-hero-portrait" src={bryanPic} alt="" />
@@ -238,31 +237,29 @@ const Hero = () => (
         <div className="v2-grid-2 v2-animate-fade-up v2-delay-200"
              style={{ gap: '2rem', marginBottom: '2.25rem' }}>
           <ul style={{ listStyle: 'none', display: 'grid', gap: '1.25rem' }}>
-            {[
-              { text: 'Decode any exam question in seconds (no confusion)', Icon: ScanSearch },
-              { text: 'Stop losing marks to "careless mistakes"', Icon: ShieldCheck }
-            ].map(({ text, Icon }, i) => (
-              <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
-                <Icon size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-                <span>{text}</span>
-              </li>
-            ))}
+            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
+              <ScanSearch size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
+              <span>Decode any exam question in seconds (no confusion)</span>
+            </li>
+            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
+              <ShieldCheck size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
+              <span>Stop losing marks to "careless mistakes"</span>
+            </li>
           </ul>
           <ul style={{ listStyle: 'none', display: 'grid', gap: '1.25rem' }}>
-            {[
-              { text: 'Write answers that match examiner expectations', Icon: FileCheck2 },
-              { text: 'Perform under time pressure with consistency', Icon: Timer }
-            ].map(({ text, Icon }, i) => (
-              <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
-                <Icon size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-                <span>{text}</span>
-              </li>
-            ))}
+            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
+              <FileCheck2 size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
+              <span>Write answers that match examiner expectations</span>
+            </li>
+            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
+              <Timer size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
+              <span>Perform under time pressure with consistency</span>
+            </li>
           </ul>
         </div>
 
         <div className="v2-animate-fade-up v2-delay-300 v2-text-center">
-          <a href={APPLY_HASH} className="v2-btn v2-btn-primary" style={{ padding: '1.25rem 3rem', fontSize: '1.125rem' }}>
+          <a href={APPLY_HASH} className="v2-btn v2-btn-primary v2-hero-cta">
             Apply for Coaching <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
           </a>
           <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
@@ -397,17 +394,29 @@ const Mechanism = () => (
       />
       
       <div className="v2-grid-3 v2-mb-4">
-        {[
-          { Icon: Brain, title: 'Question Deconstruction', text: 'Understand exactly what is being asked before writing a single word.' },
-          { Icon: Target, title: 'Pattern Recognition', text: 'See hidden repetition across exams. The core structures never change.' },
-          { Icon: Crosshair, title: 'Answer Precision', text: 'Deliver exactly what gets marks, efficiently under time constraints.' },
-        ].map(({ Icon, title, text }, i) => (
-          <div key={i} className="v2-card">
-            <Icon color="var(--v2-accent)" size={32} strokeWidth={ICON_STROKE} style={{ marginBottom: '1.5rem' }} />
-            <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>{title}</h3>
-            <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'var(--v2-text-secondary)', lineHeight: 1.7 }}>{text}</p>
-          </div>
-        ))}
+        <div className="v2-card">
+          <Brain color="var(--v2-accent)" size={32} strokeWidth={ICON_STROKE} style={{ marginBottom: '1.5rem' }} />
+          <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Question Deconstruction</h3>
+          <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'var(--v2-text-secondary)', lineHeight: 1.7 }}>
+            Understand exactly what is being asked before writing a single word.
+          </p>
+        </div>
+
+        <div className="v2-card">
+          <Target color="var(--v2-accent)" size={32} strokeWidth={ICON_STROKE} style={{ marginBottom: '1.5rem' }} />
+          <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Pattern Recognition</h3>
+          <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'var(--v2-text-secondary)', lineHeight: 1.7 }}>
+            See hidden repetition across exams. The core structures never change.
+          </p>
+        </div>
+
+        <div className="v2-card">
+          <Crosshair color="var(--v2-accent)" size={32} strokeWidth={ICON_STROKE} style={{ marginBottom: '1.5rem' }} />
+          <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Answer Precision</h3>
+          <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'var(--v2-text-secondary)', lineHeight: 1.7 }}>
+            Deliver exactly what gets marks, efficiently under time constraints.
+          </p>
+        </div>
       </div>
 
       <div className="v2-text-center">

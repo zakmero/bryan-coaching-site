@@ -5,6 +5,37 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap');
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas,
+object {
+  max-width: 100%;
+}
+
 :root {
   /* Background */
   --v2-bg:          #ffffff;
@@ -165,6 +196,11 @@
   color: #ffffff;
 }
 
+.v2-btn:focus-visible {
+  outline: 2px solid rgba(47, 122, 79, 0.45);
+  outline-offset: 2px;
+}
+
 .v2-btn:link,
 .v2-btn:visited,
 .v2-btn:hover,
@@ -271,6 +307,23 @@
   letter-spacing: 0.01em;
 }
 
+.v2-header-cta {
+  padding: 0.6rem 2rem;
+  font-size: 0.75rem;
+}
+
+.v2-hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 8rem;
+  position: relative;
+}
+
+.v2-hero-card {
+  padding: 4rem;
+}
+
 .v2-hero-intro {
   display: grid;
   grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
@@ -310,6 +363,11 @@
 
 .v2-hero-copy {
   text-align: center;
+}
+
+.v2-hero-cta {
+  padding: 1.25rem 3rem;
+  font-size: 1.125rem;
 }
 
 
@@ -415,6 +473,10 @@
   justify-content: space-between;
   gap: 1rem;
   max-width: 920px;
+}
+
+.v2-engagement-cta {
+  white-space: nowrap;
 }
 
 .v2-engagement-title {
@@ -851,6 +913,33 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
+  .v2-container {
+    padding: 0 1.1rem;
+  }
+
+  .v2-header {
+    padding: 0.9rem 0;
+  }
+
+  .v2-logo {
+    font-size: 1.05rem;
+  }
+
+  .v2-header-cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+  }
+
+  .v2-hero-section {
+    min-height: auto;
+    padding-top: 6.2rem;
+  }
+
+  .v2-hero-card {
+    padding: 2rem 1.2rem;
+  }
+
   .v2-section { padding: 5rem 0; }
   .v2-card { padding: 1.75rem; }
   .v2-grid-2, .v2-grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -882,9 +971,22 @@
     padding: 1.1rem 1rem;
     margin-bottom: 1.5rem;
   }
+  .v2-hero-message p:last-child {
+    font-size: 0.96rem;
+  }
+  .v2-hero-cta {
+    width: min(100%, 22rem);
+    padding: 1rem 1.2rem;
+    font-size: 0.95rem;
+  }
   .v2-engagement-band {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+  .v2-engagement-cta {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
   }
   .v2-story-wrap {
     grid-template-columns: 1fr;
@@ -904,13 +1006,64 @@
   .v2-proof-grid {
     grid-template-columns: 1fr;
   }
+  .v2-proof-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .v2-proof-trigger {
+    width: 100%;
+    justify-content: center;
+  }
   .v2-proof-frame {
-    height: 300px;
+    height: 260px;
   }
   .v2-testimonial-reel {
     height: 220px;
   }
   .v2-problem-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .v2-container {
+    padding: 0 0.9rem;
+  }
+
+  .v2-header-content {
+    gap: 0.55rem;
+  }
+
+  .v2-logo {
+    font-size: 0.95rem;
+  }
+
+  .v2-header-cta {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.66rem;
+  }
+
+  .v2-hero-exam-grid {
+    gap: 0.55rem;
+  }
+
+  .v2-hero-exam-pill {
+    flex: 1 1 calc(50% - 0.55rem);
+    min-width: 0;
+    min-height: 58px;
+    border-radius: 16px;
+  }
+
+  .v2-hero-exam-pill span {
+    font-size: 0.9rem;
+  }
+
+  .v2-story-card {
+    padding-bottom: 210px;
+  }
+
+  .v2-story-portrait {
+    width: min(66%, 220px);
+    max-height: 210px;
   }
 }
