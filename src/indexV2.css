@@ -365,6 +365,14 @@ object {
   text-align: center;
 }
 
+.v2-hero-subnote {
+  margin: 0 auto 1.15rem;
+  max-width: 34rem;
+  font-size: 0.84rem;
+  letter-spacing: 0.03em;
+  color: var(--v2-text-muted);
+}
+
 .v2-hero-cta {
   padding: 1.25rem 3rem;
   font-size: 1.125rem;
@@ -973,6 +981,10 @@ object {
   }
   .v2-hero-message p:last-child {
     font-size: 0.96rem;
+  }
+  .v2-hero-subnote {
+    margin-bottom: 0.95rem;
+    font-size: 0.78rem;
   }
   .v2-hero-cta {
     width: min(100%, 22rem);

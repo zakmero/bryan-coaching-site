@@ -217,7 +217,7 @@ const Hero = () => (
             Get from B/C to A in 8–12 Weeks<br />
             <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic', fontSize: '0.8em', fontWeight: 400 }}>Without Studying More, By Training How You Think</span>
           </h1>
-          
+          <p className="v2-hero-subnote v2-animate-fade-up v2-delay-200">so you can [desires]</p>
           </div>
         </div>
 
