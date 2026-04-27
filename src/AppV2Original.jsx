@@ -224,8 +224,7 @@ const Hero = () => (
             <img className="v2-hero-portrait" src={bryanPic} alt="" />
           </div>
           <div className="v2-hero-copy v2-text-center">
-          <h1 className="v2-animate-fade-up v2-delay-100"
-              style={{ fontFamily: 'var(--v2-font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 1.15, fontWeight: 700, marginBottom: '1.5rem', color: '#16253a' }}>
+          <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
             Improve your English exam score by <br />
             <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> - without doing more practice papers
           </h1>
