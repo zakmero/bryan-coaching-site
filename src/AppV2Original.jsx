@@ -109,21 +109,23 @@ const StoryVision = () => {
         />
 
       <article className="v2-card v2-story-card" style={{ maxWidth: '920px', margin: '0 auto' }}>
-        <p style={{ color: 'var(--v2-text-secondary)', marginTop: '0.35rem', maxWidth: '72%' }}>
-          Bryan noticed a clear pattern: many students were working hard, doing more papers, and still staying at B/C, while a smaller group
-          did less but kept scoring A. The difference was not effort, it was thinking quality under pressure. That realization shaped this
-          coaching model: stop overloading students with more content, and train them to decode questions, think like examiners, and execute
-          with precision in timed conditions. The mission is simple: build repeatable high performance for committed students through a selective
-          system of Application, Strategy Call, and Enrollment.
-        </p>
-        <div className="v2-story-authority-block" aria-label="Authority highlights">
-          <div className="v2-story-authority-lead">
-            120-hour TESOL/TEFL certified, accredited course graduate, and 100% assessment completion.
-          </div>
-          <div className="v2-story-authority-grid">
-            <div className="v2-story-authority-item">TESOL/TEFL Certified</div>
-            <div className="v2-story-authority-item">Accredited Training Graduate</div>
-            <div className="v2-story-authority-item">100% Assessment Completion</div>
+        <div className="v2-story-text-stack">
+          <p style={{ color: 'var(--v2-text-secondary)', marginTop: '0.35rem', maxWidth: '72%' }}>
+            Bryan noticed a clear pattern: many students were working hard, doing more papers, and still staying at B/C, while a smaller group
+            did less but kept scoring A. The difference was not effort, it was thinking quality under pressure. That realization shaped this
+            coaching model: stop overloading students with more content, and train them to decode questions, think like examiners, and execute
+            with precision in timed conditions. The mission is simple: build repeatable high performance for committed students through a selective
+            system of Application, Strategy Call, and Enrollment.
+          </p>
+          <div className="v2-story-authority-block" aria-label="Authority highlights">
+            <div className="v2-story-authority-lead">
+              120-hour TESOL/TEFL certified, accredited course graduate, and 100% assessment completion.
+            </div>
+            <div className="v2-story-authority-grid">
+              <div className="v2-story-authority-item">TESOL/TEFL Certified</div>
+              <div className="v2-story-authority-item">Accredited Training Graduate</div>
+              <div className="v2-story-authority-item">100% Assessment Completion</div>
+            </div>
           </div>
         </div>
         <button

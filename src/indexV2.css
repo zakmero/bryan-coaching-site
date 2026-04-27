@@ -541,6 +541,11 @@ object {
   min-height: 370px;
 }
 
+.v2-story-text-stack {
+  position: relative;
+  z-index: 1;
+}
+
 .v2-story-authority-block {
   margin-top: 1rem;
   margin-bottom: 0.4rem;
@@ -1083,10 +1088,13 @@ object {
       "button button";
     column-gap: 0.7rem;
     row-gap: 0.85rem;
-    align-items: end;
+    align-items: start;
   }
-  .v2-story-card p {
+  .v2-story-text-stack {
     grid-area: text;
+    min-width: 0;
+  }
+  .v2-story-text-stack > p {
     max-width: 100% !important;
     margin: 0 !important;
     font-size: 0.95rem;
@@ -1118,7 +1126,7 @@ object {
     width: 100%;
     max-height: 170px;
     justify-self: end;
-    align-self: end;
+    align-self: start;
     margin-right: 0.1rem;
   }
   .v2-proof-trigger {
@@ -1186,6 +1194,7 @@ object {
   }
 
   .v2-story-card p {
+    max-width: 100% !important;
     font-size: 0.89rem;
     line-height: 1.48;
   }
