@@ -929,8 +929,8 @@ object {
     left: 12px;
     right: auto;
     top: 0;
-    bottom: 14px;
-    width: 4px;
+    bottom: 18px;
+    width: 6px;
     height: auto;
     transform: none;
     border-radius: 999px;
@@ -938,18 +938,17 @@ object {
   }
 
   .v2-roadmap::after {
+    content: "";
+    position: absolute;
     top: auto;
     bottom: 0;
     right: auto;
     left: 12px;
-    width: 0;
-    height: 0;
+    width: 10px;
+    height: 18px;
     transform: translateX(-50%);
-    clip-path: none;
-    background: transparent;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 14px solid #c0392b;
+    background: #c0392b;
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
   }
 
   .v2-roadmap-step {
