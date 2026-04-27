@@ -536,6 +536,37 @@ object {
   min-height: 370px;
 }
 
+.v2-story-authority-block {
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  max-width: 72%;
+}
+
+.v2-story-authority-lead {
+  color: var(--v2-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.65rem;
+}
+
+.v2-story-authority-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.v2-story-authority-item {
+  border: 1px solid #e4ddd9;
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--v2-text-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 0.45rem 0.55rem;
+  text-align: center;
+}
+
 .v2-story-portrait {
   position: absolute;
   right: 0.2rem;
@@ -1056,6 +1087,26 @@ object {
     font-size: 0.95rem;
     line-height: 1.52;
   }
+  .v2-story-authority-block {
+    grid-area: text;
+    max-width: 100%;
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+  }
+  .v2-story-authority-lead {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .v2-story-authority-grid {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .v2-story-authority-item {
+    text-align: left;
+    font-size: 0.74rem;
+    padding: 0.42rem 0.58rem;
+  }
   .v2-story-portrait {
     grid-area: image;
     position: static;
@@ -1132,6 +1183,12 @@ object {
   .v2-story-card p {
     font-size: 0.89rem;
     line-height: 1.48;
+  }
+  .v2-story-authority-lead {
+    font-size: 0.84rem;
+  }
+  .v2-story-authority-item {
+    font-size: 0.7rem;
   }
 
   .v2-story-portrait {

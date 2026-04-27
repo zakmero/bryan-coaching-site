@@ -116,6 +116,16 @@ const StoryVision = () => {
           with precision in timed conditions. The mission is simple: build repeatable high performance for committed students through a selective
           system of Application, Strategy Call, and Enrollment.
         </p>
+        <div className="v2-story-authority-block" aria-label="Authority highlights">
+          <div className="v2-story-authority-lead">
+            120-hour TESOL/TEFL certified, accredited course graduate, and 100% assessment completion.
+          </div>
+          <div className="v2-story-authority-grid">
+            <div className="v2-story-authority-item">TESOL/TEFL Certified</div>
+            <div className="v2-story-authority-item">Accredited Training Graduate</div>
+            <div className="v2-story-authority-item">100% Assessment Completion</div>
+          </div>
+        </div>
         <button
             type="button"
             className="v2-btn v2-btn-primary v2-proof-trigger"
