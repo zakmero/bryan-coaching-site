@@ -769,7 +769,7 @@ object {
   content: "";
   position: absolute;
   left: 0;
-  right: 18px;
+  right: 0;
   top: 50%;
   height: 8px;
   transform: translateY(-50%);
@@ -778,15 +778,7 @@ object {
 }
 
 .v2-roadmap::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 26px;
-  height: 8px;
-  background: #c0392b;
-  clip-path: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
+  content: none;
 }
 
 .v2-roadmap-step {
@@ -929,7 +921,7 @@ object {
     left: 12px;
     right: auto;
     top: 0;
-    bottom: 18px;
+    bottom: 0;
     width: 6px;
     height: auto;
     transform: none;
@@ -938,17 +930,7 @@ object {
   }
 
   .v2-roadmap::after {
-    content: "";
-    position: absolute;
-    top: auto;
-    bottom: 0;
-    right: auto;
-    left: 12px;
-    width: 10px;
-    height: 18px;
-    transform: translateX(-50%);
-    background: #c0392b;
-    clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+    content: none;
   }
 
   .v2-roadmap-step {
