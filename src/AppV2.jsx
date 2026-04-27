@@ -651,6 +651,11 @@ export default function AppV2() {
   }, []);
 
   useEffect(() => {
+    // Reset viewport when switching between home and apply route.
+    window.scrollTo(0, 0);
+  }, [isApplyPage]);
+
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
