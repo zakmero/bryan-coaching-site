@@ -1005,15 +1005,35 @@ object {
   }
   .v2-story-card {
     min-height: 0;
-    padding-bottom: 260px;
+    padding-bottom: 1.25rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(96px, 30vw, 132px);
+    grid-template-areas:
+      "text image"
+      "button button";
+    column-gap: 0.7rem;
+    row-gap: 0.85rem;
+    align-items: end;
   }
   .v2-story-card p {
+    grid-area: text;
     max-width: 100% !important;
+    margin: 0 !important;
+    font-size: 0.95rem;
+    line-height: 1.52;
   }
   .v2-story-portrait {
-    width: min(58%, 240px);
-    max-height: 255px;
-    right: 0;
+    grid-area: image;
+    position: static;
+    width: 100%;
+    max-height: 170px;
+    justify-self: end;
+    align-self: end;
+    margin-right: 0.1rem;
+  }
+  .v2-proof-trigger {
+    grid-area: button;
+    margin-top: 0 !important;
   }
   .v2-proof-grid {
     grid-template-columns: 1fr;
@@ -1071,11 +1091,17 @@ object {
   }
 
   .v2-story-card {
-    padding-bottom: 210px;
+    grid-template-columns: minmax(0, 1fr) 104px;
+    column-gap: 0.55rem;
+  }
+
+  .v2-story-card p {
+    font-size: 0.89rem;
+    line-height: 1.48;
   }
 
   .v2-story-portrait {
-    width: min(66%, 220px);
-    max-height: 210px;
+    max-height: 142px;
+    margin-right: 0;
   }
 }
