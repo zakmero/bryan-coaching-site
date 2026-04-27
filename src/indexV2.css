@@ -761,7 +761,7 @@ object {
   left: 0;
   right: 18px;
   top: 50%;
-  height: 6px;
+  height: 8px;
   transform: translateY(-50%);
   border-radius: 999px;
   background: linear-gradient(90deg, #f0a29a, #c0392b);
@@ -773,9 +773,10 @@ object {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 18px solid #c0392b;
+  width: 26px;
+  height: 8px;
+  background: #c0392b;
+  clip-path: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
 }
 
 .v2-roadmap-step {
@@ -809,18 +810,18 @@ object {
   position: absolute;
   left: 50%;
   width: 0;
-  border-left: 2px dashed #d4b6b2;
+  border-left: 2px solid #d4b6b2;
   z-index: 1;
 }
 
 .v2-roadmap-step.is-top .v2-roadmap-stem {
-  top: calc(50% - 30px);
-  height: 28px;
+  top: calc(50% - 42px);
+  height: 30px;
 }
 
 .v2-roadmap-step.is-bottom .v2-roadmap-stem {
-  top: calc(50% + 16px);
-  height: 28px;
+  top: calc(50% + 14px);
+  height: 30px;
 }
 
 .v2-roadmap-content {
@@ -915,10 +916,10 @@ object {
   }
 
   .v2-roadmap::before {
-    left: 8px;
+    left: 12px;
     right: auto;
     top: 0;
-    bottom: 0;
+    bottom: 14px;
     width: 4px;
     height: auto;
     transform: none;
@@ -927,7 +928,18 @@ object {
   }
 
   .v2-roadmap::after {
-    display: none;
+    top: auto;
+    bottom: 0;
+    right: auto;
+    left: 12px;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    clip-path: none;
+    background: transparent;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 14px solid #c0392b;
   }
 
   .v2-roadmap-step {
@@ -936,7 +948,7 @@ object {
   }
 
   .v2-roadmap-node {
-    left: 8px;
+    left: 12px;
     top: 16px;
     transform: translate(-50%, 0);
   }
