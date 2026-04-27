@@ -381,6 +381,11 @@ object {
   color: var(--v2-text-secondary);
 }
 
+.v2-title-accent {
+  color: var(--v2-accent);
+  font-style: italic;
+}
+
 .v2-hero-authority-inline {
   margin: 0.9rem auto 0;
   width: fit-content;

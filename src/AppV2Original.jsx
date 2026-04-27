@@ -223,8 +223,9 @@ const Hero = () => (
           </div>
           <div className="v2-hero-copy v2-text-center">
           <h1 className="v2-animate-fade-up v2-delay-100"
-              style={{ fontFamily: 'var(--v2-font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 1.15, fontWeight: 700, marginBottom: '1.5rem', color: 'var(--v2-text-primary)' }}>
-            Improve your English exam score by +1 to +3 bands in 8-12 weeks - without doing more practice papers
+              style={{ fontFamily: 'var(--v2-font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 1.15, fontWeight: 700, marginBottom: '1.5rem', color: '#16253a' }}>
+            Improve your English exam score by <br />
+            <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> - without doing more practice papers
           </h1>
           <p className="v2-hero-subtitle v2-animate-fade-up v2-delay-200">
             For students preparing for IELTS, TOEFL, IB, A-level, or similar English exams who want consistent high performance under exam pressure.
