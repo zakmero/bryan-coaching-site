@@ -191,7 +191,7 @@ const StoryVision = () => {
 const Header = ({ isApplyPage }) => (
   <header className="v2-header">
     <div className="v2-container v2-header-content">
-      <div className="v2-logo">Elite English Edge</div>
+      <div className="v2-logo">Bryan Teng | English Exam Performance Coach</div>
       <a href={isApplyPage ? '#' : APPLY_HASH} className="v2-btn v2-btn-primary v2-header-cta">
         {isApplyPage ? 'Back Home' : 'Apply'}
       </a>
@@ -214,10 +214,11 @@ const Hero = () => (
           <div className="v2-hero-copy v2-text-center">
           <h1 className="v2-animate-fade-up v2-delay-100"
               style={{ fontFamily: 'var(--v2-font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 1.15, fontWeight: 700, marginBottom: '1.5rem', color: 'var(--v2-text-primary)' }}>
-            Get from B/C to A in 8–12 Weeks<br />
-            <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic', fontSize: '0.8em', fontWeight: 400 }}>Without Studying More, By Training How You Think</span>
+            Improve your English exam score by +1 to +3 bands in 8-12 weeks - without doing more practice papers
           </h1>
-          <p className="v2-hero-subnote v2-animate-fade-up v2-delay-200">so you can [desires]</p>
+          <p className="v2-hero-subtitle v2-animate-fade-up v2-delay-200">
+            For students preparing for IELTS, TOEFL, IB, A-level, or similar English exams who want consistent high performance under exam pressure.
+          </p>
           </div>
         </div>
 
@@ -264,6 +265,9 @@ const Hero = () => (
           </a>
           <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
             Only 20 students accepted for the first intake
+          </p>
+          <p className="v2-hero-authority-inline">
+            120-hour TESOL/TEFL Certified • Accredited Training • 100% Assessment Completion
           </p>
         </div>
       </div>

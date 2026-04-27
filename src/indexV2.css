@@ -373,6 +373,28 @@ object {
   color: var(--v2-text-muted);
 }
 
+.v2-hero-subtitle {
+  margin: 0 auto 1.15rem;
+  max-width: 50rem;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+  color: var(--v2-text-secondary);
+}
+
+.v2-hero-authority-inline {
+  margin: 0.9rem auto 0;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid #f2c8bf;
+  border-radius: 999px;
+  background: #fff6f4;
+  color: #7a4338;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .v2-hero-cta {
   padding: 1.25rem 3rem;
   font-size: 1.125rem;
@@ -985,6 +1007,18 @@ object {
   .v2-hero-subnote {
     margin-bottom: 0.95rem;
     font-size: 0.78rem;
+  }
+  .v2-hero-subtitle {
+    margin-bottom: 0.95rem;
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+  .v2-hero-authority-inline {
+    width: 100%;
+    text-align: center;
+    font-size: 0.68rem;
+    padding: 0.55rem 0.7rem;
+    line-height: 1.5;
   }
   .v2-hero-cta {
     width: min(100%, 22rem);
