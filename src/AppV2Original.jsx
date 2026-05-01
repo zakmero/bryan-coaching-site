@@ -28,6 +28,10 @@ const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
 const APPLY_HASH = '#/apply';
 
+const GradeMark = ({ children }) => (
+  <span className="v2-grade-mark">{children}</span>
+);
+
 // ---------- Reusable Components ----------
 
 const SectionHeader = ({ badge, title, subtitle }) => (
@@ -102,21 +106,54 @@ const StoryVision = () => {
   return (
     <section className="v2-section" id="story">
       <div className="v2-container">
-        <SectionHeader
-          badge="Founder Story"
-          title="Bryan's Story"
-          subtitle="The coaching model was built from real student patterns, not theory."
-        />
+        <div className="v2-story-section-head">
+          <div className="v2-badge v2-animate-fade-up">Founder Story</div>
+          <h2>
+            Why this works
+            <span>(and why most methods don’t)</span>
+          </h2>
+          <p>
+            This didn’t come from theory.<br />
+            It came from watching students fail… while doing everything right.
+          </p>
+        </div>
 
       <article className="v2-card v2-story-card" style={{ maxWidth: '920px', margin: '0 auto' }}>
         <div className="v2-story-text-stack">
-          <p style={{ color: 'var(--v2-text-secondary)', marginTop: '0.35rem', maxWidth: '72%' }}>
-            Bryan noticed a clear pattern: many students were working hard, doing more papers, and still staying at B/C, while a smaller group
-            did less but kept scoring A. The difference was not effort, it was thinking quality under pressure. That realization shaped this
-            coaching model: stop overloading students with more content, and train them to decode questions, think like examiners, and execute
-            with precision in timed conditions. The mission is simple: build repeatable high performance for committed students through a selective
-            system of Application, Strategy Call, and Enrollment.
-          </p>
+          <div className="v2-story-copy">
+            <p>Bryan used to believe the same thing most students do:</p>
+            <ul>
+              <li>More papers = better grades</li>
+              <li>More memorisation = stronger answers</li>
+              <li>More hours = better results</li>
+            </ul>
+            <p>So that’s what he pushed.</p>
+            <p>But something didn’t add up.</p>
+            <p>
+              Some students were doing all of that…<br />
+              and still stuck at <GradeMark>B/C</GradeMark>.
+            </p>
+            <p>
+              At the same time, others were doing less,<br />
+              but consistently scoring <GradeMark>A</GradeMark>.
+            </p>
+            <p>That’s where everything changed.</p>
+            <p>
+              The difference wasn’t effort.<br />
+              It was what happened in the 30 seconds after reading the question.
+            </p>
+            <p>Top students didn’t rush.</p>
+            <p>
+              They paused.<br />
+              They decoded what was actually being asked.<br />
+              They planned before writing.
+            </p>
+            <p>That’s what this coaching fixes.</p>
+            <p>
+              Not how much you study,<br />
+              but how you think when it matters.
+            </p>
+          </div>
         </div>
         <img
           src={storyBryan}
@@ -124,9 +161,6 @@ const StoryVision = () => {
           className="v2-story-portrait"
         />
         <div className="v2-story-authority-block" aria-label="Authority highlights">
-          <div className="v2-story-authority-lead">
-            120-hour TESOL/TEFL certified, accredited course graduate, and 100% assessment completion.
-          </div>
           <div className="v2-story-authority-grid">
             <div className="v2-story-authority-item">TESOL/TEFL Certified</div>
             <div className="v2-story-authority-item">Accredited Training Graduate</div>
@@ -229,7 +263,8 @@ const Hero = () => (
             <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> - without doing more practice papers
           </h1>
           <p className="v2-hero-subtitle v2-animate-fade-up v2-delay-200">
-            For students preparing for IELTS, TOEFL, IB, A-level, or similar English exams who want consistent high performance under exam pressure.
+            For IELTS, TOEFL, IB, A-level, and similar English exam students who study hard but still lose marks from misreading questions,
+            rushing answers, or not knowing what the examiner is really asking for.
           </p>
           </div>
         </div>
@@ -243,8 +278,8 @@ const Hero = () => (
         </div>
 
         <div className="v2-hero-message v2-animate-fade-up v2-delay-200" role="note" aria-label="Core transformation message">
-          <p>Most students fail because they practice wrong.</p>
-          <p>This system rewires how you read, process, and answer questions under pressure.</p>
+          <p>More practice only works when your thinking stops making the same mistakes.</p>
+          <p>Bryan doesn’t give students more work. He fixes how they think inside the question.</p>
         </div>
 
         <div className="v2-grid-2 v2-animate-fade-up v2-delay-200"
@@ -252,21 +287,21 @@ const Hero = () => (
           <ul style={{ listStyle: 'none', display: 'grid', gap: '1.25rem' }}>
             <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
               <ScanSearch size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span>Decode any exam question in seconds (no confusion)</span>
+              <span><strong>Understand the real question first</strong><br />Stop answering what you think it says.</span>
             </li>
             <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
               <ShieldCheck size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span>Stop losing marks to "careless mistakes"</span>
+              <span><strong>Eliminate repeated mistakes</strong><br />Same pattern → same grade. This breaks it.</span>
             </li>
           </ul>
           <ul style={{ listStyle: 'none', display: 'grid', gap: '1.25rem' }}>
             <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
               <FileCheck2 size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span>Write answers that match examiner expectations</span>
+              <span><strong>Write what examiners actually reward</strong><br />Not longer answers. More precise ones.</span>
             </li>
             <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
               <Timer size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span>Perform under time pressure with consistency</span>
+              <span><strong>Stay stable under time pressure</strong><br />So your thinking doesn’t collapse in the exam.</span>
             </li>
           </ul>
         </div>
@@ -276,7 +311,7 @@ const Hero = () => (
             Apply for Coaching <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
           </a>
           <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            Only 20 students accepted for the first intake
+            Limited first intake: 30 students
           </p>
           <p className="v2-hero-authority-inline">
             120-hour TESOL/TEFL Certified • Accredited Training • 100% Assessment Completion
@@ -293,14 +328,25 @@ const Problem = () => (
     <div className="v2-container">
       <SectionHeader 
         badge="The Examiner Thinking System" 
-        title="Hard work is not the problem. Thinking under pressure is." 
-        subtitle="This is not normal tuition. You get a structured thinking framework plus live correction until your process is automatic." 
+        title={<>Stop trying to study harder.<br />That’s why your grade is stuck.</>} 
+        subtitle={
+          <>
+            I’ve worked with students who solved 20+ papers…<br />
+            and still couldn’t break a <GradeMark>B</GradeMark>.<br /><br />
+            The issue wasn’t effort.<br />
+            It was how they approached the question under pressure.
+          </>
+        } 
       />
+      <p className="v2-micro-proof">
+        “Last month, a student went from <GradeMark>B</GradeMark> to <GradeMark>A</GradeMark> in 6 weeks.
+        Not by studying more—but by fixing how he reads questions.”
+      </p>
       
       <div className="v2-problem-wrap">
         <div className="v2-problem-lead">
           <p>
-            The bottleneck is not effort. It is decision quality under pressure.
+            Most students don’t fail because they’re lazy. They fail because they repeat the same thinking pattern… faster.
           </p>
         </div>
 
@@ -309,21 +355,21 @@ const Problem = () => (
             <SearchX size={18} strokeWidth={1.8} />
             <div>
               <h4>Misread Questions</h4>
-              <p>Students rush and answer before decoding what is truly asked.</p>
+              <p>They start answering before they understand what’s actually being asked.</p>
             </div>
           </div>
           <div className="v2-problem-item">
             <RotateCcw size={18} strokeWidth={1.8} />
             <div>
               <h4>Repeat Mistakes</h4>
-              <p>More practice, same errors, because the thinking process stays uncorrected.</p>
+              <p>More practice… same errors. Different paper, same outcome.</p>
             </div>
           </div>
           <div className="v2-problem-item">
             <Gauge size={18} strokeWidth={1.8} />
             <div>
               <h4>Pressure Drop</h4>
-              <p>Performance falls in timed conditions even when content knowledge is good.</p>
+              <p>They know the material. But when the timer starts, their thinking collapses.</p>
             </div>
           </div>
         </div>
@@ -331,10 +377,10 @@ const Problem = () => (
         <div className="v2-card v2-text-center" style={{ marginTop: '1rem' }}>
           <h3 className="v2-heading-md" style={{ fontSize: '1.7rem' }}>
             Top students don't study more.<br />
-            <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>They think differently.</span>
+            <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>They run a sequence.</span>
           </h3>
           <p className="v2-text-lg" style={{ marginBottom: '1.4rem' }}>
-            They use the same mental sequence every time they face a question:
+            Every question. No exception.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.2rem' }}>
             {['Pause', 'Decode', 'Plan', 'Execute'].map((step, idx) => (
@@ -354,7 +400,7 @@ const Problem = () => (
             The Insight
           </p>
           <p style={{ fontSize: '1.12rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>
-            Practice without correcting thinking = reinforcing mistakes.
+            Practice without fixing the thinking process doesn’t improve results. It locks mistakes in.
           </p>
         </div>
       </div>
@@ -391,7 +437,7 @@ const AhaMoment = () => (
         <div className="v2-card" style={{ borderTop: '2px solid var(--v2-border)' }}>
           <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--v2-text-muted)', marginBottom: '1rem' }}>The Insight</p>
           <p style={{ fontSize: '1.25rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)', fontWeight: 600 }}>
-            Practice without correcting thinking = reinforcing mistakes.
+            Practice without correcting the thinking can make the same mistakes stronger.
           </p>
         </div>
       </div>
@@ -405,8 +451,8 @@ const Mechanism = () => (
     <div className="v2-container">
       <SectionHeader 
         badge="The Examiner Thinking System" 
-        title="This is not normal tuition." 
-        subtitle="You get a structured thinking framework plus live correction until your process is automatic." 
+        title="This is not another content lesson." 
+        subtitle="Students bring real questions. Bryan listens to how they think through them, then corrects the process in real time." 
       />
       
       <div className="v2-grid-3 v2-mb-4">
@@ -414,7 +460,7 @@ const Mechanism = () => (
           <Brain color="var(--v2-accent)" size={32} strokeWidth={ICON_STROKE} style={{ marginBottom: '1.5rem' }} />
           <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Question Deconstruction</h3>
           <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'var(--v2-text-secondary)', lineHeight: 1.7 }}>
-            Understand exactly what is being asked before writing a single word.
+            Slow down long enough to understand what the question is really asking.
           </p>
         </div>
 
@@ -422,7 +468,7 @@ const Mechanism = () => (
           <Target color="var(--v2-accent)" size={32} strokeWidth={ICON_STROKE} style={{ marginBottom: '1.5rem' }} />
           <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Pattern Recognition</h3>
           <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'var(--v2-text-secondary)', lineHeight: 1.7 }}>
-            See hidden repetition across exams. The core structures never change.
+            Notice how similar question patterns appear again and again in different wording.
           </p>
         </div>
 
@@ -430,14 +476,14 @@ const Mechanism = () => (
           <Crosshair color="var(--v2-accent)" size={32} strokeWidth={ICON_STROKE} style={{ marginBottom: '1.5rem' }} />
           <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Answer Precision</h3>
           <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'var(--v2-text-secondary)', lineHeight: 1.7 }}>
-            Deliver exactly what gets marks, efficiently under time constraints.
+            Answer clearly, stay relevant, and avoid wasting time on points that do not score.
           </p>
         </div>
       </div>
 
       <div className="v2-text-center">
         <p style={{ fontSize: '1.5rem', fontStyle: 'italic', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-secondary)' }}>
-          "Once you see how examiners think, questions become predictable."
+          "Once students understand what examiners are looking for, the question feels less random."
         </p>
       </div>
 
@@ -458,9 +504,9 @@ const InsideProgram = () => (
       <div className="v2-grid-2 v2-mb-4">
         <div className="v2-card">
           <h3 className="v2-heading-md" style={{ fontSize: '1.75rem' }}>1-2 Coaching Calls per Week</h3>
-          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.5rem' }}>8-session transformation cycle (extendable). Each call includes:</p>
+          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.5rem' }}>The standard program runs for 8 sessions and can be extended if needed. Each call includes:</p>
           <ul style={{ listStyle: 'none', display: 'grid', gap: '1rem' }}>
-            {['Live exam breakdown', 'You explain your thinking process', 'Immediate, structural correction', 'Real-time, observable improvement'].map((item, i) => (
+            {['Live breakdown of real exam questions', 'You explain your reasoning out loud', 'Bryan corrects the thinking, not just the answer', 'You practise the better approach immediately'].map((item, i) => (
               <li key={i} style={{ display: 'flex', gap: '1rem', color: 'var(--v2-text-primary)' }}>
                 <span style={{ color: 'var(--v2-accent)', fontWeight: 700 }}>|</span> {item}
               </li>
@@ -469,10 +515,10 @@ const InsideProgram = () => (
         </div>
         
         <div className="v2-card">
-          <h3 className="v2-heading-md" style={{ fontSize: '1.75rem' }}>High-Precision Homework System</h3>
-          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.5rem' }}>Targeted exercises only. No random worksheets.</p>
+          <h3 className="v2-heading-md" style={{ fontSize: '1.75rem' }}>Homework With a Reason</h3>
+          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.5rem' }}>Students do targeted work based on the mistakes Bryan sees in their answers.</p>
           <ul style={{ listStyle: 'none', display: 'grid', gap: '1rem' }}>
-            {['Targeted exercise mapping', 'Comprehensive error tracking system', 'Weekly performance review'].map((item, i) => (
+            {['Worksheets matched to weak spots', 'An error log that shows why mistakes happen', 'Weekly review of progress and patterns'].map((item, i) => (
               <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center', color: 'var(--v2-text-primary)' }}>
                 <BookOpen size={16} strokeWidth={ICON_STROKE} color="var(--v2-text-muted)"/> {item}
               </li>
@@ -480,7 +526,7 @@ const InsideProgram = () => (
           </ul>
           <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--v2-border)' }}>
             <p style={{ fontSize: '1.1rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-secondary)', fontWeight: 600 }}>
-              We don't track scores. We track thinking errors.
+              The goal is not just to mark answers. It is to find the reason behind the mistake.
             </p>
           </div>
         </div>
@@ -490,9 +536,9 @@ const InsideProgram = () => (
         <h3 className="v2-heading-md v2-text-center v2-mb-2" style={{ fontSize: '2rem' }}>Timeline</h3>
         <div className="v2-roadmap" aria-label="Program timeline roadmap">
           {[
-            { phase: 'Phase 1 / Week 2-3', label: 'Clarity improves' },
-            { phase: 'Phase 2 / Week 6-8', label: 'Grades start shifting' },
-            { phase: 'Phase 3 / Week 8-12', label: 'Consistent A-level performance' },
+            { phase: 'Week 2-3', label: 'Questions start feeling clearer' },
+            { phase: 'Week 6-8', label: 'Marked work should start showing movement' },
+            { phase: 'Week 8-12', label: 'The exam process becomes more consistent' },
           ].map(({ phase, label }, i) => (
             <div key={i} className={`v2-roadmap-step ${i === 1 ? 'is-bottom' : 'is-top'}`}>
               {i !== 1 && (
@@ -525,10 +571,10 @@ const InsideProgram = () => (
 
       <div className="v2-card v2-text-center" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <p style={{ fontSize: 'clamp(1.25rem, 2vw, 1.75rem)', fontFamily: 'var(--v2-font-heading)', fontWeight: 600, marginBottom: '1.5rem', color: 'var(--v2-text-primary)', lineHeight: 1.4 }}>
-          "Others teach content or give model answers.<br />We rewire the exam strategy entirely."
+          "Most tutoring gives students more answers.<br />Bryan works on how students arrive at the answer."
         </p>
         <p style={{ fontSize: '1.1rem', color: 'var(--v2-text-secondary)' }}>
-          Content is not the bottleneck. <em style={{ fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>Thinking is.</em>
+          For many students, the issue is not lack of effort. <em style={{ fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>It is the method.</em>
         </p>
       </div>
     </div>
@@ -541,7 +587,7 @@ const Qualification = () => (
     <div className="v2-container">
       <SectionHeader
         title="Who This Is For"
-        subtitle="Selective intake for students ready to commit to real performance change."
+        subtitle="This is for students who are willing to be corrected, practise differently, and take the work seriously."
       />
 
       <div className="v2-grid-2 v2-qual-grid" style={{ maxWidth: '980px', margin: '0 auto' }}>
@@ -551,7 +597,11 @@ const Qualification = () => (
             <h3 className="v2-heading-md" style={{ fontSize: '1.55rem', marginBottom: 0 }}>Best Fit Candidates</h3>
           </div>
           <ul className="v2-qual-list">
-            {['Students stuck at B/C aiming for A', 'High achievers wanting distinction', 'Students inconsistent or anxious in exams'].map((t, i) => (
+            <li className="v2-qual-list-item">
+              <CheckCircle size={18} strokeWidth={1.9} color="#2f7a4f" />
+              <span>Students stuck at <GradeMark>B/C</GradeMark> who are aiming for <GradeMark>A</GradeMark></span>
+            </li>
+            {['High achievers who want a distinction', 'Students who panic, rush, or become inconsistent in exams'].map((t, i) => (
               <li key={i} className="v2-qual-list-item">
                 <CheckCircle size={18} strokeWidth={1.9} color="#2f7a4f" />
                 <span>{t}</span>
@@ -568,11 +618,11 @@ const Qualification = () => (
           <ul className="v2-qual-list v2-qual-list-muted">
             <li className="v2-qual-list-item">
               <XCircle size={18} strokeWidth={1.9} color="#c0392b" />
-              <span>Students looking for shortcuts or passive learning</span>
+              <span>Students looking for shortcuts or passive lessons</span>
             </li>
             <li className="v2-qual-list-item">
               <XCircle size={18} strokeWidth={1.9} color="#c0392b" />
-              <span>Those unwilling to have their thinking challenged in real-time</span>
+              <span>Students who do not want their thinking corrected in real time</span>
             </li>
           </ul>
         </div>
@@ -594,15 +644,15 @@ const PricingCTA = () => (
       <SectionHeader 
         badge="Program Options" 
         title="Choose Your Coaching Track" 
-        subtitle="Both options use the same examiner-thinking framework. Choose your support depth based on how fast and how personal you want the transformation." 
+        subtitle="Both options use the same method. The difference is how much personal attention and scheduling priority the student needs." 
       />
       
       <div className="v2-grid-2" style={{ maxWidth: '800px', margin: '0 auto 4rem auto' }}>
         <div className="v2-card v2-pricing-card">
-          <div className="v2-plan-tag">Best for driven students</div>
+          <div className="v2-plan-tag">Best for committed students</div>
           <h3 className="v2-heading-md" style={{ fontSize: '1.5rem' }}>Group Format</h3>
           <div className="v2-price">$1,440</div>
-          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.25rem' }}>High-leverage coaching with a small peer cohort and direct correction on your process.</p>
+          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.25rem' }}>Small group coaching with direct correction, shared examples, and a focused peer environment.</p>
           <p className="v2-plan-note">2-part installment available</p>
           <a href="#apply" className="v2-btn v2-btn-secondary" style={{ width: '100%' }}>Apply for Group</a>
         </div>
@@ -611,7 +661,7 @@ const PricingCTA = () => (
           <div className="v2-plan-tag v2-plan-tag-featured">Most personalized</div>
           <h3 className="v2-heading-md" style={{ fontSize: '1.5rem', color: 'var(--v2-accent)' }}>1-on-1 Format</h3>
           <div className="v2-price">$2,880</div>
-          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.25rem' }}>Complete, high-accountability coaching tailored to your exact blind spots and exam patterns.</p>
+          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.25rem' }}>More personal coaching for students who need closer feedback on their exact exam habits and weak spots.</p>
           <p className="v2-plan-note">Priority scheduling + deeper customization</p>
           <a href="#apply" className="v2-btn v2-btn-primary" style={{ width: '100%' }}>Apply for 1-on-1</a>
         </div>
@@ -623,19 +673,19 @@ const PricingCTA = () => (
             <ShieldCheck size={34} strokeWidth={2.2} />
           </div>
         </div>
-        <h3 className="v2-heading-md" style={{ fontSize: '1.5rem' }}>Performance Support Policy</h3>
+        <h3 className="v2-heading-md" style={{ fontSize: '1.5rem' }}>Support Policy</h3>
         <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1rem' }}>
-          If you follow the system and still do not improve, support continues until you do.
+          If a student is doing the work properly and still not improving, Bryan will add support and review what needs to change.
         </p>
         <p style={{ fontSize: '0.85rem', color: 'var(--v2-text-muted)', fontStyle: 'italic' }}>
-          No refunds. This is a transformation process, not a one-off class.
+          No refunds. This is a coaching program, not a one-off lesson.
         </p>
       </div>
       
       <div className="v2-text-center" style={{ padding: '4rem 0', borderTop: '1px solid var(--v2-border)' }}>
         <h2 className="v2-heading-lg" style={{ marginBottom: '2rem' }}>
-          Next exam cycle can be different.<br />
-          <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>Apply now and train your thinking before the pressure hits.</span>
+          The next exam cycle can be handled differently.<br />
+          <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>Apply now and find out if Bryan's method is the right fit.</span>
         </h2>
         <a href="#apply" className="v2-btn v2-btn-primary">
           Book Your Strategy Call
