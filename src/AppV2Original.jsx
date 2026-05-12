@@ -638,54 +638,47 @@ const Qualification = () => (
 );
 
 const sprintFeatures = [
-  'Weekly coaching',
-  'Cognitive restructuring',
-  'Exam execution systems',
-  'Retrieval training',
-  'State regulation',
-  'Personalized performance protocols'
+  '8 live coaching sessions',
+  'Question deconstruction',
+  'Examiner intent training',
+  'Essay structure correction',
+  'Timed execution practice',
+  'Weekly error review'
 ];
 
 const snapshotFeatures = [
   '20-minute live assessment',
-  'Essay autopsy',
-  'Retrieval stress testing',
-  'Cognitive breakdown analysis',
-  'Snapshot scorecard',
+  'Essay review',
+  'Question reading check',
+  'Pressure execution review',
+  'Clear scorecard',
   '24-hour written report',
-  '7-day prescription'
+  '7-day action plan'
 ];
 
 const guidanceCards = [
   {
-    icon: Target,
-    title: 'Start with the Sprint if',
-    copy: 'You already know the student needs a complete rebuild of execution, structure, recall, and exam behavior.'
+    title: 'Choose the Sprint if you already know the problem is serious.',
+    copy: 'This is the full program for students who need consistent coaching, correction, and exam execution practice.'
   },
   {
-    icon: ScanSearch,
-    title: 'Start with Snapshot if',
-    copy: 'You need to isolate whether the issue is structural, cognitive, state-based, or retrieval-related before committing.'
-  },
-  {
-    icon: Gauge,
-    title: 'Both routes protect fit',
-    copy: 'The goal is not to sell a package. It is to determine the right level of intervention for higher performance.'
+    title: 'Choose the Snapshot if you need a clear diagnosis first.',
+    copy: 'This is for parents or students who can see the results are stuck, but do not yet know why.'
   }
 ];
 
 const faqItems = [
   {
     question: 'Is the Performance Snapshot a sales call?',
-    answer: 'No. It is a paid diagnostic assessment with testing, analysis, a written scorecard, and a 7-day prescription.'
+    answer: 'No. It is a paid assessment. Bryan reviews the student’s work, checks how they read and answer questions, then sends a written report.'
   },
   {
-    question: 'When should a student apply directly for the Sprint?',
-    answer: 'When the student and parent already understand that underperformance needs a full system: coaching, restructuring, retrieval work, and pressure execution.'
+    question: 'What is the main issue this program fixes?',
+    answer: 'Most students are not losing marks because they need more content. They lose marks because they misread the question, miss examiner intent, or lose structure under pressure.'
   },
   {
     question: 'What happens after the Snapshot?',
-    answer: 'You receive a written diagnosis within 24 hours. If Bryan accepts the student into the Sprint within 7 days, the Snapshot fee is credited toward the Sprint.'
+    answer: 'You receive a written report within 24 hours. If the student is accepted into the Sprint within 7 days, the $97 fee is credited toward the program.'
   }
 ];
 
@@ -700,6 +693,7 @@ const OfferCard = ({
   microcopy,
   price,
   priceNote,
+  priceDetails,
   signal,
   icon
 }) => (
@@ -716,17 +710,11 @@ const OfferCard = ({
     <p className="v2-offer-subtext">{subtext}</p>
     <p className="v2-offer-description">{description}</p>
 
-    {price ? (
-      <div className="v2-offer-price-block" aria-label="Performance Snapshot price">
+      <div className="v2-offer-price-block" aria-label={`${title} pricing`}>
         <span className="v2-offer-price">{price}</span>
-        <span>{priceNote}</span>
+        <span className="v2-offer-price-note">{priceNote}</span>
+        {priceDetails ? <span className="v2-offer-price-details">{priceDetails}</span> : null}
       </div>
-    ) : (
-      <div className="v2-offer-capacity">
-        <span>Selective Sprint intake</span>
-        <span>Built for immediate intervention</span>
-      </div>
-    )}
 
     <div className="v2-offer-includes">
       <p>Includes</p>
@@ -760,11 +748,9 @@ const PricingCTA = () => (
       />
 
       <div className="v2-program-lab-note">
-        <div>
-          <Brain size={20} strokeWidth={ICON_STROKE} />
-          <span>Academic performance lab intake</span>
-        </div>
-        <p>Identify whether the issue is structural, cognitive, state-based, or retrieval-related.</p>
+        <p>
+          The core problem: students often know the content, but lose marks because they misread the question, miss examiner intent, or lose structure under pressure.
+        </p>
       </div>
 
       <div className="v2-offer-grid">
@@ -775,8 +761,11 @@ const PricingCTA = () => (
           header="Ready To Fix It?"
           title="8-Week Performance Sprint"
           subtext="For students already committed to serious improvement."
-          description="A complete cognitive and academic performance rebuild designed to improve execution, clarity, recall, structure, and exam performance under pressure."
+          description="A focused 8-session coaching program that rebuilds how the student reads questions, plans answers, structures essays, and executes under timed conditions."
           features={sprintFeatures}
+          price="From $1,440"
+          priceNote="Group format: $1,440"
+          priceDetails="1-on-1 format: $2,880"
           cta="Apply For The Sprint"
           microcopy="Best for students ready for immediate intervention."
         />
@@ -792,7 +781,7 @@ const PricingCTA = () => (
           header="Need Clarity First?"
           title="Performance Snapshot"
           subtext="Not a sales call. A real diagnosis."
-          description="A rapid diagnostic assessment designed to identify the exact bottlenecks affecting grades, focus, memory, structure, and performance under pressure."
+          description="A paid assessment that identifies where the student is losing marks: question reading, examiner intent, essay structure, timing, or pressure execution."
           features={snapshotFeatures}
           price="$97"
           priceNote="Credited toward the Sprint if accepted within 7 days."
@@ -802,28 +791,12 @@ const PricingCTA = () => (
       </div>
 
       <div className="v2-starting-guidance">
-        {guidanceCards.map(({ icon, title, copy }) => (
+        {guidanceCards.map(({ title, copy }) => (
           <div className="v2-guidance-card" key={title}>
-            {React.createElement(icon, { size: 20, strokeWidth: ICON_STROKE })}
             <h4>{title}</h4>
             <p>{copy}</p>
           </div>
         ))}
-      </div>
-
-      <div className="v2-card v2-assessment-integrity">
-        <div className="v2-policy-badge" aria-hidden="true">
-          <div className="v2-policy-badge-ring">
-            <ShieldCheck size={34} strokeWidth={2.2} />
-          </div>
-        </div>
-        <div>
-          <p className="v2-assessment-kicker">Assessment integrity</p>
-          <h3>Diagnosis before treatment.</h3>
-          <p>
-            The Snapshot exists to prevent guessing. If the student needs full intervention, the report clarifies why. If the bottleneck is narrower, the prescription tells you where to begin.
-          </p>
-        </div>
       </div>
 
       <div className="v2-faq-wrap" aria-label="Program options frequently asked questions">
@@ -842,7 +815,7 @@ const PricingCTA = () => (
           The next exam cycle can be handled differently.
         </h2>
         <p>
-          Choose the entry point that matches what you know right now: full intervention, or precise diagnosis first.
+          Choose the entry point that matches what you know right now: start the full program, or get the student’s work assessed first.
         </p>
         <div className="v2-program-final-actions">
           <a href={APPLY_HASH} className="v2-btn v2-btn-primary">
@@ -853,7 +826,7 @@ const PricingCTA = () => (
           </a>
         </div>
         <p className="v2-program-final-note">
-          Sprint intake is selective. Snapshot reports are written within 24 hours.
+          Snapshot reports are written within 24 hours. Sprint enrollment depends on fit.
         </p>
       </div>
     </div>
