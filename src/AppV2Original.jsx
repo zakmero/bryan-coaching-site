@@ -489,7 +489,7 @@ const Mechanism = () => (
 
       <EngagementBand
         title="Want this to be your exam process too?"
-        subtitle="Apply now and we will assess fit in a short strategy call."
+        subtitle="Apply now and choose the right starting point for the student's performance needs."
       />
     </div>
   </section>
@@ -637,61 +637,223 @@ const Qualification = () => (
   </section>
 );
 
-// 9. PRICING & 10. CTA
+const sprintFeatures = [
+  'Weekly coaching',
+  'Cognitive restructuring',
+  'Exam execution systems',
+  'Retrieval training',
+  'State regulation',
+  'Personalized performance protocols'
+];
+
+const snapshotFeatures = [
+  '20-minute live assessment',
+  'Essay autopsy',
+  'Retrieval stress testing',
+  'Cognitive breakdown analysis',
+  'Snapshot scorecard',
+  '24-hour written report',
+  '7-day prescription'
+];
+
+const guidanceCards = [
+  {
+    icon: Target,
+    title: 'Start with the Sprint if',
+    copy: 'You already know the student needs a complete rebuild of execution, structure, recall, and exam behavior.'
+  },
+  {
+    icon: ScanSearch,
+    title: 'Start with Snapshot if',
+    copy: 'You need to isolate whether the issue is structural, cognitive, state-based, or retrieval-related before committing.'
+  },
+  {
+    icon: Gauge,
+    title: 'Both routes protect fit',
+    copy: 'The goal is not to sell a package. It is to determine the right level of intervention for higher performance.'
+  }
+];
+
+const faqItems = [
+  {
+    question: 'Is the Performance Snapshot a sales call?',
+    answer: 'No. It is a paid diagnostic assessment with testing, analysis, a written scorecard, and a 7-day prescription.'
+  },
+  {
+    question: 'When should a student apply directly for the Sprint?',
+    answer: 'When the student and parent already understand that underperformance needs a full system: coaching, restructuring, retrieval work, and pressure execution.'
+  },
+  {
+    question: 'What happens after the Snapshot?',
+    answer: 'You receive a written diagnosis within 24 hours. If Bryan accepts the student into the Sprint within 7 days, the Snapshot fee is credited toward the Sprint.'
+  }
+];
+
+const OfferCard = ({
+  variant,
+  header,
+  title,
+  subtext,
+  description,
+  features,
+  cta,
+  microcopy,
+  price,
+  priceNote,
+  signal,
+  icon
+}) => (
+  <article className={`v2-card v2-offer-card v2-offer-card-${variant}`}>
+    <div className="v2-offer-card-topline">
+      <div className="v2-offer-icon">
+        {React.createElement(icon, { size: 22, strokeWidth: ICON_STROKE })}
+      </div>
+      <span>{signal}</span>
+    </div>
+
+    <p className="v2-offer-header">{header}</p>
+    <h3>{title}</h3>
+    <p className="v2-offer-subtext">{subtext}</p>
+    <p className="v2-offer-description">{description}</p>
+
+    {price ? (
+      <div className="v2-offer-price-block" aria-label="Performance Snapshot price">
+        <span className="v2-offer-price">{price}</span>
+        <span>{priceNote}</span>
+      </div>
+    ) : (
+      <div className="v2-offer-capacity">
+        <span>Selective Sprint intake</span>
+        <span>Built for immediate intervention</span>
+      </div>
+    )}
+
+    <div className="v2-offer-includes">
+      <p>Includes</p>
+      <ul>
+        {features.map((feature) => (
+          <li key={feature}>
+            <CheckCircle size={16} strokeWidth={1.9} />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div className="v2-offer-action">
+      <a href={APPLY_HASH} className={`v2-btn v2-offer-btn v2-offer-btn-${variant}`}>
+        {cta} <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+      </a>
+      <p>{microcopy}</p>
+    </div>
+  </article>
+);
+
+// 9. PROGRAM OPTIONS & CTA
 const PricingCTA = () => (
-  <section className="v2-section" id="apply">
+  <section className="v2-section v2-program-section" id="apply">
     <div className="v2-container">
       <SectionHeader 
         badge="Program Options" 
-        title="Choose Your Coaching Track" 
-        subtitle="Both options use the same method. The difference is how much personal attention and scheduling priority the student needs." 
+        title="Choose Your Starting Point" 
+        subtitle="Some students are ready for full intervention immediately. Others need clarity before committing." 
       />
-      
-      <div className="v2-grid-2" style={{ maxWidth: '800px', margin: '0 auto 4rem auto' }}>
-        <div className="v2-card v2-pricing-card">
-          <div className="v2-plan-tag">Best for committed students</div>
-          <h3 className="v2-heading-md" style={{ fontSize: '1.5rem' }}>Group Format</h3>
-          <div className="v2-price">$1,440</div>
-          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.25rem' }}>Small group coaching with direct correction, shared examples, and a focused peer environment.</p>
-          <p className="v2-plan-note">2-part installment available</p>
-          <a href="#apply" className="v2-btn v2-btn-secondary" style={{ width: '100%' }}>Apply for Group</a>
+
+      <div className="v2-program-lab-note">
+        <div>
+          <Brain size={20} strokeWidth={ICON_STROKE} />
+          <span>Academic performance lab intake</span>
         </div>
-        
-        <div className="v2-card v2-pricing-card" style={{ borderColor: 'var(--v2-accent)', borderTop: '3px solid var(--v2-accent)', backgroundColor: '#fff8f7' }}>
-          <div className="v2-plan-tag v2-plan-tag-featured">Most personalized</div>
-          <h3 className="v2-heading-md" style={{ fontSize: '1.5rem', color: 'var(--v2-accent)' }}>1-on-1 Format</h3>
-          <div className="v2-price">$2,880</div>
-          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1.25rem' }}>More personal coaching for students who need closer feedback on their exact exam habits and weak spots.</p>
-          <p className="v2-plan-note">Priority scheduling + deeper customization</p>
-          <a href="#apply" className="v2-btn v2-btn-primary" style={{ width: '100%' }}>Apply for 1-on-1</a>
-        </div>
+        <p>Identify whether the issue is structural, cognitive, state-based, or retrieval-related.</p>
       </div>
-      
-      <div className="v2-card v2-text-center v2-mb-4" style={{ maxWidth: '760px', margin: '0 auto 5rem auto', padding: '2.2rem' }}>
+
+      <div className="v2-offer-grid">
+        <OfferCard
+          variant="sprint"
+          icon={Crosshair}
+          signal="Primary intervention"
+          header="Ready To Fix It?"
+          title="8-Week Performance Sprint"
+          subtext="For students already committed to serious improvement."
+          description="A complete cognitive and academic performance rebuild designed to improve execution, clarity, recall, structure, and exam performance under pressure."
+          features={sprintFeatures}
+          cta="Apply For The Sprint"
+          microcopy="Best for students ready for immediate intervention."
+        />
+
+        <div className="v2-offer-divider">
+          Different starting points. Same objective: higher performance.
+        </div>
+
+        <OfferCard
+          variant="snapshot"
+          icon={FileCheck2}
+          signal="Diagnostic entry point"
+          header="Need Clarity First?"
+          title="Performance Snapshot"
+          subtext="Not a sales call. A real diagnosis."
+          description="A rapid diagnostic assessment designed to identify the exact bottlenecks affecting grades, focus, memory, structure, and performance under pressure."
+          features={snapshotFeatures}
+          price="$97"
+          priceNote="Credited toward the Sprint if accepted within 7 days."
+          cta="Book The Snapshot"
+          microcopy="Best for students unsure what’s actually causing underperformance."
+        />
+      </div>
+
+      <div className="v2-starting-guidance">
+        {guidanceCards.map(({ icon, title, copy }) => (
+          <div className="v2-guidance-card" key={title}>
+            {React.createElement(icon, { size: 20, strokeWidth: ICON_STROKE })}
+            <h4>{title}</h4>
+            <p>{copy}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="v2-card v2-assessment-integrity">
         <div className="v2-policy-badge" aria-hidden="true">
           <div className="v2-policy-badge-ring">
             <ShieldCheck size={34} strokeWidth={2.2} />
           </div>
         </div>
-        <h3 className="v2-heading-md" style={{ fontSize: '1.5rem' }}>Support Policy</h3>
-        <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '1rem' }}>
-          If a student is doing the work properly and still not improving, Bryan will add support and review what needs to change.
-        </p>
-        <p style={{ fontSize: '0.85rem', color: 'var(--v2-text-muted)', fontStyle: 'italic' }}>
-          No refunds. This is a coaching program, not a one-off lesson.
-        </p>
+        <div>
+          <p className="v2-assessment-kicker">Assessment integrity</p>
+          <h3>Diagnosis before treatment.</h3>
+          <p>
+            The Snapshot exists to prevent guessing. If the student needs full intervention, the report clarifies why. If the bottleneck is narrower, the prescription tells you where to begin.
+          </p>
+        </div>
       </div>
-      
-      <div className="v2-text-center" style={{ padding: '4rem 0', borderTop: '1px solid var(--v2-border)' }}>
-        <h2 className="v2-heading-lg" style={{ marginBottom: '2rem' }}>
-          The next exam cycle can be handled differently.<br />
-          <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>Apply now and find out if Bryan's method is the right fit.</span>
+
+      <div className="v2-faq-wrap" aria-label="Program options frequently asked questions">
+        <h3>Common Intake Questions</h3>
+        {faqItems.map((item) => (
+          <details className="v2-faq-item" key={item.question}>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <div className="v2-program-final">
+        <p className="v2-assessment-kicker">Final step</p>
+        <h2>
+          The next exam cycle can be handled differently.
         </h2>
-        <a href="#apply" className="v2-btn v2-btn-primary">
-          Book Your Strategy Call
-        </a>
-        <p style={{ marginTop: '0.9rem', fontSize: '0.82rem', color: 'var(--v2-text-muted)' }}>
-          Limited intake. Application and fit check required.
+        <p>
+          Choose the entry point that matches what you know right now: full intervention, or precise diagnosis first.
+        </p>
+        <div className="v2-program-final-actions">
+          <a href={APPLY_HASH} className="v2-btn v2-btn-primary">
+            Apply For The Sprint <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+          </a>
+          <a href={APPLY_HASH} className="v2-btn v2-program-secondary-action">
+            Book The Snapshot
+          </a>
+        </div>
+        <p className="v2-program-final-note">
+          Sprint intake is selective. Snapshot reports are written within 24 hours.
         </p>
       </div>
     </div>
