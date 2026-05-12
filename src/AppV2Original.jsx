@@ -656,18 +656,15 @@ const snapshotFeatures = [
   '7-day action plan'
 ];
 
-const guidanceCards = [
+const faqItems = [
   {
-    title: 'Choose the Sprint if you already know the problem is serious.',
-    copy: 'This is the full program for students who need consistent coaching, correction, and exam execution practice.'
+    question: 'Choose the Sprint if you already know the problem is serious.',
+    answer: 'This is the full program for students who need consistent coaching, correction, and exam execution practice.'
   },
   {
-    title: 'Choose the Snapshot if you need a clear diagnosis first.',
-    copy: 'This is for parents or students who can see the results are stuck, but do not yet know why.'
-  }
-];
-
-const faqItems = [
+    question: 'Choose the Snapshot if you need a clear diagnosis first.',
+    answer: 'This is for parents or students who can see the results are stuck, but do not yet know why.'
+  },
   {
     question: 'Is the Performance Snapshot a sales call?',
     answer: 'No. It is a paid assessment. Bryan reviews the student’s work, checks how they read and answer questions, then sends a written report.'
@@ -778,15 +775,6 @@ const PricingCTA = () => (
           cta="Book The Snapshot"
           microcopy="Best for students unsure what’s actually causing underperformance."
         />
-      </div>
-
-      <div className="v2-starting-guidance">
-        {guidanceCards.map(({ title, copy }) => (
-          <div className="v2-guidance-card" key={title}>
-            <h4>{title}</h4>
-            <p>{copy}</p>
-          </div>
-        ))}
       </div>
 
       <div className="v2-faq-wrap" aria-label="Program options frequently asked questions">
