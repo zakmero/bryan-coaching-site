@@ -284,25 +284,6 @@ object {
   background: linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
 }
 
-.v2-program-lab-note {
-  max-width: 780px;
-  margin: -1.5rem auto 2rem;
-  padding: 1rem 1.2rem;
-  border: 1px solid #eadbd6;
-  border-left: 4px solid var(--v2-accent);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 10px 24px rgba(26, 22, 20, 0.045);
-}
-
-.v2-program-lab-note p {
-  margin: 0;
-  color: var(--v2-text-secondary);
-  font-size: 1rem;
-  line-height: 1.62;
-  text-align: center;
-}
-
 .v2-offer-grid {
   position: relative;
   display: grid;
@@ -771,10 +752,6 @@ object {
 }
 
 @media (max-width: 900px) {
-  .v2-program-lab-note {
-    margin-top: -1rem;
-  }
-
   .v2-offer-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -792,15 +769,6 @@ object {
 }
 
 @media (max-width: 640px) {
-  .v2-program-lab-note {
-    padding: 0.85rem;
-  }
-
-  .v2-program-lab-note p {
-    text-align: left;
-    font-size: 0.92rem;
-  }
-
   .v2-offer-card-topline {
     align-items: flex-start;
   }

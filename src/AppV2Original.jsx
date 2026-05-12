@@ -747,12 +747,6 @@ const PricingCTA = () => (
         subtitle="Some students are ready for full intervention immediately. Others need clarity before committing." 
       />
 
-      <div className="v2-program-lab-note">
-        <p>
-          The core problem: students often know the content, but lose marks because they misread the question, miss examiner intent, or lose structure under pressure.
-        </p>
-      </div>
-
       <div className="v2-offer-grid">
         <OfferCard
           variant="sprint"
