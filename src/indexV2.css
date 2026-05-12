@@ -570,28 +570,6 @@ object {
   text-align: center;
 }
 
-.v2-offer-divider {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  width: 174px;
-  padding: 0.55rem 0.65rem;
-  border: 1px solid #e7ddd8;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 10px 24px rgba(26, 22, 20, 0.06);
-  color: #6d625d;
-  font-size: 0.67rem;
-  font-weight: 800;
-  line-height: 1.35;
-  text-align: center;
-  text-transform: uppercase;
-  transform: translate(-50%, -50%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
 .v2-starting-guidance {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -801,12 +779,6 @@ object {
     grid-template-columns: 1fr;
     gap: 1rem;
     max-width: 680px;
-  }
-
-  .v2-offer-divider {
-    position: static;
-    width: 100%;
-    transform: none;
   }
 
   .v2-starting-guidance {

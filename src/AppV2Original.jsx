@@ -770,10 +770,6 @@ const PricingCTA = () => (
           microcopy="Best for students ready for immediate intervention."
         />
 
-        <div className="v2-offer-divider">
-          Different starting points. Same objective: higher performance.
-        </div>
-
         <OfferCard
           variant="snapshot"
           icon={FileCheck2}
