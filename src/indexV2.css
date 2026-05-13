@@ -1343,6 +1343,20 @@ object {
   padding: 1.1rem 0 0.4rem;
 }
 
+.v2-timeline-title {
+  margin-bottom: 0.55rem;
+}
+
+.v2-timeline-subtitle {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  color: var(--v2-accent);
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.55;
+  text-align: center;
+}
+
 .v2-roadmap::before {
   content: "";
   position: absolute;

@@ -278,8 +278,8 @@ const Hero = () => (
         </div>
 
         <div className="v2-hero-message v2-animate-fade-up v2-delay-200" role="note" aria-label="Core transformation message">
-          <p>More practice only works when your thinking stops making the same mistakes.</p>
-          <p>Bryan doesn’t give students more work. He fixes how they think inside the question.</p>
+          <p>Most students don’t fail because they lack knowledge. They fail because they think incorrectly under pressure.</p>
+          <p>We train students to think like top-band examiners.</p>
         </div>
 
         <div className="v2-grid-2 v2-animate-fade-up v2-delay-200"
@@ -533,7 +533,10 @@ const InsideProgram = () => (
       </div>
 
       <div className="v2-mb-4">
-        <h3 className="v2-heading-md v2-text-center v2-mb-2" style={{ fontSize: '2rem' }}>Timeline</h3>
+        <h3 className="v2-heading-md v2-text-center v2-timeline-title" style={{ fontSize: '2rem' }}>Timeline</h3>
+        <p className="v2-timeline-subtitle">
+          Improve 1–3 grade bands in 8–12 weeks by rebuilding how you process exam questions under pressure.
+        </p>
         <div className="v2-roadmap" aria-label="Program timeline roadmap">
           {[
             { phase: 'Week 2-3', label: 'Questions start feeling clearer' },
