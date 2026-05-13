@@ -344,7 +344,7 @@ const Problem = () => (
       />
       <p className="v2-micro-proof">
         “Last month, a student went from <GradeMark>B</GradeMark> to <GradeMark>A</GradeMark> in 6 weeks.
-        Not by studying more—but by fixing how he reads questions.”
+        Not by studying more but by fixing how he reads questions.”
       </p>
       
       <div className="v2-problem-wrap">
