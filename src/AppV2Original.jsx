@@ -845,8 +845,8 @@ export default function AppV2() {
             <StoryVision />
             <Problem />
             <ProofsSection />
-            <InsideProgram />
             <Qualification />
+            <InsideProgram />
           </>
         )}
       </main>
