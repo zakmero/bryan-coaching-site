@@ -11,7 +11,6 @@ import {
   UserX,
   FileCheck2,
   SearchX,
-  RotateCcw,
   Gauge
 } from 'lucide-react';
 import bryanPic from '../data/Bryan pic.png';
@@ -349,37 +348,7 @@ const Problem = () => (
       </p>
       
       <div className="v2-problem-wrap">
-        <div className="v2-problem-lead">
-          <p>
-            Most students don’t fail because they’re lazy. They fail because they repeat the same thinking pattern… faster.
-          </p>
-        </div>
-
-        <div className="v2-problem-grid">
-          <div className="v2-problem-item">
-            <SearchX size={18} strokeWidth={1.8} />
-            <div>
-              <h4>Misread Questions</h4>
-              <p>They start answering before they understand what’s actually being asked.</p>
-            </div>
-          </div>
-          <div className="v2-problem-item">
-            <RotateCcw size={18} strokeWidth={1.8} />
-            <div>
-              <h4>Repeat Mistakes</h4>
-              <p>More practice… same errors. Different paper, same outcome.</p>
-            </div>
-          </div>
-          <div className="v2-problem-item">
-            <Gauge size={18} strokeWidth={1.8} />
-            <div>
-              <h4>Pressure Drop</h4>
-              <p>They know the material. But when the timer starts, their thinking collapses.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="v2-card v2-text-center" style={{ marginTop: '1rem' }}>
+        <div className="v2-card v2-text-center">
           <h3 className="v2-heading-md" style={{ fontSize: '1.7rem' }}>
             Top students don't study more.<br />
             <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>They run a sequence.</span>
