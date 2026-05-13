@@ -1278,26 +1278,8 @@ object {
   border: 0;
 }
 
-.v2-proof-trigger {
-  border-radius: 999px;
-  padding: 0.78rem 1.2rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
 .v2-proof-collapse {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transform: translateY(-8px);
-  transition: max-height 0.55s ease, opacity 0.35s ease, transform 0.35s ease;
-}
-
-.v2-proof-collapse.is-open {
-  max-height: 2200px;
-  opacity: 1;
-  transform: translateY(0);
+  margin-top: 1.15rem;
 }
 
 .v2-proof-grid {
@@ -1820,11 +1802,6 @@ object {
     align-self: center;
     margin: 0.1rem auto 0.15rem;
     object-position: bottom center;
-  }
-  .v2-proof-trigger {
-    margin-top: 0 !important;
-    width: 100%;
-    justify-content: center;
   }
   .v2-proof-grid {
     grid-template-columns: 1fr;

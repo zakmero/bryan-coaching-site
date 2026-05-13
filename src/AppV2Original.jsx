@@ -62,8 +62,8 @@ const EngagementBand = ({ title, subtitle, cta = 'Apply for Coaching' }) => (
 );
 
 const StoryVision = () => {
-  const [showProofs, setShowProofs] = useState(false);
   const [selectedProof, setSelectedProof] = useState('tesol-cert');
+  const proofPanelRef = useRef(null);
   const testimonialScrollRef = useRef(null);
   const proofDocs = [
     { id: 'tesol-cert', label: 'TESOL/TEFL Certificate', file: tesolCert },
@@ -73,37 +73,68 @@ const StoryVision = () => {
   const activeProof = proofDocs.find((doc) => doc.id === selectedProof) ?? proofDocs[0];
 
   useEffect(() => {
-    if (!showProofs) return;
-
-    const viewport = testimonialScrollRef.current;
-    if (!viewport) return;
-
-    viewport.scrollTop = 0;
-    const maxScroll = viewport.scrollHeight - viewport.clientHeight;
-    if (maxScroll <= 0) return;
-
     let rafId;
+    let startTimer;
     let startTime;
-    const duration = 8000;
+    let hasStarted = false;
 
-    const step = (timestamp) => {
-      if (startTime === undefined) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      viewport.scrollTop = maxScroll * progress;
-      if (progress < 1) {
+    const startScroll = () => {
+      const viewport = testimonialScrollRef.current;
+      if (!viewport || hasStarted) return false;
+
+      hasStarted = true;
+      let attempts = 0;
+
+      const run = () => {
+        const currentViewport = testimonialScrollRef.current;
+        if (!currentViewport) return;
+
+        const maxScroll = currentViewport.scrollHeight - currentViewport.clientHeight;
+        if (maxScroll <= 0 && attempts < 8) {
+          attempts += 1;
+          startTimer = setTimeout(run, 300);
+          return;
+        }
+
+        if (maxScroll <= 0) return;
+
+        currentViewport.scrollTop = 0;
+        const duration = 8000;
+
+        const step = (timestamp) => {
+          if (startTime === undefined) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          currentViewport.scrollTop = maxScroll * progress;
+          if (progress < 1) {
+            rafId = requestAnimationFrame(step);
+          }
+        };
+
         rafId = requestAnimationFrame(step);
-      }
+      };
+
+      startTimer = setTimeout(run, 350);
+      return true;
     };
 
-    const startTimer = setTimeout(() => {
-      rafId = requestAnimationFrame(step);
-    }, 350);
+    const panel = proofPanelRef.current;
+    if (!panel) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        const didStart = startScroll();
+        if (didStart) observer.disconnect();
+      }
+    }, { threshold: 0.35 });
+
+    observer.observe(panel);
 
     return () => {
+      observer.disconnect();
       clearTimeout(startTimer);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [showProofs]);
+  }, []);
 
   return (
     <section className="v2-section" id="story">
@@ -169,22 +200,12 @@ const StoryVision = () => {
             <div className="v2-story-authority-item">100% Assessment Completion</div>
           </div>
         </div>
-        <button
-            type="button"
-            className="v2-btn v2-btn-primary v2-proof-trigger"
-            style={{ marginTop: '1.1rem' }}
-            onClick={() => setShowProofs((prev) => !prev)}
-            aria-expanded={showProofs}
-            aria-controls="proofs-panel"
-        >
-          View Proofs & Certificates
-        </button>
       </article>
 
         <div
           id="proofs-panel"
-          className={`v2-proof-collapse ${showProofs ? 'is-open' : ''}`}
-          aria-hidden={!showProofs}
+          className="v2-proof-collapse v2-animate-fade-up"
+          ref={proofPanelRef}
         >
           <div className="v2-proof-grid" style={{ marginTop: '1.1rem' }}>
             <div className="v2-card">
