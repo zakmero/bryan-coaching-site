@@ -145,10 +145,6 @@ const StoryVision = () => {
             Why this works
             <span>(and why most methods don’t)</span>
           </h2>
-          <p>
-            This didn’t come from theory.<br />
-            It came from watching students fail… while doing everything right.
-          </p>
         </div>
 
       <article className="v2-card v2-story-card" style={{ maxWidth: '920px', margin: '0 auto' }}>
