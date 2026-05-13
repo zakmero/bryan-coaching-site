@@ -822,13 +822,24 @@ export default function AppV2() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          if (entry.target.classList.contains('v2-roadmap')) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+            return;
+          }
+
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.v2-card, .v2-animate-fade-up').forEach(el => {
+    document.querySelectorAll('.v2-card, .v2-animate-fade-up, .v2-roadmap').forEach(el => {
+      if (el.classList.contains('v2-roadmap')) {
+        observer.observe(el);
+        return;
+      }
+
       if (!el.classList.contains('v2-animate-fade-up')) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(15px)';
