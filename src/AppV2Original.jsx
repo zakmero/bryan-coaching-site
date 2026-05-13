@@ -49,7 +49,7 @@ const SectionHeader = ({ badge, title, subtitle }) => (
   </div>
 );
 
-const EngagementBand = ({ title, subtitle, cta = 'Apply for Coaching' }) => (
+const EngagementBand = ({ title, subtitle, cta = 'Apply for an Audit' }) => (
   <div className="v2-engagement-band v2-animate-fade-up">
     <div>
       <p className="v2-engagement-title">{title}</p>
@@ -318,7 +318,7 @@ const Hero = () => (
 
         <div className="v2-animate-fade-up v2-delay-300 v2-text-center">
           <a href={APPLY_HASH} className="v2-btn v2-btn-primary v2-hero-cta">
-            Apply for Coaching <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
+            Apply for an Audit <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
           </a>
           <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
             Limited first intake: 30 students
