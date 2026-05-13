@@ -61,7 +61,65 @@ const EngagementBand = ({ title, subtitle, cta = 'Apply for an Audit' }) => (
   </div>
 );
 
-const StoryVision = () => {
+const StoryVision = () => (
+  <section className="v2-section" id="story">
+    <div className="v2-container">
+      <div className="v2-story-section-head">
+        <div className="v2-badge v2-animate-fade-up">Founder Story</div>
+        <h2>
+          Why this works
+          <span>(and why most methods don’t)</span>
+        </h2>
+      </div>
+
+      <article className="v2-card v2-story-card" style={{ maxWidth: '920px', margin: '0 auto' }}>
+        <div className="v2-story-text-stack">
+          <div className="v2-story-copy">
+            <p>Bryan used to believe the same thing most students do:</p>
+            <ul>
+              <li>More papers = better grades</li>
+              <li>More memorisation = stronger answers</li>
+              <li>More hours = better results</li>
+            </ul>
+            <p>So that’s what he pushed.</p>
+            <p>But something didn’t add up.</p>
+            <p>
+              Some students were doing all of that…<br />
+              and still stuck at <GradeMark>B/C</GradeMark>.
+            </p>
+            <p>
+              At the same time, others were doing less,<br />
+              but consistently scoring <GradeMark>A</GradeMark>.
+            </p>
+            <p>That’s where everything changed.</p>
+            <p>
+              The difference wasn’t effort.<br />
+              It was what happened in the 30 seconds after reading the question.
+            </p>
+            <p>Top students didn’t rush.</p>
+            <p>
+              They paused.<br />
+              They decoded what was actually being asked.<br />
+              They planned before writing.
+            </p>
+            <p>That’s what this coaching fixes.</p>
+            <p>
+              Not how much you study,<br />
+              but how you think when it matters.
+            </p>
+          </div>
+        </div>
+        <img
+          src={storyBryan}
+          alt="Bryan portrait"
+          className="v2-story-portrait"
+        />
+      </article>
+    </div>
+  </section>
+);
+
+const ProofsSection = () => {
   const [selectedProof, setSelectedProof] = useState('tesol-cert');
   const proofPanelRef = useRef(null);
   const testimonialScrollRef = useRef(null);
@@ -137,60 +195,8 @@ const StoryVision = () => {
   }, []);
 
   return (
-    <section className="v2-section" id="story">
+    <section className="v2-section" id="proofs">
       <div className="v2-container">
-        <div className="v2-story-section-head">
-          <div className="v2-badge v2-animate-fade-up">Founder Story</div>
-          <h2>
-            Why this works
-            <span>(and why most methods don’t)</span>
-          </h2>
-        </div>
-
-      <article className="v2-card v2-story-card" style={{ maxWidth: '920px', margin: '0 auto' }}>
-        <div className="v2-story-text-stack">
-          <div className="v2-story-copy">
-            <p>Bryan used to believe the same thing most students do:</p>
-            <ul>
-              <li>More papers = better grades</li>
-              <li>More memorisation = stronger answers</li>
-              <li>More hours = better results</li>
-            </ul>
-            <p>So that’s what he pushed.</p>
-            <p>But something didn’t add up.</p>
-            <p>
-              Some students were doing all of that…<br />
-              and still stuck at <GradeMark>B/C</GradeMark>.
-            </p>
-            <p>
-              At the same time, others were doing less,<br />
-              but consistently scoring <GradeMark>A</GradeMark>.
-            </p>
-            <p>That’s where everything changed.</p>
-            <p>
-              The difference wasn’t effort.<br />
-              It was what happened in the 30 seconds after reading the question.
-            </p>
-            <p>Top students didn’t rush.</p>
-            <p>
-              They paused.<br />
-              They decoded what was actually being asked.<br />
-              They planned before writing.
-            </p>
-            <p>That’s what this coaching fixes.</p>
-            <p>
-              Not how much you study,<br />
-              but how you think when it matters.
-            </p>
-          </div>
-        </div>
-        <img
-          src={storyBryan}
-          alt="Bryan portrait"
-          className="v2-story-portrait"
-        />
-      </article>
-
         <div
           id="proofs-panel"
           className="v2-proof-collapse v2-animate-fade-up"
@@ -869,6 +875,7 @@ export default function AppV2() {
             <Hero />
             <StoryVision />
             <Problem />
+            <ProofsSection />
             <InsideProgram />
             <Qualification />
           </>
