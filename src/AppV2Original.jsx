@@ -276,7 +276,7 @@ const Hero = () => (
           <div className="v2-hero-copy v2-text-center">
           <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
             Improve your English exam score by <br />
-            <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> - without doing more practice papers
+            <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> without doing more practice papers
           </h1>
           <p className="v2-hero-subtitle v2-animate-fade-up v2-delay-200">
             For IELTS, TOEFL, IB, A-level, and similar English exam students who study hard but still lose marks from misreading questions,
