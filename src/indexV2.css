@@ -1106,6 +1106,14 @@ object {
   max-width: 920px;
 }
 
+.v2-final-engagement-section {
+  padding: 4rem 0 5rem;
+}
+
+.v2-final-engagement-section .v2-engagement-band {
+  margin-top: 0;
+}
+
 .v2-engagement-cta {
   white-space: nowrap;
 }

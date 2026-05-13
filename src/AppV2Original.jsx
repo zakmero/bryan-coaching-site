@@ -605,6 +605,13 @@ const Qualification = () => (
         </div>
       </div>
 
+    </div>
+  </section>
+);
+
+const FinalEngagement = () => (
+  <section className="v2-section v2-final-engagement-section" id="final-apply">
+    <div className="v2-container">
       <EngagementBand
         title="If this sounds like you, don't wait until the next exam cycle."
         subtitle="Secure your place while intake is still open."
@@ -847,6 +854,7 @@ export default function AppV2() {
             <ProofsSection />
             <Qualification />
             <InsideProgram />
+            <FinalEngagement />
           </>
         )}
       </main>
