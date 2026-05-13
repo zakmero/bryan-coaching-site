@@ -9,10 +9,7 @@ import {
   ChevronRight,
   UserCheck,
   UserX,
-  ScanSearch,
-  ShieldCheck,
   FileCheck2,
-  Timer,
   SearchX,
   RotateCcw,
   Gauge
@@ -27,6 +24,11 @@ import testimonialImage from '../data/2025testimonial.jpg';
 const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
 const APPLY_HASH = '#/apply';
+const HERO_DIAGNOSTICS = [
+  { icon: Gauge, text: 'You studied harder and still froze.' },
+  { icon: FileCheck2, text: 'You knew the content but your structure collapsed.' },
+  { icon: SearchX, text: 'You leave exams knowing you could’ve done better.' },
+];
 
 const GradeMark = ({ children }) => (
   <span className="v2-grade-mark">{children}</span>
@@ -248,11 +250,10 @@ const Header = ({ isApplyPage }) => (
 // 1. ABOVE THE FOLD
 const Hero = () => (
   <section className="v2-section v2-hero-section" id="home">
-    {/* Dot grid */}
-    <div style={{ position: 'absolute', inset: 0, opacity: 0.07, backgroundImage: 'radial-gradient(#c0392b 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+    <div className="v2-hero-lab-grid" aria-hidden="true"></div>
     
     <div className="v2-container" style={{ position: 'relative', zIndex: 1 }}>
-      <div className="v2-card v2-hero-card" style={{ maxWidth: '900px', margin: '0 auto', borderTop: '3px solid var(--v2-accent)' }}>
+      <div className="v2-card v2-hero-card">
         <div className="v2-hero-intro v2-mb-4">
           <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
             <img className="v2-hero-portrait" src={bryanPic} alt="" />
@@ -282,27 +283,15 @@ const Hero = () => (
           <p>We train students to think like top-band examiners.</p>
         </div>
 
-        <div className="v2-grid-2 v2-animate-fade-up v2-delay-200"
-             style={{ gap: '2rem', marginBottom: '2.25rem' }}>
-          <ul style={{ listStyle: 'none', display: 'grid', gap: '1.25rem' }}>
-            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
-              <ScanSearch size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span><strong>Understand the real question first</strong><br />Stop answering what you think it says.</span>
-            </li>
-            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
-              <ShieldCheck size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span><strong>Eliminate repeated mistakes</strong><br />Same pattern → same grade. This breaks it.</span>
-            </li>
-          </ul>
-          <ul style={{ listStyle: 'none', display: 'grid', gap: '1.25rem' }}>
-            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
-              <FileCheck2 size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span><strong>Write what examiners actually reward</strong><br />Not longer answers. More precise ones.</span>
-            </li>
-            <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', color: 'var(--v2-text-secondary)' }}>
-              <Timer size={18} strokeWidth={1.8} color="#2aa889" style={{ marginTop: '0.15rem', flexShrink: 0 }} />
-              <span><strong>Stay stable under time pressure</strong><br />So your thinking doesn’t collapse in the exam.</span>
-            </li>
+        <div className="v2-hero-diagnostics v2-animate-fade-up v2-delay-200" aria-label="Performance diagnostic warning signs">
+          <p className="v2-hero-diagnostic-kicker">Performance Diagnostic</p>
+          <ul>
+            {HERO_DIAGNOSTICS.map(({ icon: Icon, text }) => (
+              <li key={text}>
+                <Icon size={18} strokeWidth={1.8} />
+                <span>{text}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
