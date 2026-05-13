@@ -19,6 +19,7 @@ import tesolCert from '../data/World120hrTESOL_TEFLcert.pdf';
 import tesolTranscript from '../data/Yong Ping Bryan Teng - TESOL Grades Transcript - WTA.pdf';
 import tesolReference from '../data/Yong Ping Bryan Teng - TESOL Reference letter.pdf';
 import testimonialImage from '../data/2025testimonial.jpg';
+import examBMark from '../data/exam-b-mark.png';
 
 const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
@@ -357,7 +358,13 @@ const Problem = () => (
         subtitle={
           <>
             I’ve worked with students who solved 20+ papers…<br />
-            and still couldn’t break a <GradeMark>B</GradeMark>.<br /><br />
+            and still couldn’t break a <GradeMark>B</GradeMark>.
+            <span className="v2-exam-proof-visual">
+              <img
+                src={examBMark}
+                alt="English exam paper on a classroom desk with a red circled B grade"
+              />
+            </span>
             The issue wasn’t effort.<br />
             It was how they approached the question under pressure.
           </>

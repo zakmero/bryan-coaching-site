@@ -926,6 +926,24 @@ object {
   font-weight: 700;
 }
 
+.v2-exam-proof-visual {
+  display: block;
+  width: min(100%, 720px);
+  margin: 1.4rem auto 1.35rem;
+  overflow: hidden;
+  border: 1px solid #e1d8d3;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 20px 42px rgba(26, 22, 20, 0.12);
+}
+
+.v2-exam-proof-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 8.75;
+  object-fit: cover;
+}
+
 .v2-micro-proof {
   max-width: 720px;
   margin: -1.5rem auto 2rem;
