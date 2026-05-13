@@ -193,13 +193,6 @@ const StoryVision = () => {
           alt="Bryan portrait"
           className="v2-story-portrait"
         />
-        <div className="v2-story-authority-block" aria-label="Authority highlights">
-          <div className="v2-story-authority-grid">
-            <div className="v2-story-authority-item">TESOL/TEFL Certified</div>
-            <div className="v2-story-authority-item">Accredited Training Graduate</div>
-            <div className="v2-story-authority-item">100% Assessment Completion</div>
-          </div>
-        </div>
       </article>
 
         <div
