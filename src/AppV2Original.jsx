@@ -24,9 +24,24 @@ const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
 const APPLY_HASH = '#/apply';
 const HERO_DIAGNOSTICS = [
-  { icon: Gauge, text: 'You studied harder and still froze.' },
-  { icon: FileCheck2, text: 'You knew the content but your structure collapsed.' },
-  { icon: SearchX, text: 'You leave exams knowing you could’ve done better.' },
+  {
+    icon: Gauge,
+    label: 'Freeze',
+    title: 'You studied harder and still froze.',
+    detail: 'The paper opens, the timer starts, and the answer you knew suddenly feels unreachable.',
+  },
+  {
+    icon: FileCheck2,
+    label: 'Collapse',
+    title: 'You knew the content, but the answer fell apart.',
+    detail: 'Ideas are there, but they come out messy, rushed, and hard for an examiner to reward.',
+  },
+  {
+    icon: SearchX,
+    label: 'Regret',
+    title: 'You walk out replaying the question in your head.',
+    detail: 'That painful “I knew this” feeling usually means the problem was execution, not intelligence.',
+  },
 ];
 
 const GradeMark = ({ children }) => (
@@ -301,10 +316,16 @@ const Hero = () => (
         <div className="v2-hero-diagnostics v2-animate-fade-up v2-delay-200" aria-label="Performance diagnostic warning signs">
           <p className="v2-hero-diagnostic-kicker">Performance Diagnostic</p>
           <ul>
-            {HERO_DIAGNOSTICS.map(({ icon: Icon, text }) => (
-              <li key={text}>
-                <Icon size={18} strokeWidth={1.8} />
-                <span>{text}</span>
+            {HERO_DIAGNOSTICS.map(({ icon: Icon, label, title, detail }) => (
+              <li key={title}>
+                <div className="v2-diagnostic-visual" aria-hidden="true">
+                  <Icon size={22} strokeWidth={1.8} />
+                  <span>{label}</span>
+                </div>
+                <span className="v2-diagnostic-copy">
+                  <strong>{title}</strong>
+                  <span>{detail}</span>
+                </span>
               </li>
             ))}
           </ul>
