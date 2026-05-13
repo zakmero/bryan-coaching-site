@@ -1010,7 +1010,7 @@ object {
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 0 14px 32px rgba(26, 22, 20, 0.065);
-  text-align: left;
+  text-align: center;
 }
 
 .v2-hero-message::before {
