@@ -2142,16 +2142,16 @@ object {
   }
   .v2-hero-portrait-wrap {
     min-height: 0;
-    max-height: 280px;
+    max-height: 220px;
     justify-content: flex-end;
     align-items: flex-end;
   }
   .v2-hero-portrait {
-    width: min(100%, 240px);
-    max-height: 280px;
+    width: min(100%, 168px);
+    max-height: 196px;
     margin: 0 0 0 auto;
     object-position: right bottom;
-    transform: none;
+    transform: translateY(-22px);
   }
   .v2-hero-title {
     font-size: clamp(1.65rem, 8vw, 2.5rem);
