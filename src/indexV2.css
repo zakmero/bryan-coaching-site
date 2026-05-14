@@ -1511,8 +1511,10 @@ object {
 }
 
 .v2-story-card {
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(170px, 240px);
+  gap: 1rem;
+  align-items: end;
   min-height: 0;
   padding: 1.6rem;
 }
@@ -1520,11 +1522,12 @@ object {
 .v2-story-text-stack {
   position: relative;
   z-index: 1;
+  min-width: 0;
 }
 
 .v2-story-copy {
-  max-width: 72%;
-  margin-top: 0.35rem;
+  max-width: 100%;
+  margin-top: 0;
   color: var(--v2-text-secondary);
   font-size: 0.96rem;
   line-height: 1.55;
@@ -1546,13 +1549,13 @@ object {
 }
 
 .v2-story-portrait {
-  position: absolute;
-  right: 0.2rem;
-  bottom: 0;
-  width: min(34%, 245px);
+  position: static;
+  justify-self: end;
+  align-self: end;
+  width: min(100%, 220px);
   max-height: 300px;
   object-fit: contain;
-  object-position: bottom right;
+  object-position: bottom center;
   pointer-events: none;
 }
 
@@ -2218,21 +2221,14 @@ object {
   }
   .v2-story-text-stack {
     min-width: 0;
-    text-align: center;
-  }
-  .v2-story-text-stack > p {
-    max-width: 100% !important;
-    margin: 0 !important;
-    font-size: 0.95rem;
-    line-height: 1.52;
-    text-align: center;
+    text-align: left;
   }
   .v2-story-copy {
     max-width: 100%;
     margin: 0;
     font-size: 0.9rem;
     line-height: 1.45;
-    text-align: center;
+    text-align: left;
   }
   .v2-story-copy p {
     margin-bottom: 0.48rem;
@@ -2241,7 +2237,6 @@ object {
     margin-bottom: 0.55rem;
   }
   .v2-story-copy ul {
-    display: inline-block;
     padding-left: 1rem;
     text-align: left;
   }

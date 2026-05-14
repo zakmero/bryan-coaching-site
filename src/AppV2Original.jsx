@@ -110,28 +110,22 @@ const StoryVision = () => (
             <p>So that’s what he pushed.</p>
             <p>But something didn’t add up.</p>
             <p>
-              Some students were doing all of that…<br />
-              and still stuck at <GradeMark>B/C</GradeMark>.
+              Some students were doing all of that and still stuck at <GradeMark>B/C</GradeMark>.
             </p>
             <p>
-              At the same time, others were doing less,<br />
-              but consistently scoring <GradeMark>A</GradeMark>.
+              At the same time, others were doing less but consistently scoring <GradeMark>A</GradeMark>.
             </p>
             <p>That’s where everything changed.</p>
             <p>
-              The difference wasn’t effort.<br />
-              It was what happened in the 30 seconds after reading the question.
+              The difference wasn’t effort. It was what happened in the 30 seconds after reading the question.
             </p>
             <p>Top students didn’t rush.</p>
             <p>
-              They paused.<br />
-              They decoded what was actually being asked.<br />
-              They planned before writing.
+              They paused, decoded what was actually being asked, and planned before writing.
             </p>
             <p>That’s what this coaching fixes.</p>
             <p>
-              Not how much you study,<br />
-              but how you think when it matters.
+              Not how much you study, but how you think when it matters.
             </p>
           </div>
         </div>
