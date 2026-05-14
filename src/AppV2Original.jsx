@@ -148,38 +148,39 @@ const StoryVision = () => (
 );
 
 const ProofsSection = () => {
-  const [selectedProof, setSelectedProof] = useState('tesol-cert');
   const proofDocs = [
     { id: 'tesol-cert', label: 'TESOL/TEFL Certificate', file: tesolCert },
     { id: 'tesol-transcript', label: 'TESOL Grades Transcript', file: tesolTranscript },
     { id: 'tesol-reference', label: 'TESOL Reference Letter', file: tesolReference }
   ];
-  const activeProof = proofDocs.find((doc) => doc.id === selectedProof) ?? proofDocs[0];
 
   return (
     <div id="proofs-panel" className="v2-proof-collapse v2-animate-fade-up">
       <div className="v2-proof-grid v2-proof-grid-single" style={{ marginTop: '1.1rem' }}>
         <div className="v2-card">
           <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Proofs & Certificates</h3>
-          <div className="v2-proof-links">
+          <div className="v2-proof-locked-list">
             {proofDocs.map((doc) => (
-              <button
-                key={doc.id}
-                type="button"
-                className={`v2-proof-link-btn ${selectedProof === doc.id ? 'is-active' : ''}`}
-                onClick={() => setSelectedProof(doc.id)}
-              >
-                {doc.label}
-              </button>
+              <article key={doc.id} className="v2-proof-locked-card">
+                <p className="v2-proof-locked-title">{doc.label}</p>
+                <div className="v2-proof-preview v2-proof-preview-locked" aria-label={`${doc.label} locked preview`}>
+                  <object
+                    data={`${doc.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    type="application/pdf"
+                    className="v2-proof-frame v2-proof-frame-locked"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  >
+                    <p style={{ margin: 0, color: 'var(--v2-text-secondary)' }}>
+                      Preview unavailable in this browser.
+                    </p>
+                  </object>
+                  <div className="v2-proof-lock-layer" aria-hidden="true">
+                    <span>Locked Preview</span>
+                  </div>
+                </div>
+              </article>
             ))}
-          </div>
-          <div className="v2-proof-preview">
-            <object data={activeProof.file} type="application/pdf" className="v2-proof-frame">
-              <p style={{ margin: 0, color: 'var(--v2-text-secondary)' }}>
-                Preview is unavailable in this browser.{' '}
-                <a href={activeProof.file} target="_blank" rel="noreferrer">Open document</a>
-              </p>
-            </object>
           </div>
         </div>
       </div>

@@ -1601,6 +1601,62 @@ object {
   border: 0;
 }
 
+.v2-proof-locked-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.65rem;
+}
+
+.v2-proof-locked-card {
+  border: 1px solid #e7dfda;
+  border-radius: 10px;
+  padding: 0.8rem;
+  background: #fffdfc;
+}
+
+.v2-proof-locked-title {
+  margin: 0;
+  color: var(--v2-text-primary);
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.v2-proof-preview-locked {
+  position: relative;
+  margin-top: 0.65rem;
+}
+
+.v2-proof-frame-locked {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.v2-proof-lock-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0.55rem;
+  background: linear-gradient(180deg, rgba(26, 22, 20, 0.03) 0%, rgba(26, 22, 20, 0.015) 100%);
+  pointer-events: none;
+}
+
+.v2-proof-lock-layer span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(26, 22, 20, 0.18);
+  border-radius: 999px;
+  padding: 0.24rem 0.56rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #4f4642;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .v2-proof-collapse {
   margin-top: 1.15rem;
 }
@@ -2206,6 +2262,12 @@ object {
   }
   .v2-proof-frame {
     height: 260px;
+  }
+  .v2-proof-locked-card {
+    padding: 0.7rem;
+  }
+  .v2-proof-locked-title {
+    font-size: 0.9rem;
   }
   .v2-testimonial-reel {
     height: 220px;
