@@ -982,7 +982,7 @@ object {
 
 .v2-exam-proof-visual {
   display: block;
-  width: min(100%, 720px);
+  width: min(100%, 560px);
   margin: 1.4rem auto 1.35rem;
   overflow: hidden;
   border: 1px solid #e1d8d3;
