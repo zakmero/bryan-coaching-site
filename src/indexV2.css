@@ -2110,17 +2110,18 @@ object {
   }
   .v2-hero-eyebrow-mobile {
     display: block;
-    text-align: center;
+    text-align: left;
     margin: 0 0 0.55rem;
   }
   .v2-hero-portrait-wrap {
     min-height: 0;
     max-height: 300px;
+    justify-content: flex-start;
   }
   .v2-hero-portrait {
     width: min(72vw, 250px);
     max-height: 300px;
-    margin: 0 auto;
+    margin: 0;
     transform: none;
   }
   .v2-hero-title {
