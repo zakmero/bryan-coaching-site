@@ -2255,6 +2255,7 @@ object {
     flex-direction: column;
     align-items: stretch;
     gap: 0.55rem;
+    overflow: hidden;
   }
   .v2-story-text-stack {
     min-width: 0;
@@ -2279,11 +2280,12 @@ object {
   }
   .v2-story-portrait {
     position: static;
-    width: min(74vw, 290px);
-    max-height: 270px;
+    width: min(88vw, 360px);
+    max-height: 320px;
     align-self: flex-end;
-    margin: 0.1rem 0 0.15rem auto;
-    object-position: bottom center;
+    margin: -0.2rem -1.05rem -1.95rem auto;
+    object-position: right bottom;
+    transform: translate(28px, -20px);
   }
   .v2-proof-grid {
     grid-template-columns: 1fr;
@@ -2362,8 +2364,10 @@ object {
   }
 
   .v2-story-portrait {
-    width: min(78vw, 280px);
-    max-height: 250px;
+    width: min(92vw, 340px);
+    max-height: 300px;
+    margin: -0.1rem -0.85rem -1.65rem auto;
+    transform: translate(22px, -16px);
   }
 }
 
