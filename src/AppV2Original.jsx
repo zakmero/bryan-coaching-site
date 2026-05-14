@@ -54,13 +54,6 @@ const HERO_DIAGNOSTICS = [
     title: 'The worst part is knowing you knew it.',
     detail: 'You leave the exam replaying the question, realizing the answer was there, but your brain moved too fast to structure it properly.',
   },
-  {
-    icon: Target,
-    tone: 'red',
-    label: 'PLATEAU',
-    title: 'You’re too strong to fail, but not precise enough to break through.',
-    detail: 'At this level, the gap is no longer effort. It is interpretation, structure, and execution under pressure.',
-  },
 ];
 
 const GradeMark = ({ children }) => (
@@ -303,21 +296,42 @@ const Header = ({ isApplyPage }) => (
 const Hero = () => {
   const diagnosticsRef = useRef(null);
   const [diagnosticsVisible, setDiagnosticsVisible] = useState(false);
+  const [hasScrolledToDiagnosticsZone, setHasScrolledToDiagnosticsZone] = useState(false);
+  const [isDiagnosticsInView, setIsDiagnosticsInView] = useState(false);
 
   useEffect(() => {
+    if (diagnosticsVisible) return undefined;
+
+    const onScroll = () => {
+      if (window.scrollY > 70) {
+        setHasScrolledToDiagnosticsZone(true);
+        window.removeEventListener('scroll', onScroll);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [diagnosticsVisible]);
+
+  useEffect(() => {
+    if (diagnosticsVisible) return undefined;
+
     const node = diagnosticsRef.current;
     if (!node) return undefined;
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setDiagnosticsVisible(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.25 });
+      setIsDiagnosticsInView(entry.isIntersecting);
+    }, { threshold: 0.38, rootMargin: '0px 0px -16% 0px' });
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [diagnosticsVisible]);
+
+  useEffect(() => {
+    if (!diagnosticsVisible && hasScrolledToDiagnosticsZone && isDiagnosticsInView) {
+      setDiagnosticsVisible(true);
+    }
+  }, [diagnosticsVisible, hasScrolledToDiagnosticsZone, isDiagnosticsInView]);
 
   return (
     <section className="v2-section v2-hero-section" id="home">
@@ -370,7 +384,6 @@ const Hero = () => {
                   style={{ '--v2-diag-delay': `${index * 1600}ms` }}
                 >
                   <div className="v2-diagnostic-visual" aria-hidden="true">
-                    <span className="v2-diagnostic-pulse"></span>
                     <span className="v2-diagnostic-icon-wrap">
                       <Icon size={22} strokeWidth={1.8} />
                     </span>
