@@ -350,22 +350,22 @@ const Hero = () => {
       <div className="v2-container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="v2-card v2-hero-card">
           <div className="v2-hero-intro v2-mb-4">
-            <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
-              <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
-              <img className="v2-hero-portrait" src={bryanPic} alt="" />
-            </div>
-            <div className="v2-hero-copy v2-text-center">
-            <p className="v2-hero-eyebrow v2-hero-eyebrow-desktop">{HERO_EYEBROW_TEXT}</p>
-            <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
-              Improve your English exam score by <br />
-              <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> without doing more practice papers
-            </h1>
-            <p className="v2-hero-subtitle v2-animate-fade-up v2-delay-200">
-              For IELTS, TOEFL, IB, A-level, and similar English exam students who study hard but still lose marks from misreading questions,
-              rushing answers, or not knowing what the examiner is really asking for.
-            </p>
-            </div>
+          <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
+            <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
+            <img className="v2-hero-portrait" src={bryanPic} alt="" />
           </div>
+          <div className="v2-hero-copy v2-hero-copy-title v2-text-center">
+          <p className="v2-hero-eyebrow v2-hero-eyebrow-desktop">{HERO_EYEBROW_TEXT}</p>
+          <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
+            Improve your English exam score by <br />
+            <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> without doing more practice papers
+          </h1>
+          </div>
+          <p className="v2-hero-subtitle v2-hero-copy-subtitle v2-animate-fade-up v2-delay-200">
+            For IELTS, TOEFL, IB, A-level, and similar English exam students who study hard but still lose marks from misreading questions,
+            rushing answers, or not knowing what the examiner is really asking for.
+          </p>
+        </div>
 
           <div className="v2-hero-exam-grid v2-animate-fade-up v2-delay-300" aria-label="Exam focus areas">
             {EXAM_FOCUS.map((exam) => (

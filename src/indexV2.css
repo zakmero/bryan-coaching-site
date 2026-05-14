@@ -906,11 +906,15 @@ object {
 .v2-hero-intro {
   display: grid;
   grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  grid-template-areas:
+    "portrait title"
+    "portrait subtitle";
   align-items: center;
   gap: 2rem;
 }
 
 .v2-hero-portrait-wrap {
+  grid-area: portrait;
   position: relative;
   display: flex;
   align-items: center;
@@ -943,6 +947,14 @@ object {
 
 .v2-hero-copy {
   text-align: center;
+}
+
+.v2-hero-copy-title {
+  grid-area: title;
+}
+
+.v2-hero-copy-subtitle {
+  grid-area: subtitle;
 }
 
 .v2-hero-eyebrow {
@@ -2102,8 +2114,19 @@ object {
   .v2-grid-2, .v2-grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
   .v2-heading-lg { font-size: 2rem; }
   .v2-hero-intro {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.95rem;
+  }
+  .v2-hero-copy-title {
+    order: 1;
+  }
+  .v2-hero-portrait-wrap {
+    order: 2;
+  }
+  .v2-hero-copy-subtitle {
+    order: 3;
   }
   .v2-hero-eyebrow-desktop {
     display: none;
