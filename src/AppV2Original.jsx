@@ -424,7 +424,7 @@ const Problem = () => (
           <p style={{ fontSize: '1.12rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>
             Practice without fixing the thinking process doesn’t improve results. It locks mistakes in.
           </p>
-          <div style={{ maxWidth: '760px', margin: '1.5rem auto 0', textAlign: 'left', display: 'grid', gap: '1rem' }}>
+          <div style={{ maxWidth: '760px', margin: '1.5rem auto 0', textAlign: 'center', display: 'grid', gap: '1rem' }}>
             <div>
               <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                 CLARITY
