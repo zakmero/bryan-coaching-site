@@ -473,12 +473,12 @@ const Problem = () => {
         <p className="v2-problem-support">
           I’ve worked with students who solved 20+ papers and still couldn’t break a <GradeMark>B</GradeMark>.
         </p>
-        <span className="v2-exam-proof-visual">
-          <img
-            src={examBMark}
-            alt="English exam paper on a classroom desk with a red circled B grade"
-          />
-        </span>
+      <span className="v2-exam-proof-visual v2-pop-on-reach">
+        <img
+          src={examBMark}
+          alt="English exam paper on a classroom desk with a red circled B grade"
+        />
+      </span>
         <p className="v2-problem-support">
           The issue wasn’t effort. It was how they approached the question under pressure.
         </p>
@@ -985,14 +985,25 @@ export default function AppV2() {
             return;
           }
 
+          if (entry.target.classList.contains('v2-pop-on-reach')) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+            return;
+          }
+
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.v2-card, .v2-animate-fade-up, .v2-roadmap').forEach(el => {
+    document.querySelectorAll('.v2-card, .v2-animate-fade-up, .v2-roadmap, .v2-pop-on-reach').forEach(el => {
       if (el.classList.contains('v2-roadmap')) {
+        observer.observe(el);
+        return;
+      }
+
+      if (el.classList.contains('v2-pop-on-reach')) {
         observer.observe(el);
         return;
       }
