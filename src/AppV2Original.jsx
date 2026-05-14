@@ -11,10 +11,7 @@ import {
   UserX,
   FileCheck2,
   SearchX,
-  Gauge,
-  Lightbulb,
-  ListChecks,
-  ShieldCheck
+  Gauge
 } from 'lucide-react';
 import bryanPic from '../data/Bryan pic.png';
 import storyBryan from '../data/story-bryan.png';
@@ -56,27 +53,6 @@ const HERO_DIAGNOSTICS = [
     label: 'REGRET',
     title: 'The worst part is knowing you knew it.',
     detail: 'You leave the exam replaying the question, realizing the answer was there, but your brain moved too fast to structure it properly.',
-  },
-];
-
-const INSIGHT_PILLARS = [
-  {
-    icon: Lightbulb,
-    title: 'CLARITY',
-    detail: 'The student finally understands why marks are being lost, not just what the correct answer should have been.',
-    tone: 'red',
-  },
-  {
-    icon: ListChecks,
-    title: 'CONTROL',
-    detail: 'Instead of rushing into the answer, they learn a repeatable process for decoding the question before writing.',
-    tone: 'green',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'CONSISTENCY',
-    detail: 'Performance becomes less dependent on mood, panic, or luck and more dependent on a trained exam process.',
-    tone: 'white',
   },
 ];
 
@@ -177,38 +153,52 @@ const ProofsSection = () => {
     { id: 'tesol-transcript', label: 'TESOL Grades Transcript', file: tesolTranscript },
     { id: 'tesol-reference', label: 'TESOL Reference Letter', file: tesolReference }
   ];
+  const [selectedProof, setSelectedProof] = useState('tesol-cert');
+  const activeProof = proofDocs.find((doc) => doc.id === selectedProof) ?? proofDocs[0];
 
   return (
     <div id="proofs-panel" className="v2-proof-collapse v2-animate-fade-up">
       <div className="v2-proof-grid v2-proof-grid-single" style={{ marginTop: '1.1rem' }}>
         <div className="v2-card">
           <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Proofs & Certificates</h3>
-          <div className="v2-proof-locked-list">
+          <div className="v2-proof-links">
             {proofDocs.map((doc) => (
-              <article key={doc.id} className="v2-proof-locked-card">
-                <p className="v2-proof-locked-title">{doc.label}</p>
-                <div className="v2-proof-preview v2-proof-preview-locked" aria-label={`${doc.label} locked preview`}>
-                  <object
-                    data={`${doc.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                    type="application/pdf"
-                    className="v2-proof-frame v2-proof-frame-locked"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                  >
-                    <p style={{ margin: 0, color: 'var(--v2-text-secondary)' }}>
-                      Preview unavailable in this browser.
-                    </p>
-                  </object>
-                  <div className="v2-proof-lock-layer" aria-hidden="true">
-                    <span>Locked Preview</span>
-                  </div>
-                </div>
-              </article>
+              <button
+                key={doc.id}
+                type="button"
+                className={`v2-proof-link-btn ${selectedProof === doc.id ? 'is-active' : ''}`}
+                onClick={() => setSelectedProof(doc.id)}
+              >
+                {doc.label}
+              </button>
             ))}
+          </div>
+          <article className="v2-proof-locked-card">
+            <p className="v2-proof-locked-title">{activeProof.label}</p>
+            <div
+              className="v2-proof-preview v2-proof-preview-locked"
+              aria-label={`${activeProof.label} locked preview`}
+              onContextMenu={(event) => event.preventDefault()}
+            >
+              <object
+                data={`${activeProof.file}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                type="application/pdf"
+                className="v2-proof-frame v2-proof-frame-locked"
+                tabIndex={-1}
+                aria-hidden="true"
+              >
+                <p style={{ margin: 0, color: 'var(--v2-text-secondary)' }}>
+                  Preview unavailable in this browser.
+                </p>
+              </object>
+              <div className="v2-proof-lock-layer" aria-hidden="true">
+                <span>Locked Preview</span>
+              </div>
+            </div>
+          </article>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
@@ -498,37 +488,35 @@ const Problem = () => (
           <p style={{ fontSize: '1.12rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>
             Practice without fixing the thinking process doesn’t improve results. It locks mistakes in.
           </p>
-          <div className="v2-insight-stage">
-            <div className="v2-insight-scene" aria-hidden="true">
-              <div className="v2-insight-scene-glow"></div>
-              <div className="v2-insight-desk"></div>
-              <div className="v2-insight-paper v2-insight-paper-main"></div>
-              <div className="v2-insight-paper v2-insight-paper-note"></div>
-              <div className="v2-insight-person">
-                <span className="v2-insight-person-head"></span>
-                <span className="v2-insight-person-body"></span>
-                <span className="v2-insight-person-arm"></span>
-                <span className="v2-insight-person-pen"></span>
-              </div>
+          <div style={{ maxWidth: '760px', margin: '1.5rem auto 0', textAlign: 'center', display: 'grid', gap: '1rem' }}>
+            <div>
+              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                CLARITY
+              </p>
+              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
+                The student finally understands why marks are being lost, not just what the correct answer should have been.
+              </p>
             </div>
-
-            <div className="v2-insight-pillars">
-              {INSIGHT_PILLARS.map(({ icon: Icon, title, detail, tone }) => (
-                <article key={title} className={`v2-insight-pillar v2-insight-pillar-${tone}`}>
-                  <div className="v2-insight-pillar-icon" aria-hidden="true">
-                    <Icon size={18} strokeWidth={1.9} />
-                  </div>
-                  <div>
-                    <p className="v2-insight-pillar-title">{title}</p>
-                    <p className="v2-insight-pillar-detail">{detail}</p>
-                  </div>
-                </article>
-              ))}
+            <div>
+              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                CONTROL
+              </p>
+              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
+                Instead of rushing into the answer, they learn a repeatable process for decoding the question before writing.
+              </p>
             </div>
+            <div>
+              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                CONSISTENCY
+              </p>
+              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
+                Performance becomes less dependent on mood, panic, or luck and more dependent on a trained exam process.
+              </p>
+            </div>
+            <p style={{ margin: '0.2rem 0 0', color: 'var(--v2-text-primary)', fontFamily: 'var(--v2-font-heading)', fontSize: '1.2rem', lineHeight: 1.45 }}>
+              "The goal is not to study more. The goal is to perform with a system when the paper is in front of them."
+            </p>
           </div>
-          <p className="v2-insight-quote">
-            "The goal is not to study more. The goal is to perform with a system when the paper is in front of them."
-          </p>
         </div>
       </div>
     </div>
