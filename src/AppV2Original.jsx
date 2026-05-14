@@ -28,30 +28,35 @@ const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIA
 const HERO_DIAGNOSTICS = [
   {
     icon: SearchX,
+    tone: 'red',
     label: 'MISREAD',
     title: 'You’re not failing because you didn’t study enough.',
     detail: 'You’re losing marks because the question changes shape under pressure, and your answer no longer matches what the examiner is rewarding.',
   },
   {
     icon: FileCheck2,
+    tone: 'ink',
     label: 'REPEAT',
     title: 'More practice papers won’t fix a broken thinking pattern.',
     detail: 'If every paper is approached with the same rushed interpretation, practice only makes the mistake more automatic.',
   },
   {
     icon: XCircle,
+    tone: 'red',
     label: 'FRUSTRATION',
     title: 'You keep paying for help, but the same pattern returns.',
     detail: 'More lessons, more notes, more hours, yet when the exam arrives, you still lose marks you should have secured.',
   },
   {
     icon: Gauge,
+    tone: 'ink',
     label: 'REGRET',
     title: 'The worst part is knowing you knew it.',
     detail: 'You leave the exam replaying the question, realizing the answer was there, but your brain moved too fast to structure it properly.',
   },
   {
     icon: Target,
+    tone: 'red',
     label: 'PLATEAU',
     title: 'You’re too strong to fail, but not precise enough to break through.',
     detail: 'At this level, the gap is no longer effort. It is interpretation, structure, and execution under pressure.',
@@ -295,76 +300,105 @@ const Header = ({ isApplyPage }) => (
 );
 
 // 1. ABOVE THE FOLD
-const Hero = () => (
-  <section className="v2-section v2-hero-section" id="home">
-    <div className="v2-hero-lab-grid" aria-hidden="true"></div>
-    
-    <div className="v2-container" style={{ position: 'relative', zIndex: 1 }}>
-      <div className="v2-card v2-hero-card">
-        <div className="v2-hero-intro v2-mb-4">
-          <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
-            <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
-            <img className="v2-hero-portrait" src={bryanPic} alt="" />
-          </div>
-          <div className="v2-hero-copy v2-text-center">
-          <p className="v2-hero-eyebrow v2-hero-eyebrow-desktop">{HERO_EYEBROW_TEXT}</p>
-          <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
-            Improve your English exam score by <br />
-            <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> without doing more practice papers
-          </h1>
-          <p className="v2-hero-subtitle v2-animate-fade-up v2-delay-200">
-            For IELTS, TOEFL, IB, A-level, and similar English exam students who study hard but still lose marks from misreading questions,
-            rushing answers, or not knowing what the examiner is really asking for.
-          </p>
-          </div>
-        </div>
+const Hero = () => {
+  const diagnosticsRef = useRef(null);
+  const [diagnosticsVisible, setDiagnosticsVisible] = useState(false);
 
-        <div className="v2-hero-exam-grid v2-animate-fade-up v2-delay-300" aria-label="Exam focus areas">
-          {EXAM_FOCUS.map((exam) => (
-            <div key={exam} className="v2-hero-exam-pill">
-              <span>{exam}</span>
+  useEffect(() => {
+    const node = diagnosticsRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setDiagnosticsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.25 });
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="v2-section v2-hero-section" id="home">
+      <div className="v2-hero-lab-grid" aria-hidden="true"></div>
+
+      <div className="v2-container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="v2-card v2-hero-card">
+          <div className="v2-hero-intro v2-mb-4">
+            <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
+              <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
+              <img className="v2-hero-portrait" src={bryanPic} alt="" />
             </div>
-          ))}
-        </div>
+            <div className="v2-hero-copy v2-text-center">
+            <p className="v2-hero-eyebrow v2-hero-eyebrow-desktop">{HERO_EYEBROW_TEXT}</p>
+            <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
+              Improve your English exam score by <br />
+              <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> without doing more practice papers
+            </h1>
+            <p className="v2-hero-subtitle v2-animate-fade-up v2-delay-200">
+              For IELTS, TOEFL, IB, A-level, and similar English exam students who study hard but still lose marks from misreading questions,
+              rushing answers, or not knowing what the examiner is really asking for.
+            </p>
+            </div>
+          </div>
 
-        <div className="v2-hero-message v2-animate-fade-up v2-delay-200" role="note" aria-label="Core transformation message">
-          <p>Most students don’t fail because they lack knowledge. They fail because they think incorrectly under pressure.</p>
-          <p>We train students to think like top-band examiners.</p>
-        </div>
-
-        <div className="v2-hero-diagnostics v2-animate-fade-up v2-delay-200" aria-label="Performance diagnostic warning signs">
-          <p className="v2-hero-diagnostic-kicker">Performance Diagnostic</p>
-          <ul>
-            {HERO_DIAGNOSTICS.map(({ icon: Icon, label, title, detail }) => (
-              <li key={title}>
-                <div className="v2-diagnostic-visual" aria-hidden="true">
-                  <Icon size={22} strokeWidth={1.8} />
-                  <span>{label}</span>
-                </div>
-                <span className="v2-diagnostic-copy">
-                  <strong>{title}</strong>
-                  <span>{detail}</span>
-                </span>
-              </li>
+          <div className="v2-hero-exam-grid v2-animate-fade-up v2-delay-300" aria-label="Exam focus areas">
+            {EXAM_FOCUS.map((exam) => (
+              <div key={exam} className="v2-hero-exam-pill">
+                <span>{exam}</span>
+              </div>
             ))}
-          </ul>
-        </div>
+          </div>
 
-        <div className="v2-animate-fade-up v2-delay-300 v2-text-center">
-          <a href={APPLY_HASH} className="v2-btn v2-btn-primary v2-hero-cta">
-            Apply for an Audit <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
-          </a>
-          <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            Limited first intake: 30 students
-          </p>
-          <p className="v2-hero-authority-inline">
-            120-hour TESOL/TEFL Certified • Accredited Training • 100% Assessment Completion
-          </p>
+          <div className="v2-hero-message v2-animate-fade-up v2-delay-200" role="note" aria-label="Core transformation message">
+            <p>Most students don’t fail because they lack knowledge. They fail because they think incorrectly under pressure.</p>
+            <p>We train students to think like top-band examiners.</p>
+          </div>
+
+          <div
+            ref={diagnosticsRef}
+            className={`v2-hero-diagnostics v2-animate-fade-up v2-delay-200 ${diagnosticsVisible ? 'is-visible' : ''}`}
+            aria-label="Performance diagnostic warning signs"
+          >
+            <p className="v2-hero-diagnostic-kicker">Performance Diagnostic</p>
+            <ul>
+              {HERO_DIAGNOSTICS.map(({ icon: Icon, label, title, detail, tone }, index) => (
+                <li
+                  key={title}
+                  className={`v2-diagnostic-item v2-diagnostic-item-${tone}`}
+                  style={{ '--v2-diag-delay': `${index * 180}ms` }}
+                >
+                  <div className="v2-diagnostic-visual" aria-hidden="true">
+                    <span className="v2-diagnostic-pulse"></span>
+                    <Icon size={22} strokeWidth={1.8} />
+                    <span>{label}</span>
+                  </div>
+                  <div className="v2-diagnostic-copy">
+                    <strong>{title}</strong>
+                    <p>{detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="v2-animate-fade-up v2-delay-300 v2-text-center">
+            <a href={APPLY_HASH} className="v2-btn v2-btn-primary v2-hero-cta">
+              Apply for an Audit <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
+            </a>
+            <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              Limited first intake: 30 students
+            </p>
+            <p className="v2-hero-authority-inline">
+              120-hour TESOL/TEFL Certified • Accredited Training • 100% Assessment Completion
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 // 2. PROBLEM AGITATION
 const Problem = () => (
