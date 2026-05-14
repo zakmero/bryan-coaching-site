@@ -11,7 +11,10 @@ import {
   UserX,
   FileCheck2,
   SearchX,
-  Gauge
+  Gauge,
+  Lightbulb,
+  ListChecks,
+  ShieldCheck
 } from 'lucide-react';
 import bryanPic from '../data/Bryan pic.png';
 import storyBryan from '../data/story-bryan.png';
@@ -53,6 +56,27 @@ const HERO_DIAGNOSTICS = [
     label: 'REGRET',
     title: 'The worst part is knowing you knew it.',
     detail: 'You leave the exam replaying the question, realizing the answer was there, but your brain moved too fast to structure it properly.',
+  },
+];
+
+const INSIGHT_PILLARS = [
+  {
+    icon: Lightbulb,
+    title: 'CLARITY',
+    detail: 'The student finally understands why marks are being lost, not just what the correct answer should have been.',
+    tone: 'red',
+  },
+  {
+    icon: ListChecks,
+    title: 'CONTROL',
+    detail: 'Instead of rushing into the answer, they learn a repeatable process for decoding the question before writing.',
+    tone: 'green',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'CONSISTENCY',
+    detail: 'Performance becomes less dependent on mood, panic, or luck and more dependent on a trained exam process.',
+    tone: 'white',
   },
 ];
 
@@ -474,35 +498,37 @@ const Problem = () => (
           <p style={{ fontSize: '1.12rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>
             Practice without fixing the thinking process doesn’t improve results. It locks mistakes in.
           </p>
-          <div style={{ maxWidth: '760px', margin: '1.5rem auto 0', textAlign: 'center', display: 'grid', gap: '1rem' }}>
-            <div>
-              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                CLARITY
-              </p>
-              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
-                The student finally understands why marks are being lost, not just what the correct answer should have been.
-              </p>
+          <div className="v2-insight-stage">
+            <div className="v2-insight-scene" aria-hidden="true">
+              <div className="v2-insight-scene-glow"></div>
+              <div className="v2-insight-desk"></div>
+              <div className="v2-insight-paper v2-insight-paper-main"></div>
+              <div className="v2-insight-paper v2-insight-paper-note"></div>
+              <div className="v2-insight-person">
+                <span className="v2-insight-person-head"></span>
+                <span className="v2-insight-person-body"></span>
+                <span className="v2-insight-person-arm"></span>
+                <span className="v2-insight-person-pen"></span>
+              </div>
             </div>
-            <div>
-              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                CONTROL
-              </p>
-              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
-                Instead of rushing into the answer, they learn a repeatable process for decoding the question before writing.
-              </p>
+
+            <div className="v2-insight-pillars">
+              {INSIGHT_PILLARS.map(({ icon: Icon, title, detail, tone }) => (
+                <article key={title} className={`v2-insight-pillar v2-insight-pillar-${tone}`}>
+                  <div className="v2-insight-pillar-icon" aria-hidden="true">
+                    <Icon size={18} strokeWidth={1.9} />
+                  </div>
+                  <div>
+                    <p className="v2-insight-pillar-title">{title}</p>
+                    <p className="v2-insight-pillar-detail">{detail}</p>
+                  </div>
+                </article>
+              ))}
             </div>
-            <div>
-              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                CONSISTENCY
-              </p>
-              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
-                Performance becomes less dependent on mood, panic, or luck and more dependent on a trained exam process.
-              </p>
-            </div>
-            <p style={{ margin: '0.2rem 0 0', color: 'var(--v2-text-primary)', fontFamily: 'var(--v2-font-heading)', fontSize: '1.2rem', lineHeight: 1.45 }}>
-              "The goal is not to study more. The goal is to perform with a system when the paper is in front of them."
-            </p>
           </div>
+          <p className="v2-insight-quote">
+            "The goal is not to study more. The goal is to perform with a system when the paper is in front of them."
+          </p>
         </div>
       </div>
     </div>
