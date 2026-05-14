@@ -896,6 +896,27 @@ const PricingCTA = () => (
         />
       </div>
 
+      <div className="v2-program-final">
+        <p className="v2-assessment-kicker">Final step</p>
+        <h2>
+          The next exam cycle can be handled differently.
+        </h2>
+        <p>
+          Choose the entry point that matches what you know right now: start the full program, or get the student’s work assessed first.
+        </p>
+        <div className="v2-program-final-actions">
+          <a href={APPLY_HASH} className="v2-btn v2-btn-primary">
+            Apply For The Sprint <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+          </a>
+          <a href={APPLY_HASH} className="v2-btn v2-program-secondary-action">
+            Book The Snapshot
+          </a>
+        </div>
+        <p className="v2-program-final-note">
+          Snapshot reports are written within 24 hours. Sprint enrollment depends on fit.
+        </p>
+      </div>
+
       <div className="v2-faq-wrap">
         <h3>Questions</h3>
         <details className="v2-faq-item">
@@ -926,27 +947,6 @@ const PricingCTA = () => (
             Yes. The $97 Snapshot is credited toward the Sprint if enrollment happens within 7 days.
           </p>
         </details>
-      </div>
-
-      <div className="v2-program-final">
-        <p className="v2-assessment-kicker">Final step</p>
-        <h2>
-          The next exam cycle can be handled differently.
-        </h2>
-        <p>
-          Choose the entry point that matches what you know right now: start the full program, or get the student’s work assessed first.
-        </p>
-        <div className="v2-program-final-actions">
-          <a href={APPLY_HASH} className="v2-btn v2-btn-primary">
-            Apply For The Sprint <ChevronRight size={16} strokeWidth={ICON_STROKE} />
-          </a>
-          <a href={APPLY_HASH} className="v2-btn v2-program-secondary-action">
-            Book The Snapshot
-          </a>
-        </div>
-        <p className="v2-program-final-note">
-          Snapshot reports are written within 24 hours. Sprint enrollment depends on fit.
-        </p>
       </div>
     </div>
   </section>
