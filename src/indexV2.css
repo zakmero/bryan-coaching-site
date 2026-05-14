@@ -284,6 +284,56 @@ object {
   background: linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
 }
 
+.v2-apply-journey {
+  max-width: 1060px;
+  margin: 0 auto 1.6rem;
+  padding: 1.15rem 1.2rem;
+  border: 1px solid #e7dfda;
+  border-radius: 12px;
+  background: #fffdfc;
+}
+
+.v2-apply-journey h3 {
+  margin: 0 0 0.9rem;
+  color: var(--v2-text-primary);
+  font-family: var(--v2-font-heading);
+  font-size: clamp(1.45rem, 2.1vw, 1.9rem);
+}
+
+.v2-apply-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.v2-apply-journey-item {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #ebe3df;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.v2-apply-journey-item p {
+  margin: 0;
+  color: var(--v2-accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.v2-apply-journey-item h4 {
+  margin: 0.28rem 0 0.3rem;
+  color: var(--v2-text-primary);
+  font-size: 1rem;
+  font-family: var(--v2-font-body);
+}
+
+.v2-apply-journey-item span {
+  color: var(--v2-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 .v2-offer-grid {
   position: relative;
   display: grid;
@@ -720,6 +770,10 @@ object {
 }
 
 @media (max-width: 900px) {
+  .v2-apply-journey-grid {
+    grid-template-columns: 1fr;
+  }
+
   .v2-offer-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -944,9 +998,24 @@ object {
   object-fit: cover;
 }
 
+.v2-problem-alert {
+  display: inline-block;
+  color: var(--v2-accent);
+  font-weight: 700;
+}
+
+.v2-problem-support {
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  color: var(--v2-text-secondary);
+  font-size: clamp(1rem, 1.35vw, 1.1rem);
+  line-height: 1.6;
+  text-align: center;
+}
+
 .v2-micro-proof {
   max-width: 720px;
-  margin: -1.5rem auto 2rem;
+  margin: 0.3rem auto 2rem;
   color: var(--v2-text-primary);
   font-family: var(--v2-font-heading);
   font-size: clamp(1.05rem, 1.7vw, 1.3rem);

@@ -354,22 +354,23 @@ const Problem = () => (
     <div className="v2-container">
       <SectionHeader 
         badge="The Examiner Thinking System" 
-        title={<>Stop trying to study harder.<br />That’s why your grade is stuck.</>} 
+        title="Most tutoring reinforces bad thinking patterns."
         subtitle={
-          <>
-            I’ve worked with students who solved 20+ papers…<br />
-            and still couldn’t break a <GradeMark>B</GradeMark>.
-            <span className="v2-exam-proof-visual">
-              <img
-                src={examBMark}
-                alt="English exam paper on a classroom desk with a red circled B grade"
-              />
-            </span>
-            The issue wasn’t effort.<br />
-            It was how they approached the question under pressure.
-          </>
+          <span className="v2-problem-alert">More practice does not automatically improve grades.</span>
         } 
       />
+      <p className="v2-problem-support">
+        I’ve worked with students who solved 20+ papers and still couldn’t break a <GradeMark>B</GradeMark>.
+      </p>
+      <span className="v2-exam-proof-visual">
+        <img
+          src={examBMark}
+          alt="English exam paper on a classroom desk with a red circled B grade"
+        />
+      </span>
+      <p className="v2-problem-support">
+        The issue wasn’t effort. It was how they approached the question under pressure.
+      </p>
       <p className="v2-micro-proof">
         “Last month, a student went from <GradeMark>B</GradeMark> to <GradeMark>A</GradeMark> in 6 weeks.
         Not by studying more but by fixing how he reads questions.”
@@ -385,7 +386,7 @@ const Problem = () => (
             Every question. No exception.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.2rem' }}>
-            {['Pause', 'Decode', 'Plan', 'Execute'].map((step, idx) => (
+            {['Decode question', 'Identify examiner intent', 'Build answer skeleton', 'Execute under time pressure'].map((step, idx) => (
               <div key={idx} style={{
                 border: '1px solid var(--v2-border)',
                 borderRadius: '10px',
@@ -422,7 +423,7 @@ const AhaMoment = () => (
         <p className="v2-text-lg v2-mb-4">They use the same mental sequence every time they face a question:</p>
         
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '2rem', marginBottom: '4rem' }}>
-          {['Pause', 'Decode', 'Plan', 'Execute'].map((step, idx) => (
+          {['Decode question', 'Identify examiner intent', 'Build answer skeleton', 'Execute under time pressure'].map((step, idx) => (
             <div key={idx} style={{
               borderBottom: '2px solid var(--v2-accent)',
               paddingBottom: '0.5rem',
@@ -653,42 +654,16 @@ const sprintFeatures = [
   '8 live coaching sessions',
   'Question deconstruction',
   'Examiner intent training',
-  'Essay structure correction',
   'Timed execution practice',
   'Weekly error review'
 ];
 
 const snapshotFeatures = [
   '20-minute live assessment',
-  'Essay review',
   'Question reading check',
   'Pressure execution review',
   'Clear scorecard',
-  '24-hour written report',
-  '7-day action plan'
-];
-
-const faqItems = [
-  {
-    question: 'Choose the Sprint if you already know the problem is serious.',
-    answer: 'This is the full program for students who need consistent coaching, correction, and exam execution practice.'
-  },
-  {
-    question: 'Choose the Snapshot if you need a clear diagnosis first.',
-    answer: 'This is for parents or students who can see the results are stuck, but do not yet know why.'
-  },
-  {
-    question: 'Is the Performance Snapshot a sales call?',
-    answer: 'No. It is a paid assessment. Bryan reviews the student’s work, checks how they read and answer questions, then sends a written report.'
-  },
-  {
-    question: 'What is the main issue this program fixes?',
-    answer: 'Most students are not losing marks because they need more content. They lose marks because they misread the question, miss examiner intent, or lose structure under pressure.'
-  },
-  {
-    question: 'What happens after the Snapshot?',
-    answer: 'You receive a written report within 24 hours. If the student is accepted into the Sprint within 7 days, the $97 fee is credited toward the program.'
-  }
+  '24-hour written report'
 ];
 
 const OfferCard = ({
@@ -753,8 +728,29 @@ const PricingCTA = () => (
       <SectionHeader 
         badge="Program Options" 
         title="Choose Your Starting Point" 
-        subtitle="Some students are ready for full intervention immediately. Others need clarity before committing." 
+        subtitle="Get a clear diagnosis first or move straight into an 8-week strategy system designed for repeatable score improvement." 
       />
+
+      <div className="v2-apply-journey" aria-label="What happens after you apply">
+        <h3>What happens after you apply</h3>
+        <div className="v2-apply-journey-grid">
+          <div className="v2-apply-journey-item">
+            <p>1</p>
+            <h4>Application Review</h4>
+            <span>We review the student profile, current grade, and target score for fit.</span>
+          </div>
+          <div className="v2-apply-journey-item">
+            <p>2</p>
+            <h4>Strategy Call</h4>
+            <span>You get a live diagnostic of thinking gaps, pressure errors, and exam execution.</span>
+          </div>
+          <div className="v2-apply-journey-item">
+            <p>3</p>
+            <h4>Clear Next Step</h4>
+            <span>Start the Sprint or begin with the Snapshot, based on what will move grades fastest.</span>
+          </div>
+        </div>
+      </div>
 
       <div className="v2-offer-grid">
         <OfferCard
@@ -787,16 +783,6 @@ const PricingCTA = () => (
           cta="Book The Snapshot"
           microcopy="Best for students unsure what’s actually causing underperformance."
         />
-      </div>
-
-      <div className="v2-faq-wrap" aria-label="Program options frequently asked questions">
-        <h3>Common Intake Questions</h3>
-        {faqItems.map((item) => (
-          <details className="v2-faq-item" key={item.question}>
-            <summary>{item.question}</summary>
-            <p>{item.answer}</p>
-          </details>
-        ))}
       </div>
 
       <div className="v2-program-final">
