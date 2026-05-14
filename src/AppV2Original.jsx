@@ -863,52 +863,6 @@ const PricingCTA = () => (
         subtitle="Get a clear diagnosis first or move straight into an 8-week strategy system designed for repeatable score improvement." 
       />
 
-      <div className="v2-apply-journey-dual" aria-label="What happens after you apply">
-        <article className="v2-apply-journey v2-apply-journey-sprint">
-          <p className="v2-apply-track-label">8-Week Performance Sprint</p>
-          <h3>What happens after you apply</h3>
-          <div className="v2-apply-journey-grid">
-            <div className="v2-apply-journey-item">
-              <p>1</p>
-              <h4>Application Review</h4>
-              <span>We review current grade, target score, and fit. Not every applicant is accepted.</span>
-            </div>
-            <div className="v2-apply-journey-item">
-              <p>2</p>
-              <h4>Strategy Call</h4>
-              <span>You get a focused call to identify thinking gaps and the fastest correction path.</span>
-            </div>
-            <div className="v2-apply-journey-item">
-              <p>3</p>
-              <h4>Enrollment + Kickoff</h4>
-              <span>If accepted, you start the 8-session sprint with a clear execution plan.</span>
-            </div>
-          </div>
-        </article>
-
-        <article className="v2-apply-journey v2-apply-journey-snapshot">
-          <p className="v2-apply-track-label">Performance Snapshot</p>
-          <h3>What happens after you book</h3>
-          <div className="v2-apply-journey-grid">
-            <div className="v2-apply-journey-item">
-              <p>1</p>
-              <h4>Booking Form + Work Upload</h4>
-              <span>Submit student details plus a recent essay or exam paper for pre-call context.</span>
-            </div>
-            <div className="v2-apply-journey-item">
-              <p>2</p>
-              <h4>20-Minute Diagnostic Call</h4>
-              <span>Live breakdown of question handling, pressure execution, and core thinking pattern.</span>
-            </div>
-            <div className="v2-apply-journey-item">
-              <p>3</p>
-              <h4>Scorecard + 24h Report</h4>
-              <span>You receive a written diagnostic with a 7-day prescription and an 8-week roadmap.</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
       <div className="v2-offer-grid">
         <OfferCard
           variant="sprint"
@@ -953,13 +907,17 @@ const PricingCTA = () => (
         <details className="v2-faq-item">
           <summary>What happens after I apply for the 8-Week Sprint?</summary>
           <p>
-            Application review, then a strategy call, then enrollment if accepted. The program starts with a clear execution plan built around the student’s current exam pattern.
+            1) Application Review: we check current grade, target score, and fit.
+            2) Strategy Call: we identify thinking gaps and the fastest correction path.
+            3) Enrollment + Kickoff: if accepted, you start the 8-session sprint with a clear execution plan.
           </p>
         </details>
         <details className="v2-faq-item">
           <summary>What happens after I book the Snapshot?</summary>
           <p>
-            You complete a short form and upload recent work, then attend a 20-minute diagnostic call. A scorecard and written report are delivered within 24 hours.
+            1) Booking Form + Work Upload: submit student details and recent exam/essay work.
+            2) 20-Minute Diagnostic Call: live breakdown of question handling, pressure execution, and thinking pattern.
+            3) Scorecard + 24h Report: you receive a written diagnostic, 7-day prescription, and 8-week roadmap.
           </p>
         </details>
         <details className="v2-faq-item">
