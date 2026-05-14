@@ -320,43 +320,32 @@ const Header = ({ isApplyPage }) => (
 // 1. ABOVE THE FOLD
 const Hero = () => {
   const diagnosticsRef = useRef(null);
-  const [diagnosticsVisible, setDiagnosticsVisible] = useState(false);
-  const [hasScrolledToDiagnosticsZone, setHasScrolledToDiagnosticsZone] = useState(false);
-  const [isDiagnosticsInView, setIsDiagnosticsInView] = useState(false);
+  const [visibleDiagnostics, setVisibleDiagnostics] = useState([]);
 
   useEffect(() => {
-    if (diagnosticsVisible) return undefined;
-
-    const onScroll = () => {
-      if (window.scrollY > 70) {
-        setHasScrolledToDiagnosticsZone(true);
-        window.removeEventListener('scroll', onScroll);
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [diagnosticsVisible]);
-
-  useEffect(() => {
-    if (diagnosticsVisible) return undefined;
-
     const node = diagnosticsRef.current;
     if (!node) return undefined;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsDiagnosticsInView(entry.isIntersecting);
-    }, { threshold: 0.38, rootMargin: '0px 0px -16% 0px' });
+    const items = Array.from(node.querySelectorAll('[data-diagnostic-index]'));
+    if (!items.length) return undefined;
 
-    observer.observe(node);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const rawIndex = entry.target.getAttribute('data-diagnostic-index');
+        const index = Number(rawIndex);
+        if (Number.isNaN(index)) return;
+
+        setVisibleDiagnostics((prev) => (
+          prev.includes(index) ? prev : [...prev, index]
+        ));
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.55, rootMargin: '0px 0px -10% 0px' });
+
+    items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, [diagnosticsVisible]);
-
-  useEffect(() => {
-    if (!diagnosticsVisible && hasScrolledToDiagnosticsZone && isDiagnosticsInView) {
-      setDiagnosticsVisible(true);
-    }
-  }, [diagnosticsVisible, hasScrolledToDiagnosticsZone, isDiagnosticsInView]);
+  }, []);
 
   return (
     <section className="v2-section v2-hero-section" id="home">
@@ -397,7 +386,7 @@ const Hero = () => {
 
           <div
             ref={diagnosticsRef}
-            className={`v2-hero-diagnostics v2-animate-fade-up v2-delay-200 ${diagnosticsVisible ? 'is-visible' : ''}`}
+            className="v2-hero-diagnostics v2-animate-fade-up v2-delay-200"
             aria-label="Performance diagnostic warning signs"
           >
             <p className="v2-hero-diagnostic-kicker">Performance Diagnostic</p>
@@ -405,8 +394,9 @@ const Hero = () => {
               {HERO_DIAGNOSTICS.map(({ icon: Icon, label, title, detail, tone }, index) => (
                 <li
                   key={title}
-                  className={`v2-diagnostic-item v2-diagnostic-item-${tone}`}
-                  style={{ '--v2-diag-delay': `${index * 1600}ms` }}
+                  data-diagnostic-index={index}
+                  className={`v2-diagnostic-item v2-diagnostic-item-${tone} ${visibleDiagnostics.includes(index) ? 'is-visible' : ''}`}
+                  style={{ '--v2-diag-delay': `${index * 120}ms` }}
                 >
                   <div className="v2-diagnostic-visual" aria-hidden="true">
                     <span className="v2-diagnostic-icon-wrap">
@@ -443,22 +433,32 @@ const Hero = () => {
 // 2. PROBLEM AGITATION
 const Problem = () => {
   const insightsRef = useRef(null);
-  const [insightsVisible, setInsightsVisible] = useState(false);
+  const [visibleInsights, setVisibleInsights] = useState([]);
 
   useEffect(() => {
     const node = insightsRef.current;
-    if (!node || insightsVisible) return undefined;
+    if (!node) return undefined;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setInsightsVisible(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.3 });
+    const items = Array.from(node.querySelectorAll('[data-problem-insight-index]'));
+    if (!items.length) return undefined;
 
-    observer.observe(node);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const rawIndex = entry.target.getAttribute('data-problem-insight-index');
+        const index = Number(rawIndex);
+        if (Number.isNaN(index)) return;
+
+        setVisibleInsights((prev) => (
+          prev.includes(index) ? prev : [...prev, index]
+        ));
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.6, rootMargin: '0px 0px -12% 0px' });
+
+    items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, [insightsVisible]);
+  }, []);
 
   return (
     <section className="v2-section" id="problem">
@@ -519,12 +519,13 @@ const Problem = () => {
             </p>
             <div
               ref={insightsRef}
-              className={`v2-problem-insight-sequence ${insightsVisible ? 'is-visible' : ''}`}
+              className="v2-problem-insight-sequence"
             >
               {PROBLEM_INSIGHTS.map(({ title, detail }, idx) => (
                 <article
                   key={title}
-                  className="v2-problem-insight-line"
+                  data-problem-insight-index={idx}
+                  className={`v2-problem-insight-line ${visibleInsights.includes(idx) ? 'is-visible' : ''}`}
                   style={{ '--v2-problem-insight-delay': `${idx * 220}ms` }}
                 >
                   <p className="v2-problem-insight-title">{title}</p>

@@ -1077,7 +1077,7 @@ object {
   line-height: 1.6;
 }
 
-.v2-problem-insight-sequence.is-visible .v2-problem-insight-line {
+.v2-problem-insight-line.is-visible {
   animation: v2ProblemInsightBoop 560ms cubic-bezier(0.2, 0.9, 0.24, 1.06) forwards;
   animation-delay: var(--v2-problem-insight-delay, 0ms);
 }
@@ -1285,17 +1285,17 @@ object {
   pointer-events: none;
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-item {
+.v2-diagnostic-item.is-visible {
   animation: v2DiagnosticCardIn 690ms cubic-bezier(0.16, 0.9, 0.22, 1.08) forwards;
   animation-delay: var(--v2-diag-delay, 0ms);
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-item::before {
+.v2-diagnostic-item.is-visible::before {
   animation: v2DiagnosticRailIn 460ms ease-out forwards;
   animation-delay: calc(var(--v2-diag-delay, 0ms) + 220ms);
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-item::after {
+.v2-diagnostic-item.is-visible::after {
   animation: v2DiagnosticSweep 620ms ease-out both;
   animation-delay: calc(var(--v2-diag-delay, 0ms) + 690ms);
 }
@@ -1350,7 +1350,7 @@ object {
   color: var(--v2-diagnostic-icon);
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-icon-wrap {
+.v2-diagnostic-item.is-visible .v2-diagnostic-icon-wrap {
   animation: v2DiagnosticIconWrapIn 500ms cubic-bezier(0.17, 0.88, 0.24, 1.02) forwards;
   animation-delay: calc(var(--v2-diag-delay, 0ms) + 430ms);
 }
@@ -1365,7 +1365,7 @@ object {
   transform: translateY(10px);
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-label {
+.v2-diagnostic-item.is-visible .v2-diagnostic-label {
   animation: v2DiagnosticTextIn 460ms ease forwards;
   animation-delay: calc(var(--v2-diag-delay, 0ms) + 560ms);
 }
@@ -1397,12 +1397,12 @@ object {
   transform: translateY(12px);
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-copy strong {
+.v2-diagnostic-item.is-visible .v2-diagnostic-copy strong {
   animation: v2DiagnosticTextIn 480ms ease forwards;
   animation-delay: calc(var(--v2-diag-delay, 0ms) + 820ms);
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-copy p {
+.v2-diagnostic-item.is-visible .v2-diagnostic-copy p {
   animation: v2DiagnosticTextIn 520ms ease forwards;
   animation-delay: calc(var(--v2-diag-delay, 0ms) + 980ms);
 }
