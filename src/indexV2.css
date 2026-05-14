@@ -1171,6 +1171,8 @@ object {
   --v2-diagnostic-visual-bg: #fff7f5;
   --v2-diagnostic-label: #8b4339;
   --v2-diagnostic-icon: #c0392b;
+  --v2-diagnostic-sweep: rgba(192, 57, 43, 0.18);
+  --v2-diagnostic-step: 1600ms;
   position: relative;
   display: grid;
   grid-template-columns: 118px minmax(0, 1fr);
@@ -1181,13 +1183,16 @@ object {
   overflow: hidden;
   border: 1px solid #eadfdc;
   border-radius: 10px;
-  background: #fffdfc;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(192, 57, 43, 0.08), transparent 45%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 251, 0.95) 100%);
   color: var(--v2-text-primary);
   box-shadow: 0 10px 22px rgba(26, 22, 20, 0.035);
   opacity: 0;
-  filter: blur(4px);
-  transform: translateY(22px) scale(0.97);
+  filter: blur(6px);
+  transform: translateX(96px) scale(0.98);
   transform-origin: center top;
+  will-change: transform, opacity, filter;
 }
 
 .v2-diagnostic-item::before {
@@ -1202,21 +1207,30 @@ object {
 
 .v2-diagnostic-item::after {
   content: '';
+  top: -14%;
+  bottom: -14%;
+  right: -44%;
+  width: 42%;
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: linear-gradient(95deg, transparent 0%, var(--v2-diagnostic-sweep) 48%, transparent 100%);
+  opacity: 0;
+  transform: skewX(-18deg) translateX(0);
   pointer-events: none;
 }
 
 .v2-hero-diagnostics.is-visible .v2-diagnostic-item {
-  animation: v2DiagnosticCardIn 760ms cubic-bezier(0.2, 0.92, 0.24, 1.08) forwards;
+  animation: v2DiagnosticCardIn 690ms cubic-bezier(0.16, 0.9, 0.22, 1.08) forwards;
   animation-delay: var(--v2-diag-delay, 0ms);
 }
 
 .v2-hero-diagnostics.is-visible .v2-diagnostic-item::before {
-  animation: v2DiagnosticRailIn 620ms ease-out forwards;
-  animation-delay: var(--v2-diag-delay, 0ms);
+  animation: v2DiagnosticRailIn 460ms ease-out forwards;
+  animation-delay: calc(var(--v2-diag-delay, 0ms) + 220ms);
+}
+
+.v2-hero-diagnostics.is-visible .v2-diagnostic-item::after {
+  animation: v2DiagnosticSweep 620ms ease-out both;
+  animation-delay: calc(var(--v2-diag-delay, 0ms) + 690ms);
 }
 
 .v2-diagnostic-item-red {
@@ -1224,6 +1238,7 @@ object {
   --v2-diagnostic-visual-bg: #fff5f3;
   --v2-diagnostic-label: #8b4339;
   --v2-diagnostic-icon: #c0392b;
+  --v2-diagnostic-sweep: rgba(192, 57, 43, 0.2);
 }
 
 .v2-diagnostic-item-ink {
@@ -1231,7 +1246,10 @@ object {
   --v2-diagnostic-visual-bg: #f7f6f5;
   --v2-diagnostic-label: #45403c;
   --v2-diagnostic-icon: #1f1a18;
-  background: linear-gradient(180deg, #ffffff 0%, #fcfbfa 100%);
+  --v2-diagnostic-sweep: rgba(31, 26, 24, 0.16);
+  background:
+    radial-gradient(circle at 86% 18%, rgba(31, 26, 24, 0.08), transparent 45%),
+    linear-gradient(180deg, #ffffff 0%, #fcfbfa 100%);
 }
 
 .v2-diagnostic-visual {
@@ -1247,47 +1265,59 @@ object {
   color: var(--v2-diagnostic-icon);
 }
 
+.v2-diagnostic-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid color-mix(in srgb, var(--v2-diagnostic-accent) 58%, white 42%);
+  background: color-mix(in srgb, var(--v2-diagnostic-accent) 10%, white 90%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transform: scale(0.86) translateY(5px);
+}
+
+.v2-diagnostic-icon-wrap svg {
+  flex: 0 0 auto;
+  color: var(--v2-diagnostic-icon);
+}
+
+.v2-hero-diagnostics.is-visible .v2-diagnostic-icon-wrap {
+  animation: v2DiagnosticIconWrapIn 500ms cubic-bezier(0.17, 0.88, 0.24, 1.02) forwards;
+  animation-delay: calc(var(--v2-diag-delay, 0ms) + 430ms);
+}
+
 .v2-diagnostic-pulse {
   position: absolute;
   top: 0.7rem;
   right: 0.65rem;
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: color-mix(in srgb, var(--v2-diagnostic-accent) 75%, white 25%);
   box-shadow: 0 0 0 0 color-mix(in srgb, var(--v2-diagnostic-accent) 28%, transparent);
+  opacity: 0;
 }
 
 .v2-hero-diagnostics.is-visible .v2-diagnostic-pulse {
-  animation: v2DiagnosticPulse 1.2s ease-out both;
-  animation-delay: calc(var(--v2-diag-delay, 0ms) + 380ms);
+  animation: v2DiagnosticPulse 820ms ease-out both;
+  animation-delay: calc(var(--v2-diag-delay, 0ms) + 740ms);
 }
 
-.v2-diagnostic-visual svg {
-  flex: 0 0 auto;
-  color: var(--v2-diagnostic-icon);
-  opacity: 0;
-  transform: translateY(6px) scale(0.94);
-}
-
-.v2-hero-diagnostics.is-visible .v2-diagnostic-visual svg {
-  animation: v2DiagnosticIconIn 540ms cubic-bezier(0.2, 0.88, 0.24, 1.02) forwards;
-  animation-delay: calc(var(--v2-diag-delay, 0ms) + 130ms);
-}
-
-.v2-diagnostic-visual span {
+.v2-diagnostic-label {
   color: var(--v2-diagnostic-label);
   font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(10px);
 }
 
-.v2-hero-diagnostics.is-visible .v2-diagnostic-visual span {
-  animation: v2DiagnosticTextIn 520ms ease forwards;
-  animation-delay: calc(var(--v2-diag-delay, 0ms) + 190ms);
+.v2-hero-diagnostics.is-visible .v2-diagnostic-label {
+  animation: v2DiagnosticTextIn 460ms ease forwards;
+  animation-delay: calc(var(--v2-diag-delay, 0ms) + 560ms);
 }
 
 .v2-diagnostic-copy {
@@ -1304,7 +1334,7 @@ object {
   font-weight: 800;
   line-height: 1.28;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(12px);
 }
 
 .v2-diagnostic-copy p {
@@ -1314,34 +1344,34 @@ object {
   font-weight: 500;
   line-height: 1.5;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(12px);
 }
 
 .v2-hero-diagnostics.is-visible .v2-diagnostic-copy strong {
-  animation: v2DiagnosticTextIn 540ms ease forwards;
-  animation-delay: calc(var(--v2-diag-delay, 0ms) + 230ms);
+  animation: v2DiagnosticTextIn 480ms ease forwards;
+  animation-delay: calc(var(--v2-diag-delay, 0ms) + 820ms);
 }
 
 .v2-hero-diagnostics.is-visible .v2-diagnostic-copy p {
-  animation: v2DiagnosticTextIn 560ms ease forwards;
-  animation-delay: calc(var(--v2-diag-delay, 0ms) + 290ms);
+  animation: v2DiagnosticTextIn 520ms ease forwards;
+  animation-delay: calc(var(--v2-diag-delay, 0ms) + 980ms);
 }
 
 @keyframes v2DiagnosticCardIn {
   0% {
     opacity: 0;
-    filter: blur(4px);
-    transform: translateY(22px) scale(0.97);
+    filter: blur(6px);
+    transform: translateX(96px) scale(0.98);
   }
-  62% {
+  66% {
     opacity: 1;
     filter: blur(0);
-    transform: translateY(-3px) scale(1.01);
+    transform: translateX(-6px) scale(1.005);
   }
   100% {
     opacity: 1;
     filter: blur(0);
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scale(1);
   }
 }
 
@@ -1354,14 +1384,18 @@ object {
   }
 }
 
-@keyframes v2DiagnosticIconIn {
+@keyframes v2DiagnosticIconWrapIn {
   0% {
     opacity: 0;
-    transform: translateY(6px) scale(0.94);
+    transform: scale(0.86) translateY(5px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.06) translateY(-1px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -1378,18 +1412,35 @@ object {
 
 @keyframes v2DiagnosticPulse {
   0% {
+    opacity: 1;
     box-shadow: 0 0 0 0 color-mix(in srgb, var(--v2-diagnostic-accent) 30%, transparent);
   }
   100% {
+    opacity: 1;
     box-shadow: 0 0 0 16px color-mix(in srgb, var(--v2-diagnostic-accent) 0%, transparent);
+  }
+}
+
+@keyframes v2DiagnosticSweep {
+  0% {
+    opacity: 0;
+    transform: skewX(-18deg) translateX(0);
+  }
+  30% {
+    opacity: 0.68;
+  }
+  100% {
+    opacity: 0;
+    transform: skewX(-18deg) translateX(-205%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .v2-diagnostic-item,
   .v2-diagnostic-item::before,
-  .v2-diagnostic-visual svg,
-  .v2-diagnostic-visual span,
+  .v2-diagnostic-item::after,
+  .v2-diagnostic-icon-wrap,
+  .v2-diagnostic-label,
   .v2-diagnostic-copy strong,
   .v2-diagnostic-copy p,
   .v2-diagnostic-pulse {
@@ -1401,6 +1452,10 @@ object {
 
   .v2-diagnostic-item::before {
     transform: scaleY(1);
+  }
+
+  .v2-diagnostic-item::after {
+    opacity: 0;
   }
 }
 
@@ -2064,6 +2119,14 @@ object {
     padding: 0.7rem 0.85rem;
     border-right: 0;
     border-bottom: 1px solid #efe6e3;
+  }
+  .v2-diagnostic-icon-wrap {
+    width: 40px;
+    height: 40px;
+  }
+  .v2-diagnostic-label {
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
   }
   .v2-diagnostic-pulse {
     position: static;

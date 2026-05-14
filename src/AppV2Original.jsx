@@ -367,12 +367,14 @@ const Hero = () => {
                 <li
                   key={title}
                   className={`v2-diagnostic-item v2-diagnostic-item-${tone}`}
-                  style={{ '--v2-diag-delay': `${index * 180}ms` }}
+                  style={{ '--v2-diag-delay': `${index * 1600}ms` }}
                 >
                   <div className="v2-diagnostic-visual" aria-hidden="true">
                     <span className="v2-diagnostic-pulse"></span>
-                    <Icon size={22} strokeWidth={1.8} />
-                    <span>{label}</span>
+                    <span className="v2-diagnostic-icon-wrap">
+                      <Icon size={22} strokeWidth={1.8} />
+                    </span>
+                    <span className="v2-diagnostic-label">{label}</span>
                   </div>
                   <div className="v2-diagnostic-copy">
                     <strong>{title}</strong>
