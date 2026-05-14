@@ -130,20 +130,55 @@ const StoryVision = () => (
           className="v2-story-portrait"
         />
       </article>
+
+      <ProofsSection />
     </div>
   </section>
 );
 
 const ProofsSection = () => {
   const [selectedProof, setSelectedProof] = useState('tesol-cert');
-  const proofPanelRef = useRef(null);
-  const testimonialScrollRef = useRef(null);
   const proofDocs = [
     { id: 'tesol-cert', label: 'TESOL/TEFL Certificate', file: tesolCert },
     { id: 'tesol-transcript', label: 'TESOL Grades Transcript', file: tesolTranscript },
     { id: 'tesol-reference', label: 'TESOL Reference Letter', file: tesolReference }
   ];
   const activeProof = proofDocs.find((doc) => doc.id === selectedProof) ?? proofDocs[0];
+
+  return (
+    <div id="proofs-panel" className="v2-proof-collapse v2-animate-fade-up">
+      <div className="v2-proof-grid v2-proof-grid-single" style={{ marginTop: '1.1rem' }}>
+        <div className="v2-card">
+          <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Proofs & Certificates</h3>
+          <div className="v2-proof-links">
+            {proofDocs.map((doc) => (
+              <button
+                key={doc.id}
+                type="button"
+                className={`v2-proof-link-btn ${selectedProof === doc.id ? 'is-active' : ''}`}
+                onClick={() => setSelectedProof(doc.id)}
+              >
+                {doc.label}
+              </button>
+            ))}
+          </div>
+          <div className="v2-proof-preview">
+            <object data={activeProof.file} type="application/pdf" className="v2-proof-frame">
+              <p style={{ margin: 0, color: 'var(--v2-text-secondary)' }}>
+                Preview is unavailable in this browser.{' '}
+                <a href={activeProof.file} target="_blank" rel="noreferrer">Open document</a>
+              </p>
+            </object>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TestimonialsSection = () => {
+  const testimonialPanelRef = useRef(null);
+  const testimonialScrollRef = useRef(null);
 
   useEffect(() => {
     let rafId;
@@ -190,7 +225,7 @@ const ProofsSection = () => {
       return true;
     };
 
-    const panel = proofPanelRef.current;
+    const panel = testimonialPanelRef.current;
     if (!panel) return undefined;
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -210,60 +245,28 @@ const ProofsSection = () => {
   }, []);
 
   return (
-    <section className="v2-section" id="proofs">
-      <div className="v2-container">
-        <div
-          id="proofs-panel"
-          className="v2-proof-collapse v2-animate-fade-up"
-          ref={proofPanelRef}
-        >
-          <div className="v2-proof-grid" style={{ marginTop: '1.1rem' }}>
-            <div className="v2-card">
-              <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Proofs & Certificates</h3>
-              <div className="v2-proof-links">
-                {proofDocs.map((doc) => (
-                  <button
-                    key={doc.id}
-                    type="button"
-                    className={`v2-proof-link-btn ${selectedProof === doc.id ? 'is-active' : ''}`}
-                    onClick={() => setSelectedProof(doc.id)}
-                  >
-                    {doc.label}
-                  </button>
-                ))}
-              </div>
-              <div className="v2-proof-preview">
-                <object data={activeProof.file} type="application/pdf" className="v2-proof-frame">
-                  <p style={{ margin: 0, color: 'var(--v2-text-secondary)' }}>
-                    Preview is unavailable in this browser.{' '}
-                    <a href={activeProof.file} target="_blank" rel="noreferrer">Open document</a>
-                  </p>
-                </object>
-              </div>
-            </div>
-
-            <div className="v2-card">
-              <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Testimonials</h3>
-              <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '0.8rem' }}>
-                Real student feedback and result snapshots from coaching conversations.
-              </p>
-              <div className="v2-testimonial-media-link">
-                <div className="v2-testimonial-reel" ref={testimonialScrollRef}>
-                <img
-                  src={testimonialImage}
-                  alt="Student testimonial screenshot"
-                  className="v2-testimonial-media"
-                />
-                </div>
-              </div>
-              <a href={testimonialImage} target="_blank" rel="noreferrer" className="v2-testimonial-open">
-                Open full screenshot
-              </a>
+    <div className="v2-proof-collapse v2-animate-fade-up" ref={testimonialPanelRef}>
+      <div className="v2-proof-grid v2-proof-grid-single" style={{ marginTop: '1.1rem' }}>
+        <div className="v2-card">
+          <h3 className="v2-heading-md" style={{ fontSize: '1.4rem' }}>Testimonials</h3>
+          <p style={{ color: 'var(--v2-text-secondary)', marginBottom: '0.8rem' }}>
+            Real student feedback and result snapshots from coaching conversations.
+          </p>
+          <div className="v2-testimonial-media-link">
+            <div className="v2-testimonial-reel" ref={testimonialScrollRef}>
+              <img
+                src={testimonialImage}
+                alt="Student testimonial screenshot"
+                className="v2-testimonial-media"
+              />
             </div>
           </div>
+          <a href={testimonialImage} target="_blank" rel="noreferrer" className="v2-testimonial-open">
+            Open full screenshot
+          </a>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
@@ -375,6 +378,7 @@ const Problem = () => (
         “Last month, a student went from <GradeMark>B</GradeMark> to <GradeMark>A</GradeMark> in 6 weeks.
         Not by studying more but by fixing how he reads questions.”
       </p>
+      <TestimonialsSection />
       
       <div className="v2-problem-wrap">
         <div className="v2-card v2-text-center">
@@ -876,7 +880,6 @@ export default function AppV2() {
             <Hero />
             <StoryVision />
             <Problem />
-            <ProofsSection />
             <Qualification />
             <InsideProgram />
             <FinalEngagement />
