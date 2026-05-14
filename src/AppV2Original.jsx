@@ -149,6 +149,7 @@ const ProofsSection = () => {
   ];
   const [selectedProof, setSelectedProof] = useState('tesol-cert');
   const activeProof = proofDocs.find((doc) => doc.id === selectedProof) ?? proofDocs[0];
+  const activeProofOrientation = activeProof.id === 'tesol-cert' ? 'landscape' : 'portrait';
 
   return (
     <div id="proofs-panel" className="v2-proof-collapse v2-animate-fade-up">
@@ -175,9 +176,9 @@ const ProofsSection = () => {
               onContextMenu={(event) => event.preventDefault()}
             >
               <object
-                data={`${activeProof.file}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                data={`${activeProof.file}#page=1&toolbar=0&navpanes=0&scrollbar=0&zoom=page-fit`}
                 type="application/pdf"
-                className="v2-proof-frame v2-proof-frame-locked"
+                className={`v2-proof-frame v2-proof-frame-locked v2-proof-frame-${activeProofOrientation}`}
                 tabIndex={-1}
                 aria-hidden="true"
               >

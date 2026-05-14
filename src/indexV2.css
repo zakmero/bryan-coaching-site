@@ -1633,6 +1633,19 @@ object {
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.v2-proof-frame-landscape {
+  height: min(72vw, 700px);
+  min-height: 420px;
+}
+
+.v2-proof-frame-portrait {
+  height: min(110vw, 980px);
+  min-height: 600px;
 }
 
 .v2-proof-lock-layer {
@@ -2257,6 +2270,14 @@ object {
   }
   .v2-proof-frame {
     height: 260px;
+  }
+  .v2-proof-frame-landscape {
+    height: min(96vw, 520px);
+    min-height: 280px;
+  }
+  .v2-proof-frame-portrait {
+    height: min(138vw, 740px);
+    min-height: 430px;
   }
   .v2-proof-locked-card {
     padding: 0.7rem;
