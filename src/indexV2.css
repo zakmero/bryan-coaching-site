@@ -2169,23 +2169,20 @@ object {
   .v2-grid-2, .v2-grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
   .v2-heading-lg { font-size: 2rem; }
   .v2-hero-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas:
-      "title title"
-      "subtitle portrait";
-    align-items: end;
-    gap: 0.85rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.95rem;
   }
   .v2-hero-copy-title {
-    grid-area: title;
+    order: 1;
   }
   .v2-hero-portrait-wrap {
-    grid-area: portrait;
+    order: 2;
   }
   .v2-hero-copy-subtitle {
-    grid-area: subtitle;
-    text-align: left;
+    order: 3;
+    text-align: center;
   }
   .v2-hero-eyebrow-desktop {
     display: none;
@@ -2198,14 +2195,14 @@ object {
   .v2-hero-portrait-wrap {
     min-height: 0;
     max-height: 220px;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-end;
   }
   .v2-hero-portrait {
     width: min(100%, 168px);
     max-height: 196px;
-    margin: 0 0 0 auto;
-    object-position: right bottom;
+    margin: 0 auto;
+    object-position: center bottom;
     transform: translateY(-22px);
   }
   .v2-hero-title {
