@@ -56,6 +56,21 @@ const HERO_DIAGNOSTICS = [
   },
 ];
 
+const PROBLEM_INSIGHTS = [
+  {
+    title: 'CLARITY',
+    detail: 'The student finally understands why marks are being lost, not just what the correct answer should have been.',
+  },
+  {
+    title: 'CONTROL',
+    detail: 'Instead of rushing into the answer, they learn a repeatable process for decoding the question before writing.',
+  },
+  {
+    title: 'CONSISTENCY',
+    detail: 'Performance becomes less dependent on mood, panic, or luck and more dependent on a trained exam process.',
+  },
+];
+
 const GradeMark = ({ children }) => (
   <span className="v2-grade-mark">{children}</span>
 );
@@ -426,97 +441,106 @@ const Hero = () => {
 };
 
 // 2. PROBLEM AGITATION
-const Problem = () => (
-  <section className="v2-section" id="problem">
-    <div className="v2-container">
-      <SectionHeader 
-        badge="The Examiner Thinking System" 
-        title="Most tutoring reinforces bad thinking patterns."
-        subtitle={
-          <span className="v2-problem-alert">More practice does not automatically improve grades.</span>
-        } 
-      />
-      <p className="v2-problem-support">
-        I’ve worked with students who solved 20+ papers and still couldn’t break a <GradeMark>B</GradeMark>.
-      </p>
-      <span className="v2-exam-proof-visual">
-        <img
-          src={examBMark}
-          alt="English exam paper on a classroom desk with a red circled B grade"
+const Problem = () => {
+  const insightsRef = useRef(null);
+  const [insightsVisible, setInsightsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = insightsRef.current;
+    if (!node || insightsVisible) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInsightsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [insightsVisible]);
+
+  return (
+    <section className="v2-section" id="problem">
+      <div className="v2-container">
+        <SectionHeader 
+          badge="The Examiner Thinking System" 
+          title="Most tutoring reinforces bad thinking patterns."
+          subtitle={
+            <span className="v2-problem-alert">More practice does not automatically improve grades.</span>
+          } 
         />
-      </span>
-      <p className="v2-problem-support">
-        The issue wasn’t effort. It was how they approached the question under pressure.
-      </p>
-      <p className="v2-micro-proof">
-        “Last month, a student went from <GradeMark>B</GradeMark> to <GradeMark>A</GradeMark> in 6 weeks.
-        Not by studying more but by fixing how he reads questions.”
-      </p>
-      <TestimonialsSection />
-      
-      <div className="v2-problem-wrap">
-        <div className="v2-card v2-text-center">
-          <h3 className="v2-heading-md" style={{ fontSize: '1.7rem' }}>
-            Top students don't study more.<br />
-            <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>They run a sequence.</span>
-          </h3>
-          <p className="v2-text-lg" style={{ marginBottom: '1.4rem' }}>
-            Every question. No exception.
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.2rem' }}>
-            {['Decode question', 'Identify examiner intent', 'Build answer skeleton', 'Execute under time pressure'].map((step, idx) => (
-              <div key={idx} style={{
-                border: '1px solid var(--v2-border)',
-                borderRadius: '10px',
-                padding: '0.55rem 0.9rem',
-                fontWeight: 700,
-                color: 'var(--v2-text-primary)',
-                background: '#fff'
-              }}>
-                {idx + 1}. {step}
-              </div>
-            ))}
-          </div>
-          <p style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.11em', color: 'var(--v2-text-muted)', marginBottom: '0.45rem' }}>
-            The Insight
-          </p>
-          <p style={{ fontSize: '1.12rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>
-            Practice without fixing the thinking process doesn’t improve results. It locks mistakes in.
-          </p>
-          <div style={{ maxWidth: '760px', margin: '1.5rem auto 0', textAlign: 'center', display: 'grid', gap: '1rem' }}>
-            <div>
-              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                CLARITY
-              </p>
-              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
-                The student finally understands why marks are being lost, not just what the correct answer should have been.
-              </p>
+        <p className="v2-problem-support">
+          I’ve worked with students who solved 20+ papers and still couldn’t break a <GradeMark>B</GradeMark>.
+        </p>
+        <span className="v2-exam-proof-visual">
+          <img
+            src={examBMark}
+            alt="English exam paper on a classroom desk with a red circled B grade"
+          />
+        </span>
+        <p className="v2-problem-support">
+          The issue wasn’t effort. It was how they approached the question under pressure.
+        </p>
+        <p className="v2-micro-proof">
+          “Last month, a student went from <GradeMark>B</GradeMark> to <GradeMark>A</GradeMark> in 6 weeks.
+          Not by studying more but by fixing how he reads questions.”
+        </p>
+        <TestimonialsSection />
+        
+        <div className="v2-problem-wrap">
+          <div className="v2-card v2-text-center">
+            <h3 className="v2-heading-md" style={{ fontSize: '1.7rem' }}>
+              Top students don't study more.<br />
+              <span style={{ color: 'var(--v2-accent)', fontStyle: 'italic' }}>They run a sequence.</span>
+            </h3>
+            <p className="v2-text-lg" style={{ marginBottom: '1.4rem' }}>
+              Every question. No exception.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.2rem' }}>
+              {['Decode question', 'Identify examiner intent', 'Build answer skeleton', 'Execute under time pressure'].map((step, idx) => (
+                <div key={idx} style={{
+                  border: '1px solid var(--v2-border)',
+                  borderRadius: '10px',
+                  padding: '0.55rem 0.9rem',
+                  fontWeight: 700,
+                  color: 'var(--v2-text-primary)',
+                  background: '#fff'
+                }}>
+                  {idx + 1}. {step}
+                </div>
+              ))}
             </div>
-            <div>
-              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                CONTROL
-              </p>
-              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
-                Instead of rushing into the answer, they learn a repeatable process for decoding the question before writing.
-              </p>
+            <p style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.11em', color: 'var(--v2-text-muted)', marginBottom: '0.45rem' }}>
+              The Insight
+            </p>
+            <p style={{ fontSize: '1.12rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>
+              Practice without fixing the thinking process doesn’t improve results. It locks mistakes in.
+            </p>
+            <div
+              ref={insightsRef}
+              className={`v2-problem-insight-sequence ${insightsVisible ? 'is-visible' : ''}`}
+            >
+              {PROBLEM_INSIGHTS.map(({ title, detail }, idx) => (
+                <article
+                  key={title}
+                  className="v2-problem-insight-line"
+                  style={{ '--v2-problem-insight-delay': `${idx * 220}ms` }}
+                >
+                  <p className="v2-problem-insight-title">{title}</p>
+                  <p className="v2-problem-insight-detail">{detail}</p>
+                </article>
+              ))}
             </div>
-            <div>
-              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                CONSISTENCY
-              </p>
-              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
-                Performance becomes less dependent on mood, panic, or luck and more dependent on a trained exam process.
-              </p>
-            </div>
-            <p style={{ margin: '0.2rem 0 0', color: 'var(--v2-text-primary)', fontFamily: 'var(--v2-font-heading)', fontSize: '1.2rem', lineHeight: 1.45 }}>
+            <p style={{ margin: '0.8rem 0 0', color: 'var(--v2-text-primary)', fontFamily: 'var(--v2-font-heading)', fontSize: '1.2rem', lineHeight: 1.45 }}>
               "The goal is not to study more. The goal is to perform with a system when the paper is in front of them."
             </p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 // 3. AHA MOMENT
 const AhaMoment = () => (
