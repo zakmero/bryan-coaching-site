@@ -24,24 +24,37 @@ import examBMark from '../data/exam-b-mark.png';
 const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
 const APPLY_HASH = '#/apply';
+const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
 const HERO_DIAGNOSTICS = [
   {
-    icon: Gauge,
-    label: 'Freeze',
-    title: 'You studied harder and still froze.',
-    detail: 'The paper opens, the timer starts, and the answer you knew suddenly feels unreachable.',
+    icon: SearchX,
+    label: 'MISREAD',
+    title: 'You’re not failing because you didn’t study enough.',
+    detail: 'You’re losing marks because the question changes shape under pressure, and your answer no longer matches what the examiner is rewarding.',
   },
   {
     icon: FileCheck2,
-    label: 'Collapse',
-    title: 'You knew the content, but the answer fell apart.',
-    detail: 'Ideas are there, but they come out messy, rushed, and hard for an examiner to reward.',
+    label: 'REPEAT',
+    title: 'More practice papers won’t fix a broken thinking pattern.',
+    detail: 'If every paper is approached with the same rushed interpretation, practice only makes the mistake more automatic.',
   },
   {
-    icon: SearchX,
-    label: 'Regret',
-    title: 'You walk out replaying the question in your head.',
-    detail: 'That painful “I knew this” feeling usually means the problem was execution, not intelligence.',
+    icon: XCircle,
+    label: 'FRUSTRATION',
+    title: 'You keep paying for help, but the same pattern returns.',
+    detail: 'More lessons, more notes, more hours, yet when the exam arrives, you still lose marks you should have secured.',
+  },
+  {
+    icon: Gauge,
+    label: 'REGRET',
+    title: 'The worst part is knowing you knew it.',
+    detail: 'You leave the exam replaying the question, realizing the answer was there, but your brain moved too fast to structure it properly.',
+  },
+  {
+    icon: Target,
+    label: 'PLATEAU',
+    title: 'You’re too strong to fail, but not precise enough to break through.',
+    detail: 'At this level, the gap is no longer effort. It is interpretation, structure, and execution under pressure.',
   },
 ];
 
@@ -290,9 +303,11 @@ const Hero = () => (
       <div className="v2-card v2-hero-card">
         <div className="v2-hero-intro v2-mb-4">
           <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
+            <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
             <img className="v2-hero-portrait" src={bryanPic} alt="" />
           </div>
           <div className="v2-hero-copy v2-text-center">
+          <p className="v2-hero-eyebrow v2-hero-eyebrow-desktop">{HERO_EYEBROW_TEXT}</p>
           <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
             Improve your English exam score by <br />
             <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> without doing more practice papers
@@ -409,6 +424,35 @@ const Problem = () => (
           <p style={{ fontSize: '1.12rem', fontFamily: 'var(--v2-font-heading)', color: 'var(--v2-text-primary)' }}>
             Practice without fixing the thinking process doesn’t improve results. It locks mistakes in.
           </p>
+          <div style={{ maxWidth: '760px', margin: '1.5rem auto 0', textAlign: 'left', display: 'grid', gap: '1rem' }}>
+            <div>
+              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                CLARITY
+              </p>
+              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
+                The student finally understands why marks are being lost, not just what the correct answer should have been.
+              </p>
+            </div>
+            <div>
+              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                CONTROL
+              </p>
+              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
+                Instead of rushing into the answer, they learn a repeatable process for decoding the question before writing.
+              </p>
+            </div>
+            <div>
+              <p style={{ margin: 0, color: 'var(--v2-accent)', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                CONSISTENCY
+              </p>
+              <p style={{ margin: '0.35rem 0 0', color: 'var(--v2-text-secondary)', lineHeight: 1.6 }}>
+                Performance becomes less dependent on mood, panic, or luck and more dependent on a trained exam process.
+              </p>
+            </div>
+            <p style={{ margin: '0.2rem 0 0', color: 'var(--v2-text-primary)', fontFamily: 'var(--v2-font-heading)', fontSize: '1.2rem', lineHeight: 1.45 }}>
+              "The goal is not to study more. The goal is to perform with a system when the paper is in front of them."
+            </p>
+          </div>
         </div>
       </div>
     </div>

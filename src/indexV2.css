@@ -945,6 +945,20 @@ object {
   text-align: center;
 }
 
+.v2-hero-eyebrow {
+  margin: 0 0 0.85rem;
+  color: rgba(192, 57, 43, 0.76);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.v2-hero-eyebrow-mobile {
+  display: none;
+}
+
 .v2-hero-title {
   margin: 0 0 1.5rem;
   font-family: var(--v2-font-heading);
@@ -1817,6 +1831,14 @@ object {
   .v2-hero-intro {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+  .v2-hero-eyebrow-desktop {
+    display: none;
+  }
+  .v2-hero-eyebrow-mobile {
+    display: block;
+    text-align: center;
+    margin: 0 0 0.55rem;
   }
   .v2-hero-portrait-wrap {
     min-height: 0;
