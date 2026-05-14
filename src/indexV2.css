@@ -2279,10 +2279,10 @@ object {
   }
   .v2-story-portrait {
     position: static;
-    width: min(60vw, 220px);
-    max-height: 210px;
-    align-self: center;
-    margin: 0.1rem auto 0.15rem;
+    width: min(74vw, 290px);
+    max-height: 270px;
+    align-self: flex-end;
+    margin: 0.1rem 0 0.15rem auto;
     object-position: bottom center;
   }
   .v2-proof-grid {
@@ -2362,8 +2362,8 @@ object {
   }
 
   .v2-story-portrait {
-    width: min(62vw, 200px);
-    max-height: 190px;
+    width: min(78vw, 280px);
+    max-height: 250px;
   }
 }
 
