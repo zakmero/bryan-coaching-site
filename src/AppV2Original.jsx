@@ -351,10 +351,10 @@ const Hero = () => {
         <div className="v2-card v2-hero-card">
           <div className="v2-hero-intro v2-mb-4">
           <div className="v2-hero-portrait-wrap v2-animate-fade-up" aria-hidden="true">
-            <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
             <img className="v2-hero-portrait" src={bryanPic} alt="" />
           </div>
           <div className="v2-hero-copy v2-hero-copy-title v2-text-center">
+          <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
           <p className="v2-hero-eyebrow v2-hero-eyebrow-desktop">{HERO_EYEBROW_TEXT}</p>
           <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
             Improve your English exam score by <br />
