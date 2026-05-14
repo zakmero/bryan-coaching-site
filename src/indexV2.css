@@ -704,6 +704,23 @@ object {
   line-height: 1.58;
 }
 
+.v2-faq-steps {
+  padding: 0 1.1rem 1rem;
+}
+
+.v2-faq-steps p {
+  margin: 0;
+  padding: 0;
+}
+
+.v2-faq-steps p + p {
+  margin-top: 0.75rem;
+}
+
+.v2-faq-steps strong {
+  color: var(--v2-text-primary);
+}
+
 .v2-program-final {
   max-width: 840px;
   margin: 0 auto;

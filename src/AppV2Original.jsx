@@ -906,19 +906,19 @@ const PricingCTA = () => (
         </details>
         <details className="v2-faq-item">
           <summary>What happens after I apply for the 8-Week Sprint?</summary>
-          <p>
-            1) Application Review: we check current grade, target score, and fit.
-            2) Strategy Call: we identify thinking gaps and the fastest correction path.
-            3) Enrollment + Kickoff: if accepted, you start the 8-session sprint with a clear execution plan.
-          </p>
+          <div className="v2-faq-steps">
+            <p><strong>1)</strong> Application Review: we check current grade, target score, and fit.</p>
+            <p><strong>2)</strong> Strategy Call: we identify thinking gaps and the fastest correction path.</p>
+            <p><strong>3)</strong> Enrollment + Kickoff: if accepted, you start the 8-session sprint with a clear execution plan.</p>
+          </div>
         </details>
         <details className="v2-faq-item">
           <summary>What happens after I book the Snapshot?</summary>
-          <p>
-            1) Booking Form + Work Upload: submit student details and recent exam/essay work.
-            2) 20-Minute Diagnostic Call: live breakdown of question handling, pressure execution, and thinking pattern.
-            3) Scorecard + 24h Report: you receive a written diagnostic, 7-day prescription, and 8-week roadmap.
-          </p>
+          <div className="v2-faq-steps">
+            <p><strong>1)</strong> Booking Form + Work Upload: submit student details and recent exam/essay work.</p>
+            <p><strong>2)</strong> 20-Minute Diagnostic Call: live breakdown of question handling, pressure execution, and thinking pattern.</p>
+            <p><strong>3)</strong> Scorecard + 24h Report: you receive a written diagnostic, 7-day prescription, and 8-week roadmap.</p>
+          </div>
         </details>
         <details className="v2-faq-item">
           <summary>Is the Snapshot fee credited?</summary>
