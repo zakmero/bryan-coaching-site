@@ -24,9 +24,33 @@ import examBMark from '../data/exam-b-mark.png';
 const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
 const APPLY_HASH = '#/apply';
+const SNAPSHOT_HASH = '#/snapshot';
+const SNAPSHOT_PAYMENT_HASH = '#/snapshot-payment';
+const SNAPSHOT_BOOKED_HASH = '#/snapshot-booked';
+const SPRINT_HASH = '#/sprint';
+const SPRINT_SUBMITTED_HASH = '#/sprint-submitted';
 const PRIMARY_CTA_LABEL = 'Apply for the 8-Week Sprint';
 const SECONDARY_CTA_LABEL = 'Apply for the Performance Snapshot';
 const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
+
+const resolveRouteFromHash = (hash) => {
+  switch (hash) {
+    case APPLY_HASH:
+      return 'apply';
+    case SNAPSHOT_HASH:
+      return 'snapshot';
+    case SNAPSHOT_PAYMENT_HASH:
+      return 'snapshot-payment';
+    case SNAPSHOT_BOOKED_HASH:
+      return 'snapshot-booked';
+    case SPRINT_HASH:
+      return 'sprint';
+    case SPRINT_SUBMITTED_HASH:
+      return 'sprint-submitted';
+    default:
+      return 'home';
+  }
+};
 const HERO_DIAGNOSTICS = [
   {
     icon: SearchX,
@@ -318,12 +342,12 @@ const TestimonialsSection = () => {
   );
 };
 
-const Header = ({ isApplyPage }) => (
+const Header = ({ isSecondaryRoute }) => (
   <header className="v2-header">
     <div className="v2-container v2-header-content">
       <div className="v2-logo">Bryan Teng | English Exam Performance Coach</div>
-      <a href={isApplyPage ? '#' : APPLY_HASH} className="v2-btn v2-btn-primary v2-header-cta">
-        {isApplyPage ? 'Back Home' : PRIMARY_CTA_LABEL}
+      <a href={isSecondaryRoute ? '#' : APPLY_HASH} className="v2-btn v2-btn-primary v2-header-cta">
+        {isSecondaryRoute ? 'Back Home' : PRIMARY_CTA_LABEL}
       </a>
     </div>
   </header>
@@ -810,6 +834,11 @@ const snapshotFeatures = [
   '24-hour written report'
 ];
 
+const EXAM_LEVEL_OPTIONS = ['A-Level', 'IB', 'IELTS', 'TOEFL', 'GCSE/IGCSE', 'Other'];
+const MAIN_ISSUE_OPTIONS = ['Misreading questions', 'Weak essay structure', 'Running out of time', 'Pressure/anxiety', 'Inconsistent marks', 'Not sure'];
+const STUDENT_PROFILE_OPTIONS = ['Stuck at B/C aiming for A', 'High achiever aiming for distinction', 'Inconsistent under pressure', 'Works hard but still loses marks', 'Not sure'];
+const TRIED_OPTIONS = ['Tutoring', 'More practice papers', 'School support', 'Self-study', 'Online resources'];
+
 const OfferCard = ({
   variant,
   header,
@@ -818,6 +847,7 @@ const OfferCard = ({
   description,
   features,
   cta,
+  ctaHref = APPLY_HASH,
   microcopy,
   price,
   priceNote,
@@ -857,7 +887,7 @@ const OfferCard = ({
     </div>
 
     <div className="v2-offer-action">
-      <a href={APPLY_HASH} className={`v2-btn v2-offer-btn v2-offer-btn-${variant}`}>
+      <a href={ctaHref} className={`v2-btn v2-offer-btn v2-offer-btn-${variant}`}>
         {cta} <ChevronRight size={16} strokeWidth={ICON_STROKE} />
       </a>
       <p>{microcopy}</p>
@@ -889,6 +919,7 @@ const PricingCTA = () => (
           priceNote="Group format: $1,440"
           priceDetails="1-on-1 format: $2,880"
           cta={PRIMARY_CTA_LABEL}
+          ctaHref={SPRINT_HASH}
           microcopy="Best for students ready for immediate intervention."
         />
 
@@ -904,6 +935,7 @@ const PricingCTA = () => (
           price="$97"
           priceNote="Credited toward the Sprint if accepted within 7 days."
           cta={SECONDARY_CTA_LABEL}
+          ctaHref={SNAPSHOT_HASH}
           microcopy="Best for students unsure what’s actually causing underperformance."
         />
       </div>
@@ -929,13 +961,18 @@ const PricingCTA = () => (
           You are unsure whether the issue is question reading, essay structure, timing, pressure, or examiner intent.
         </p>
         <div className="v2-program-final-actions">
-          <a href={APPLY_HASH} className="v2-btn v2-btn-primary">
+          <a href={SPRINT_HASH} className="v2-btn v2-btn-primary">
             {PRIMARY_CTA_LABEL} <ChevronRight size={16} strokeWidth={ICON_STROKE} />
           </a>
-          <a href={APPLY_HASH} className="v2-btn v2-program-secondary-action">
+          <a href={SNAPSHOT_HASH} className="v2-btn v2-program-secondary-action">
             {SECONDARY_CTA_LABEL}
           </a>
         </div>
+        <p className="v2-program-path-note">
+          Not sure what’s causing the problem? Start with the $97 Performance Snapshot.
+          <br />
+          Already ready for structured correction? Apply for the 8-Week Performance Sprint.
+        </p>
         <p className="v2-program-final-note">
           Snapshot reports are written within 24 hours. Sprint enrollment depends on fit.
         </p>
@@ -944,34 +981,312 @@ const PricingCTA = () => (
       <div className="v2-faq-wrap">
         <h3>Questions</h3>
         <details className="v2-faq-item">
-          <summary>What is the difference between Sprint and Snapshot?</summary>
+          <summary>Do I pay before the Snapshot?</summary>
           <p>
-            The Sprint is the full 8-session intervention for students ready to execute now. The Snapshot is a paid diagnostic that identifies the exact performance gap first.
+            Yes. The Snapshot is a paid diagnostic. Payment happens before the 20-minute call.
           </p>
         </details>
         <details className="v2-faq-item">
-          <summary>What happens after I apply for the 8-Week Sprint?</summary>
-          <div className="v2-faq-steps">
-            <p><strong>1)</strong> Application Review: we check current grade, target score, and fit.</p>
-            <p><strong>2)</strong> Strategy Call: we identify thinking gaps and the fastest correction path.</p>
-            <p><strong>3)</strong> Enrollment + Kickoff: if accepted, you start the 8-session sprint with a clear execution plan.</p>
-          </div>
+          <summary>Do I pay for the full program on the website?</summary>
+          <p>
+            No. The Sprint is application-based. If there is a fit, Bryan will explain the right format and enrollment after the call.
+          </p>
         </details>
         <details className="v2-faq-item">
-          <summary>What happens after I book the Snapshot?</summary>
-          <div className="v2-faq-steps">
-            <p><strong>1)</strong> Booking Form + Work Upload: submit student details and recent exam/essay work.</p>
-            <p><strong>2)</strong> 20-Minute Diagnostic Call: live breakdown of question handling, pressure execution, and thinking pattern.</p>
-            <p><strong>3)</strong> Scorecard + 24h Report: you receive a written diagnostic, 7-day prescription, and 8-week roadmap.</p>
-          </div>
-        </details>
-        <details className="v2-faq-item">
-          <summary>Is the Snapshot fee credited?</summary>
+          <summary>Is the $97 credited toward the Sprint?</summary>
           <p>
             Yes. The $97 Snapshot is credited toward the Sprint if enrollment happens within 7 days.
           </p>
         </details>
+        <details className="v2-faq-item">
+          <summary>What is the main difference?</summary>
+          <p>
+            The Snapshot diagnoses the problem. The Sprint fixes the problem over 8 weeks.
+          </p>
+        </details>
       </div>
+    </div>
+  </section>
+);
+
+const SnapshotBookingPage = () => (
+  <section className="v2-section v2-program-section" id="snapshot-booking">
+    <div className="v2-container">
+      <article className="v2-card v2-form-shell">
+        <div className="v2-form-head">
+          <h1>Book Your $97 Performance Snapshot</h1>
+          <p>
+            A 20-minute diagnostic to identify where the student is losing marks: question interpretation, structure, timing, or pressure execution.
+          </p>
+        </div>
+
+        <form
+          className="v2-form-grid"
+          onSubmit={(event) => {
+            event.preventDefault();
+            window.location.hash = SNAPSHOT_PAYMENT_HASH;
+          }}
+        >
+          <label className="v2-form-field">
+            Parent name
+            <input type="text" name="parentName" required />
+          </label>
+
+          <label className="v2-form-field">
+            Parent email
+            <input type="email" name="parentEmail" required />
+          </label>
+
+          <label className="v2-form-field">
+            WhatsApp number
+            <input type="tel" name="whatsappNumber" required />
+          </label>
+
+          <label className="v2-form-field">
+            Student level / exam
+            <select name="studentExamLevel" defaultValue="" required>
+              <option value="" disabled>Select one</option>
+              {EXAM_LEVEL_OPTIONS.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+          </label>
+
+          <label className="v2-form-field">
+            Current grade / band
+            <input type="text" name="currentGrade" required />
+          </label>
+
+          <label className="v2-form-field">
+            Target grade / band
+            <input type="text" name="targetGrade" required />
+          </label>
+
+          <fieldset className="v2-form-field v2-form-field-full">
+            <legend>What feels like the main issue?</legend>
+            <div className="v2-option-grid">
+              {MAIN_ISSUE_OPTIONS.map((option) => (
+                <label key={option} className="v2-option-item">
+                  <input type="radio" name="mainIssue" value={option} required />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <label className="v2-form-field v2-form-field-full">
+            Upload one recent essay, exam paper, or marked answer
+            <input type="file" name="studentWork" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp" required />
+            <small>Required for Bryan’s live breakdown.</small>
+          </label>
+
+          <label className="v2-form-field v2-form-field-full">
+            Preferred call time / time zone
+            <input type="text" name="preferredTime" required />
+          </label>
+
+          <div className="v2-form-actions">
+            <button type="submit" className="v2-btn v2-form-submit v2-form-submit-snapshot">
+              Continue to $97 Payment <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+            </button>
+          </div>
+        </form>
+      </article>
+    </div>
+  </section>
+);
+
+const SnapshotPaymentPage = () => (
+  <section className="v2-section v2-program-section" id="snapshot-payment">
+    <div className="v2-container">
+      <article className="v2-card v2-form-shell v2-form-shell-narrow">
+        <div className="v2-form-head">
+          <h1>Complete Your $97 Snapshot Payment</h1>
+          <p>
+            Payment happens before the call. Once payment is complete, your diagnostic slot can be confirmed.
+          </p>
+        </div>
+        <div className="v2-form-actions v2-form-actions-column">
+          <button
+            type="button"
+            className="v2-btn v2-form-submit v2-form-submit-snapshot"
+            onClick={() => {
+              window.location.hash = SNAPSHOT_BOOKED_HASH;
+            }}
+          >
+            I Completed the $97 Payment
+          </button>
+          <a href={SNAPSHOT_HASH} className="v2-form-text-link">Back to Snapshot form</a>
+        </div>
+      </article>
+    </div>
+  </section>
+);
+
+const SnapshotBookedPage = () => (
+  <section className="v2-section v2-program-section" id="snapshot-booked">
+    <div className="v2-container">
+      <article className="v2-card v2-form-shell v2-form-shell-narrow">
+        <div className="v2-form-head">
+          <h1>Snapshot Confirmation</h1>
+          <p>
+            Your Snapshot is booked. Bryan will review the submitted work before the call. You’ll receive a 20-minute diagnostic call and a written report within 24 hours.
+          </p>
+        </div>
+        <div className="v2-form-actions v2-form-actions-column">
+          <a href={SPRINT_HASH} className="v2-btn v2-btn-primary">
+            {PRIMARY_CTA_LABEL}
+          </a>
+          <a href="#" className="v2-form-text-link">Back Home</a>
+        </div>
+      </article>
+    </div>
+  </section>
+);
+
+const SprintApplicationPage = () => (
+  <section className="v2-section v2-program-section" id="sprint-application">
+    <div className="v2-container">
+      <article className="v2-card v2-form-shell">
+        <div className="v2-form-head">
+          <h1>Apply for the 8-Week Performance Sprint</h1>
+          <p>
+            For students ready to rebuild how they decode questions, structure answers, and perform under exam pressure.
+          </p>
+        </div>
+
+        <form
+          className="v2-form-grid"
+          onSubmit={(event) => {
+            event.preventDefault();
+            window.location.hash = SPRINT_SUBMITTED_HASH;
+          }}
+        >
+          <label className="v2-form-field">
+            Parent name
+            <input type="text" name="parentName" required />
+          </label>
+
+          <label className="v2-form-field">
+            Parent email
+            <input type="email" name="parentEmail" required />
+          </label>
+
+          <label className="v2-form-field">
+            WhatsApp number
+            <input type="tel" name="whatsappNumber" required />
+          </label>
+
+          <label className="v2-form-field">
+            Student level / exam
+            <select name="studentExamLevel" defaultValue="" required>
+              <option value="" disabled>Select one</option>
+              {EXAM_LEVEL_OPTIONS.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+          </label>
+
+          <label className="v2-form-field">
+            Current grade / band
+            <input type="text" name="currentGrade" required />
+          </label>
+
+          <label className="v2-form-field">
+            Target grade / band
+            <input type="text" name="targetGrade" required />
+          </label>
+
+          <label className="v2-form-field v2-form-field-full">
+            What best describes the student?
+            <select name="studentProfile" defaultValue="" required>
+              <option value="" disabled>Select one</option>
+              {STUDENT_PROFILE_OPTIONS.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+          </label>
+
+          <fieldset className="v2-form-field v2-form-field-full">
+            <legend>What has the student already tried?</legend>
+            <div className="v2-option-grid">
+              {TRIED_OPTIONS.map((option) => (
+                <label key={option} className="v2-option-item">
+                  <input type="checkbox" name="tried" value={option} />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset className="v2-form-field v2-form-field-full">
+            <legend>Is the student willing to be corrected and practise differently?</legend>
+            <div className="v2-option-grid">
+              {['Yes', 'Maybe', 'Not sure'].map((option) => (
+                <label key={option} className="v2-option-item">
+                  <input type="radio" name="willingness" value={option} required />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset className="v2-form-field v2-form-field-full">
+            <legend>Are you interested in:</legend>
+            <div className="v2-option-grid">
+              <label className="v2-option-item">
+                <input type="radio" name="programType" value="Small group program — $1,440" required />
+                <span>Small group program — $1,440</span>
+              </label>
+              <label className="v2-option-item">
+                <input type="radio" name="programType" value="1:1 program — $2,880" required />
+                <span>1:1 program — $2,880</span>
+              </label>
+              <label className="v2-option-item">
+                <input type="radio" name="programType" value="Not sure yet" required />
+                <span>Not sure yet</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label className="v2-form-field v2-form-field-full">
+            Preferred call time / time zone
+            <input type="text" name="preferredTime" required />
+          </label>
+
+          <label className="v2-form-field v2-form-field-full">
+            In one sentence, what result do you want from Bryan’s coaching?
+            <textarea name="desiredResult" rows={4} required />
+          </label>
+
+          <div className="v2-form-actions">
+            <button type="submit" className="v2-btn v2-form-submit v2-form-submit-sprint">
+              Submit Application
+            </button>
+          </div>
+        </form>
+      </article>
+    </div>
+  </section>
+);
+
+const SprintSubmittedPage = () => (
+  <section className="v2-section v2-program-section" id="sprint-submitted">
+    <div className="v2-container">
+      <article className="v2-card v2-form-shell v2-form-shell-narrow">
+        <div className="v2-form-head">
+          <h1>Application Received</h1>
+          <p>
+            Thank you. Bryan will review the application first, then reach out for the next-fit call if the student is a match for the Sprint.
+          </p>
+        </div>
+        <div className="v2-form-actions v2-form-actions-column">
+          <a href={SNAPSHOT_HASH} className="v2-btn v2-form-submit v2-form-submit-snapshot">
+            Prefer to start with the $97 Snapshot
+          </a>
+          <a href="#" className="v2-form-text-link">Back Home</a>
+        </div>
+      </article>
     </div>
   </section>
 );
@@ -985,10 +1300,11 @@ const Footer = () => (
 );
 
 export default function AppV2() {
-  const [isApplyPage, setIsApplyPage] = useState(() => window.location.hash === APPLY_HASH);
+  const [route, setRoute] = useState(() => resolveRouteFromHash(window.location.hash));
+  const isSecondaryRoute = route !== 'home';
 
   useEffect(() => {
-    const onHashChange = () => setIsApplyPage(window.location.hash === APPLY_HASH);
+    const onHashChange = () => setRoute(resolveRouteFromHash(window.location.hash));
     window.addEventListener('hashchange', onHashChange);
     onHashChange();
     return () => window.removeEventListener('hashchange', onHashChange);
@@ -997,7 +1313,7 @@ export default function AppV2() {
   useEffect(() => {
     // Reset viewport when switching between home and apply route.
     window.scrollTo(0, 0);
-  }, [isApplyPage]);
+  }, [route]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -1041,15 +1357,19 @@ export default function AppV2() {
     });
 
     return () => observer.disconnect();
-  }, [isApplyPage]);
+  }, [route]);
 
   return (
     <div className="v2-page" style={{ minHeight: '100vh', overflowX: 'hidden' }}>
-      <Header isApplyPage={isApplyPage} />
+      <Header isSecondaryRoute={isSecondaryRoute} />
       <main>
-        {isApplyPage ? (
-          <PricingCTA />
-        ) : (
+        {route === 'apply' && <PricingCTA />}
+        {route === 'snapshot' && <SnapshotBookingPage />}
+        {route === 'snapshot-payment' && <SnapshotPaymentPage />}
+        {route === 'snapshot-booked' && <SnapshotBookedPage />}
+        {route === 'sprint' && <SprintApplicationPage />}
+        {route === 'sprint-submitted' && <SprintSubmittedPage />}
+        {route === 'home' && (
           <>
             <Hero />
             <StoryVision />
