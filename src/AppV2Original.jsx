@@ -25,14 +25,15 @@ const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
 const APPLY_HASH = '#/apply';
 const SNAPSHOT_HASH = '#/snapshot';
+const SNAPSHOT_CAL_HASH = '#/snapshot-cal';
 const SNAPSHOT_PAYMENT_HASH = '#/snapshot-payment';
 const SNAPSHOT_BOOKED_HASH = '#/snapshot-booked';
 const SPRINT_HASH = '#/sprint';
 const SPRINT_SUBMITTED_HASH = '#/sprint-submitted';
 const PRIMARY_CTA_LABEL = 'Apply for the 8-Week Sprint';
 const SECONDARY_CTA_LABEL = 'Apply for the Performance Snapshot';
-const CAL_SNAPSHOT_BOOKING_URL = 'https://cal.com/your-cal-link/snapshot';
-const CAL_SPRINT_BOOKING_URL = 'https://cal.com/your-cal-link/sprint-call';
+const CAL_SNAPSHOT_PAID_BOOKING_URL = 'https://cal.com/your-cal-link/snapshot-paid-booking';
+const CAL_SPRINT_FREE_CALL_URL = 'https://cal.com/your-cal-link/sprint-free-call';
 const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
 
 const resolveRouteFromHash = (hash) => {
@@ -41,6 +42,8 @@ const resolveRouteFromHash = (hash) => {
       return 'apply';
     case SNAPSHOT_HASH:
       return 'snapshot';
+    case SNAPSHOT_CAL_HASH:
+      return 'snapshot-cal';
     case SNAPSHOT_PAYMENT_HASH:
       return 'snapshot-payment';
     case SNAPSHOT_BOOKED_HASH:
@@ -1026,7 +1029,7 @@ const SnapshotBookingPage = () => (
           className="v2-form-grid"
           onSubmit={(event) => {
             event.preventDefault();
-            window.location.hash = SNAPSHOT_PAYMENT_HASH;
+            window.location.hash = SNAPSHOT_CAL_HASH;
           }}
         >
           <label className="v2-form-field">
@@ -1083,15 +1086,45 @@ const SnapshotBookingPage = () => (
           </label>
 
           <p className="v2-form-helper-note v2-form-field-full">
-            Call timing is handled on Cal.com after payment so both parent and Bryan can choose a real available slot.
+            Next step after this form: choose the call time on Cal.com first, then complete payment.
           </p>
 
           <div className="v2-form-actions">
             <button type="submit" className="v2-btn v2-form-submit v2-form-submit-snapshot">
-              Continue to $97 Payment <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+              Continue to Cal.com Booking <ChevronRight size={16} strokeWidth={ICON_STROKE} />
             </button>
           </div>
         </form>
+      </article>
+    </div>
+  </section>
+);
+
+const SnapshotCalBookingPage = () => (
+  <section className="v2-section v2-program-section" id="snapshot-cal-booking">
+    <div className="v2-container">
+      <article className="v2-card v2-form-shell v2-form-shell-narrow">
+        <div className="v2-form-head">
+          <h1>Choose Your Snapshot Time on Cal.com</h1>
+          <p>
+            Pick the 20-minute slot that matches both your availability and Bryan’s availability first.
+          </p>
+        </div>
+        <div className="v2-form-actions v2-form-actions-column">
+          <a href={CAL_SNAPSHOT_PAID_BOOKING_URL} target="_blank" rel="noreferrer" className="v2-btn v2-form-submit v2-form-submit-snapshot">
+            Open Cal.com Paid Booking
+          </a>
+          <button
+            type="button"
+            className="v2-btn v2-form-submit v2-form-submit-snapshot"
+            onClick={() => {
+              window.location.hash = SNAPSHOT_PAYMENT_HASH;
+            }}
+          >
+            Continue to $97 Payment
+          </button>
+          <a href={SNAPSHOT_HASH} className="v2-form-text-link">Back to Snapshot form</a>
+        </div>
       </article>
     </div>
   </section>
@@ -1104,7 +1137,7 @@ const SnapshotPaymentPage = () => (
         <div className="v2-form-head">
           <h1>Complete Your $97 Snapshot Payment</h1>
           <p>
-            Payment happens before the call. Once payment is complete, your diagnostic slot can be confirmed.
+            Final step: complete the $97 payment to lock the slot you selected on Cal.com.
           </p>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
@@ -1117,7 +1150,7 @@ const SnapshotPaymentPage = () => (
           >
             I Completed the $97 Payment
           </button>
-          <a href={SNAPSHOT_HASH} className="v2-form-text-link">Back to Snapshot form</a>
+          <a href={SNAPSHOT_CAL_HASH} className="v2-form-text-link">Back to Cal.com booking step</a>
         </div>
       </article>
     </div>
@@ -1131,13 +1164,10 @@ const SnapshotBookedPage = () => (
         <div className="v2-form-head">
           <h1>Snapshot Confirmation</h1>
           <p>
-            Your Snapshot is booked. Bryan will review the submitted work before the call. You’ll receive a 20-minute diagnostic call and a written report within 24 hours.
+            Your Snapshot is booked. Cal.com sends the automatic call link and reminders. Bryan will review the submitted work before the call, and you’ll receive a written report within 24 hours.
           </p>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
-          <a href={CAL_SNAPSHOT_BOOKING_URL} target="_blank" rel="noreferrer" className="v2-btn v2-form-submit v2-form-submit-snapshot">
-            Book Snapshot Call on Cal.com
-          </a>
           <a href={SPRINT_HASH} className="v2-btn v2-btn-primary">
             {PRIMARY_CTA_LABEL}
           </a>
@@ -1254,7 +1284,7 @@ const SprintApplicationPage = () => (
           </fieldset>
 
           <p className="v2-form-helper-note v2-form-field-full">
-            Scheduling is handled via Cal.com after submission so both sides book from real availability.
+            Next step after submitting: book a free call on Cal.com. No payment on this page.
           </p>
 
           <label className="v2-form-field v2-form-field-full">
@@ -1278,14 +1308,14 @@ const SprintSubmittedPage = () => (
     <div className="v2-container">
       <article className="v2-card v2-form-shell v2-form-shell-narrow">
         <div className="v2-form-head">
-          <h1>Application Received</h1>
+          <h1>Application Received — Book Your Free Call</h1>
           <p>
-            Thank you. Bryan will review the application first, then reach out for the next-fit call if the student is a match for the Sprint.
+            Next step: book a free call on Cal.com. If there is a fit, Bryan will close on the call and send a manual payment link after the call.
           </p>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
-          <a href={CAL_SPRINT_BOOKING_URL} target="_blank" rel="noreferrer" className="v2-btn v2-btn-primary">
-            Book Sprint Call on Cal.com
+          <a href={CAL_SPRINT_FREE_CALL_URL} target="_blank" rel="noreferrer" className="v2-btn v2-btn-primary">
+            Book Free Call on Cal.com
           </a>
           <a href={SNAPSHOT_HASH} className="v2-btn v2-form-submit v2-form-submit-snapshot">
             Prefer to start with the $97 Snapshot
@@ -1371,6 +1401,7 @@ export default function AppV2() {
       <main>
         {route === 'apply' && <PricingCTA />}
         {route === 'snapshot' && <SnapshotBookingPage />}
+        {route === 'snapshot-cal' && <SnapshotCalBookingPage />}
         {route === 'snapshot-payment' && <SnapshotPaymentPage />}
         {route === 'snapshot-booked' && <SnapshotBookedPage />}
         {route === 'sprint' && <SprintApplicationPage />}
