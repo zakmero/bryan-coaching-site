@@ -31,6 +31,8 @@ const SPRINT_HASH = '#/sprint';
 const SPRINT_SUBMITTED_HASH = '#/sprint-submitted';
 const PRIMARY_CTA_LABEL = 'Apply for the 8-Week Sprint';
 const SECONDARY_CTA_LABEL = 'Apply for the Performance Snapshot';
+const CAL_SNAPSHOT_BOOKING_URL = 'https://cal.com/your-cal-link/snapshot';
+const CAL_SPRINT_BOOKING_URL = 'https://cal.com/your-cal-link/sprint-call';
 const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
 
 const resolveRouteFromHash = (hash) => {
@@ -1080,10 +1082,9 @@ const SnapshotBookingPage = () => (
             <small>Required for Bryan’s live breakdown.</small>
           </label>
 
-          <label className="v2-form-field v2-form-field-full">
-            Preferred call time / time zone
-            <input type="text" name="preferredTime" required />
-          </label>
+          <p className="v2-form-helper-note v2-form-field-full">
+            Call timing is handled on Cal.com after payment so both parent and Bryan can choose a real available slot.
+          </p>
 
           <div className="v2-form-actions">
             <button type="submit" className="v2-btn v2-form-submit v2-form-submit-snapshot">
@@ -1134,6 +1135,9 @@ const SnapshotBookedPage = () => (
           </p>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
+          <a href={CAL_SNAPSHOT_BOOKING_URL} target="_blank" rel="noreferrer" className="v2-btn v2-form-submit v2-form-submit-snapshot">
+            Book Snapshot Call on Cal.com
+          </a>
           <a href={SPRINT_HASH} className="v2-btn v2-btn-primary">
             {PRIMARY_CTA_LABEL}
           </a>
@@ -1249,10 +1253,9 @@ const SprintApplicationPage = () => (
             </div>
           </fieldset>
 
-          <label className="v2-form-field v2-form-field-full">
-            Preferred call time / time zone
-            <input type="text" name="preferredTime" required />
-          </label>
+          <p className="v2-form-helper-note v2-form-field-full">
+            Scheduling is handled via Cal.com after submission so both sides book from real availability.
+          </p>
 
           <label className="v2-form-field v2-form-field-full">
             In one sentence, what result do you want from Bryan’s coaching?
@@ -1281,6 +1284,9 @@ const SprintSubmittedPage = () => (
           </p>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
+          <a href={CAL_SPRINT_BOOKING_URL} target="_blank" rel="noreferrer" className="v2-btn v2-btn-primary">
+            Book Sprint Call on Cal.com
+          </a>
           <a href={SNAPSHOT_HASH} className="v2-btn v2-form-submit v2-form-submit-snapshot">
             Prefer to start with the $97 Snapshot
           </a>

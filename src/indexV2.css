@@ -886,6 +886,13 @@ object {
   font-weight: 500;
 }
 
+.v2-form-helper-note {
+  margin: 0.2rem 0 0;
+  color: var(--v2-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 .v2-form-field legend {
   margin-bottom: 0.45rem;
   color: var(--v2-text-primary);
