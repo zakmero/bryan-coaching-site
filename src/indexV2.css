@@ -918,6 +918,95 @@ object {
   margin: 0;
 }
 
+.v2-issue-picker {
+  border: 1px solid #efc8c1;
+  border-radius: 10px;
+  padding: 0.85rem;
+  background: linear-gradient(180deg, #fffaf9 0%, #fffefe 100%);
+}
+
+.v2-issue-picker legend {
+  color: var(--v2-accent);
+}
+
+.v2-issue-picker-trigger {
+  width: 100%;
+  border: 1px solid #e8b5ac;
+  border-radius: 8px;
+  padding: 0.78rem 0.86rem;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: left;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.v2-issue-picker-trigger:hover,
+.v2-issue-picker-trigger.is-open {
+  border-color: var(--v2-accent);
+  background: #fff7f6;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.12);
+}
+
+.v2-issue-picker-trigger-label {
+  color: #8f5348;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.v2-issue-picker-trigger-value {
+  color: var(--v2-text-muted);
+  font-weight: 600;
+}
+
+.v2-issue-picker-trigger-value.has-value {
+  color: var(--v2-accent);
+}
+
+.v2-issue-picker-options {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height 0.3s ease, opacity 0.22s ease, transform 0.22s ease;
+}
+
+.v2-issue-picker-options.is-open {
+  margin-top: 0.8rem;
+  max-height: 260px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.v2-issue-picker .v2-option-item {
+  border: 1px solid #ecd7d2;
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  background: #ffffff;
+}
+
+.v2-issue-picker .v2-option-item:hover {
+  border-color: #e1a49b;
+  background: #fff8f6;
+}
+
+.v2-issue-picker .v2-option-item input:checked + span {
+  color: var(--v2-accent);
+  font-weight: 700;
+}
+
+.v2-form-error {
+  margin: 0.55rem 0 0;
+  color: var(--v2-accent);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 .v2-form-actions {
   grid-column: 1 / -1;
   margin-top: 0.35rem;
@@ -990,6 +1079,10 @@ object {
 
   .v2-option-grid {
     grid-template-columns: 1fr;
+  }
+
+  .v2-issue-picker-options.is-open {
+    max-height: 520px;
   }
 }
 

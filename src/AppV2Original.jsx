@@ -1014,24 +1014,35 @@ const PricingCTA = () => (
   </section>
 );
 
-const SnapshotBookingPage = () => (
-  <section className="v2-section v2-program-section" id="snapshot-booking">
-    <div className="v2-container">
-      <article className="v2-card v2-form-shell">
-        <div className="v2-form-head">
-          <h1>Book Your $97 Performance Snapshot</h1>
-          <p>
-            A 20-minute diagnostic to identify where the student is losing marks: question interpretation, structure, timing, or pressure execution.
-          </p>
-        </div>
+const SnapshotBookingPage = () => {
+  const [showMainIssueOptions, setShowMainIssueOptions] = useState(false);
+  const [selectedMainIssue, setSelectedMainIssue] = useState('');
+  const [mainIssueError, setMainIssueError] = useState('');
 
-        <form
-          className="v2-form-grid"
-          onSubmit={(event) => {
-            event.preventDefault();
-            window.location.hash = SNAPSHOT_CAL_HASH;
-          }}
-        >
+  return (
+    <section className="v2-section v2-program-section" id="snapshot-booking">
+      <div className="v2-container">
+        <article className="v2-card v2-form-shell">
+          <div className="v2-form-head">
+            <h1>Book Your $97 Performance Snapshot</h1>
+            <p>
+              A 20-minute diagnostic to identify where the student is losing marks: question interpretation, structure, timing, or pressure execution.
+            </p>
+          </div>
+
+          <form
+            className="v2-form-grid"
+            onSubmit={(event) => {
+              event.preventDefault();
+              if (!selectedMainIssue) {
+                setMainIssueError('Please choose one main issue before continuing.');
+                setShowMainIssueOptions(true);
+                return;
+              }
+              setMainIssueError('');
+              window.location.hash = SNAPSHOT_CAL_HASH;
+            }}
+          >
           <label className="v2-form-field">
             Parent name
             <input type="text" name="parentName" required />
@@ -1067,38 +1078,63 @@ const SnapshotBookingPage = () => (
             <input type="text" name="targetGrade" required />
           </label>
 
-          <fieldset className="v2-form-field v2-form-field-full">
-            <legend>What feels like the main issue?</legend>
-            <div className="v2-option-grid">
-              {MAIN_ISSUE_OPTIONS.map((option) => (
-                <label key={option} className="v2-option-item">
-                  <input type="radio" name="mainIssue" value={option} required />
-                  <span>{option}</span>
-                </label>
-              ))}
+            <fieldset className="v2-form-field v2-form-field-full v2-issue-picker">
+              <legend>What feels like the main issue?</legend>
+              <button
+                type="button"
+                className={`v2-issue-picker-trigger ${showMainIssueOptions ? 'is-open' : ''}`}
+                aria-expanded={showMainIssueOptions}
+                onClick={() => setShowMainIssueOptions((prev) => !prev)}
+              >
+                <span className="v2-issue-picker-trigger-label">Click to choose an option</span>
+                <span className={`v2-issue-picker-trigger-value ${selectedMainIssue ? 'has-value' : ''}`}>
+                  {selectedMainIssue || 'No option selected yet'}
+                </span>
+              </button>
+              <div className={`v2-issue-picker-options ${showMainIssueOptions ? 'is-open' : ''}`}>
+                <div className="v2-option-grid">
+                  {MAIN_ISSUE_OPTIONS.map((option) => (
+                    <label key={option} className="v2-option-item">
+                      <input
+                        type="radio"
+                        name="mainIssue"
+                        value={option}
+                        checked={selectedMainIssue === option}
+                        onChange={() => {
+                          setSelectedMainIssue(option);
+                          setMainIssueError('');
+                          setShowMainIssueOptions(false);
+                        }}
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              {mainIssueError ? <p className="v2-form-error">{mainIssueError}</p> : null}
+            </fieldset>
+
+            <label className="v2-form-field v2-form-field-full">
+              Upload one recent essay, exam paper, or marked answer
+              <input type="file" name="studentWork" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp" required />
+              <small>Required for Bryan’s live breakdown.</small>
+            </label>
+
+            <p className="v2-form-helper-note v2-form-field-full">
+              Next step after this form: choose the call time on Cal.com first, then complete payment.
+            </p>
+
+            <div className="v2-form-actions">
+              <button type="submit" className="v2-btn v2-form-submit v2-form-submit-snapshot">
+                Continue to Cal.com Booking <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+              </button>
             </div>
-          </fieldset>
-
-          <label className="v2-form-field v2-form-field-full">
-            Upload one recent essay, exam paper, or marked answer
-            <input type="file" name="studentWork" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp" required />
-            <small>Required for Bryan’s live breakdown.</small>
-          </label>
-
-          <p className="v2-form-helper-note v2-form-field-full">
-            Next step after this form: choose the call time on Cal.com first, then complete payment.
-          </p>
-
-          <div className="v2-form-actions">
-            <button type="submit" className="v2-btn v2-form-submit v2-form-submit-snapshot">
-              Continue to Cal.com Booking <ChevronRight size={16} strokeWidth={ICON_STROKE} />
-            </button>
-          </div>
-        </form>
-      </article>
-    </div>
-  </section>
-);
+          </form>
+        </article>
+      </div>
+    </section>
+  );
+};
 
 const SnapshotCalBookingPage = () => (
   <section className="v2-section v2-program-section" id="snapshot-cal-booking">
