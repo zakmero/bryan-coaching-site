@@ -223,6 +223,21 @@ object {
   transform: translateY(-1px);
 }
 
+.v2-btn-snapshot-primary {
+  background-color: #2f7a4f;
+  color: #ffffff;
+  border-color: #2f7a4f;
+  box-shadow: 0 2px 12px rgba(47, 122, 79, 0.32);
+}
+
+.v2-btn-snapshot-primary:hover {
+  background-color: #245e3d;
+  border-color: #245e3d;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(36, 94, 61, 0.4);
+  transform: translateY(-1px);
+}
+
 .v2-btn-secondary {
   background-color: #2f7a4f;
   color: #ffffff;

@@ -351,8 +351,8 @@ const Header = ({ isSecondaryRoute }) => (
   <header className="v2-header">
     <div className="v2-container v2-header-content">
       <div className="v2-logo">Bryan Teng | English Exam Performance Coach</div>
-      <a href={isSecondaryRoute ? '#' : APPLY_HASH} className="v2-btn v2-btn-primary v2-header-cta">
-        {isSecondaryRoute ? 'Back Home' : PRIMARY_CTA_LABEL}
+      <a href={isSecondaryRoute ? '#' : SNAPSHOT_HASH} className={`v2-btn ${isSecondaryRoute ? 'v2-btn-primary' : 'v2-btn-snapshot-primary'} v2-header-cta`}>
+        {isSecondaryRoute ? 'Back Home' : SECONDARY_CTA_LABEL}
       </a>
     </div>
   </header>
@@ -455,8 +455,8 @@ const Hero = () => {
           </div>
 
           <div className="v2-animate-fade-up v2-delay-300 v2-text-center">
-            <a href={APPLY_HASH} className="v2-btn v2-btn-primary v2-hero-cta">
-              {PRIMARY_CTA_LABEL} <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
+            <a href={SNAPSHOT_HASH} className="v2-btn v2-btn-snapshot-primary v2-hero-cta">
+              {SECONDARY_CTA_LABEL} <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
             </a>
             <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
               Limited first intake: 30 students
