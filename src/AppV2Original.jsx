@@ -1214,24 +1214,58 @@ const SnapshotBookedPage = () => (
   </section>
 );
 
-const SprintApplicationPage = () => (
-  <section className="v2-section v2-program-section" id="sprint-application">
-    <div className="v2-container">
-      <article className="v2-card v2-form-shell">
-        <div className="v2-form-head">
-          <h1>Apply for the 8-Week Performance Sprint</h1>
-          <p>
-            For students ready to rebuild how they decode questions, structure answers, and perform under exam pressure.
-          </p>
-        </div>
+const SprintApplicationPage = () => {
+  const [showTriedOptions, setShowTriedOptions] = useState(false);
+  const [showWillingnessOptions, setShowWillingnessOptions] = useState(false);
+  const [showProgramTypeOptions, setShowProgramTypeOptions] = useState(false);
+  const [selectedTriedOptions, setSelectedTriedOptions] = useState([]);
+  const [selectedWillingness, setSelectedWillingness] = useState('');
+  const [selectedProgramType, setSelectedProgramType] = useState('');
+  const [willingnessError, setWillingnessError] = useState('');
+  const [programTypeError, setProgramTypeError] = useState('');
 
-        <form
-          className="v2-form-grid"
-          onSubmit={(event) => {
-            event.preventDefault();
-            window.location.hash = SPRINT_SUBMITTED_HASH;
-          }}
-        >
+  const toggleTriedOption = (option) => {
+    setSelectedTriedOptions((prev) => (
+      prev.includes(option) ? prev.filter((item) => item !== option) : [...prev, option]
+    ));
+  };
+
+  return (
+    <section className="v2-section v2-program-section" id="sprint-application">
+      <div className="v2-container">
+        <article className="v2-card v2-form-shell">
+          <div className="v2-form-head">
+            <h1>Apply for the 8-Week Performance Sprint</h1>
+            <p>
+              For students ready to rebuild how they decode questions, structure answers, and perform under exam pressure.
+            </p>
+          </div>
+
+          <form
+            className="v2-form-grid"
+            onSubmit={(event) => {
+              event.preventDefault();
+              let hasError = false;
+              if (!selectedWillingness) {
+                setWillingnessError('Please choose one option before continuing.');
+                setShowWillingnessOptions(true);
+                hasError = true;
+              } else {
+                setWillingnessError('');
+              }
+
+              if (!selectedProgramType) {
+                setProgramTypeError('Please choose one program preference before continuing.');
+                setShowProgramTypeOptions(true);
+                hasError = true;
+              } else {
+                setProgramTypeError('');
+              }
+
+              if (hasError) return;
+              window.location.hash = SPRINT_SUBMITTED_HASH;
+            }}
+          >
           <label className="v2-form-field">
             Parent name
             <input type="text" name="parentName" required />
@@ -1277,47 +1311,134 @@ const SprintApplicationPage = () => (
             </select>
           </label>
 
-          <fieldset className="v2-form-field v2-form-field-full">
-            <legend>What has the student already tried?</legend>
-            <div className="v2-option-grid">
-              {TRIED_OPTIONS.map((option) => (
-                <label key={option} className="v2-option-item">
-                  <input type="checkbox" name="tried" value={option} />
-                  <span>{option}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
+            <fieldset className="v2-form-field v2-form-field-full v2-issue-picker">
+              <legend>What has the student already tried?</legend>
+              <button
+                type="button"
+                className={`v2-issue-picker-trigger ${showTriedOptions ? 'is-open' : ''}`}
+                aria-expanded={showTriedOptions}
+                onClick={() => setShowTriedOptions((prev) => !prev)}
+              >
+                <span className="v2-issue-picker-trigger-label">Click to choose one or more</span>
+                <span className={`v2-issue-picker-trigger-value ${selectedTriedOptions.length ? 'has-value' : ''}`}>
+                  {selectedTriedOptions.length ? selectedTriedOptions.join(', ') : 'No options selected yet'}
+                </span>
+              </button>
+              <div className={`v2-issue-picker-options ${showTriedOptions ? 'is-open' : ''}`}>
+                <div className="v2-option-grid">
+                  {TRIED_OPTIONS.map((option) => (
+                    <label key={option} className="v2-option-item">
+                      <input
+                        type="checkbox"
+                        name="tried"
+                        value={option}
+                        checked={selectedTriedOptions.includes(option)}
+                        onChange={() => toggleTriedOption(option)}
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </fieldset>
 
-          <fieldset className="v2-form-field v2-form-field-full">
-            <legend>Is the student willing to be corrected and practise differently?</legend>
-            <div className="v2-option-grid">
-              {['Yes', 'Maybe', 'Not sure'].map((option) => (
-                <label key={option} className="v2-option-item">
-                  <input type="radio" name="willingness" value={option} required />
-                  <span>{option}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
+            <fieldset className="v2-form-field v2-form-field-full v2-issue-picker">
+              <legend>Is the student willing to be corrected and practise differently?</legend>
+              <button
+                type="button"
+                className={`v2-issue-picker-trigger ${showWillingnessOptions ? 'is-open' : ''}`}
+                aria-expanded={showWillingnessOptions}
+                onClick={() => setShowWillingnessOptions((prev) => !prev)}
+              >
+                <span className="v2-issue-picker-trigger-label">Click to choose one option</span>
+                <span className={`v2-issue-picker-trigger-value ${selectedWillingness ? 'has-value' : ''}`}>
+                  {selectedWillingness || 'No option selected yet'}
+                </span>
+              </button>
+              <div className={`v2-issue-picker-options ${showWillingnessOptions ? 'is-open' : ''}`}>
+                <div className="v2-option-grid">
+                  {['Yes', 'Maybe', 'Not sure'].map((option) => (
+                    <label key={option} className="v2-option-item">
+                      <input
+                        type="radio"
+                        name="willingness"
+                        value={option}
+                        checked={selectedWillingness === option}
+                        onChange={() => {
+                          setSelectedWillingness(option);
+                          setWillingnessError('');
+                          setShowWillingnessOptions(false);
+                        }}
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              {willingnessError ? <p className="v2-form-error">{willingnessError}</p> : null}
+            </fieldset>
 
-          <fieldset className="v2-form-field v2-form-field-full">
-            <legend>Are you interested in:</legend>
-            <div className="v2-option-grid">
-              <label className="v2-option-item">
-                <input type="radio" name="programType" value="Small group program — $1,440" required />
-                <span>Small group program — $1,440</span>
-              </label>
-              <label className="v2-option-item">
-                <input type="radio" name="programType" value="1:1 program — $2,880" required />
-                <span>1:1 program — $2,880</span>
-              </label>
-              <label className="v2-option-item">
-                <input type="radio" name="programType" value="Not sure yet" required />
-                <span>Not sure yet</span>
-              </label>
-            </div>
-          </fieldset>
+            <fieldset className="v2-form-field v2-form-field-full v2-issue-picker">
+              <legend>Are you interested in:</legend>
+              <button
+                type="button"
+                className={`v2-issue-picker-trigger ${showProgramTypeOptions ? 'is-open' : ''}`}
+                aria-expanded={showProgramTypeOptions}
+                onClick={() => setShowProgramTypeOptions((prev) => !prev)}
+              >
+                <span className="v2-issue-picker-trigger-label">Click to choose one option</span>
+                <span className={`v2-issue-picker-trigger-value ${selectedProgramType ? 'has-value' : ''}`}>
+                  {selectedProgramType || 'No option selected yet'}
+                </span>
+              </button>
+              <div className={`v2-issue-picker-options ${showProgramTypeOptions ? 'is-open' : ''}`}>
+                <div className="v2-option-grid">
+                  <label className="v2-option-item">
+                    <input
+                      type="radio"
+                      name="programType"
+                      value="Small group program — $1,440"
+                      checked={selectedProgramType === 'Small group program — $1,440'}
+                      onChange={() => {
+                        setSelectedProgramType('Small group program — $1,440');
+                        setProgramTypeError('');
+                        setShowProgramTypeOptions(false);
+                      }}
+                    />
+                    <span>Small group program — $1,440</span>
+                  </label>
+                  <label className="v2-option-item">
+                    <input
+                      type="radio"
+                      name="programType"
+                      value="1:1 program — $2,880"
+                      checked={selectedProgramType === '1:1 program — $2,880'}
+                      onChange={() => {
+                        setSelectedProgramType('1:1 program — $2,880');
+                        setProgramTypeError('');
+                        setShowProgramTypeOptions(false);
+                      }}
+                    />
+                    <span>1:1 program — $2,880</span>
+                  </label>
+                  <label className="v2-option-item">
+                    <input
+                      type="radio"
+                      name="programType"
+                      value="Not sure yet"
+                      checked={selectedProgramType === 'Not sure yet'}
+                      onChange={() => {
+                        setSelectedProgramType('Not sure yet');
+                        setProgramTypeError('');
+                        setShowProgramTypeOptions(false);
+                      }}
+                    />
+                    <span>Not sure yet</span>
+                  </label>
+                </div>
+              </div>
+              {programTypeError ? <p className="v2-form-error">{programTypeError}</p> : null}
+            </fieldset>
 
           <p className="v2-form-helper-note v2-form-field-full">
             Next step after submitting: book a free call on Cal.com. No payment on this page.
@@ -1333,11 +1454,12 @@ const SprintApplicationPage = () => (
               Submit Application
             </button>
           </div>
-        </form>
-      </article>
-    </div>
-  </section>
-);
+          </form>
+        </article>
+      </div>
+    </section>
+  );
+};
 
 const SprintSubmittedPage = () => (
   <section className="v2-section v2-program-section" id="sprint-submitted">
