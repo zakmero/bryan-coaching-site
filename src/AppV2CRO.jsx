@@ -19,7 +19,7 @@ import tesolCert from '../data/World120hrTESOL_TEFLcert.pdf';
 import tesolTranscript from '../data/Yong Ping Bryan Teng - TESOL Grades Transcript - WTA.pdf';
 import tesolReference from '../data/Yong Ping Bryan Teng - TESOL Reference letter.pdf';
 
-const CTA_LABEL = 'Apply for Coaching';
+const CTA_LABEL = 'Apply for the 8-Week Sprint';
 
 function PrimaryCTA({ className = '' }) {
   return (
@@ -61,7 +61,7 @@ function Hero() {
               Improve your English exam score by +1 to +3 bands in 8-12 weeks - without doing more practice papers
             </h1>
             <p className="v3-subtitle">
-              For students preparing for IELTS, TOEFL, IB, A-level, or similar English exams who want consistent high performance under exam pressure.
+              For IELTS, TOEFL, IB, A-Level, and similar English exam students who study hard but still lose marks from misreading prompts, weak essay structure, unclear examiner intent, or rushed answers under timed pressure.
             </p>
             <div className="v3-chip-row" aria-label="Exam types">
               <span>IELTS</span>

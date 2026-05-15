@@ -24,6 +24,8 @@ import examBMark from '../data/exam-b-mark.png';
 const ICON_STROKE = 1.25;
 const EXAM_FOCUS = ['A-Level', 'IB', 'IELTS', 'TOEFL'];
 const APPLY_HASH = '#/apply';
+const PRIMARY_CTA_LABEL = 'Apply for the 8-Week Sprint';
+const SECONDARY_CTA_LABEL = 'Apply for the Performance Snapshot';
 const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
 const HERO_DIAGNOSTICS = [
   {
@@ -90,7 +92,7 @@ const SectionHeader = ({ badge, title, subtitle }) => (
   </div>
 );
 
-const EngagementBand = ({ title, subtitle, cta = 'Apply for an Audit' }) => (
+const EngagementBand = ({ title, subtitle, cta = PRIMARY_CTA_LABEL }) => (
   <div className="v2-engagement-band v2-animate-fade-up">
     <div>
       <p className="v2-engagement-title">{title}</p>
@@ -105,6 +107,16 @@ const EngagementBand = ({ title, subtitle, cta = 'Apply for an Audit' }) => (
 const StoryVision = () => (
   <section className="v2-section" id="story">
     <div className="v2-container">
+      <div className="v2-card v2-story-pain v2-animate-fade-up">
+        <h3>The real problem is not that your child needs "more English."</h3>
+        <ul>
+          <li>They know the content, but lose marks because they do not decode the question properly.</li>
+          <li>They practise papers, but repeat the same thinking mistakes.</li>
+          <li>They write more, but still do not know what the examiner is rewarding.</li>
+          <li>They revise harder, but panic when the wording changes.</li>
+        </ul>
+      </div>
+
       <div className="v2-story-section-head">
         <div className="v2-badge v2-animate-fade-up">Founder Story</div>
         <h2>
@@ -311,7 +323,7 @@ const Header = ({ isApplyPage }) => (
     <div className="v2-container v2-header-content">
       <div className="v2-logo">Bryan Teng | English Exam Performance Coach</div>
       <a href={isApplyPage ? '#' : APPLY_HASH} className="v2-btn v2-btn-primary v2-header-cta">
-        {isApplyPage ? 'Back Home' : 'Apply'}
+        {isApplyPage ? 'Back Home' : PRIMARY_CTA_LABEL}
       </a>
     </div>
   </header>
@@ -366,8 +378,8 @@ const Hero = () => {
           </h1>
           </div>
           <p className="v2-hero-subtitle v2-hero-copy-subtitle v2-animate-fade-up v2-delay-200">
-            For IELTS, TOEFL, IB, A-level, and similar English exam students who study hard but still lose marks from misreading questions,
-            rushing answers, or not knowing what the examiner is really asking for.
+            For IELTS, TOEFL, IB, A-Level, and similar English exam students who study hard but still lose marks from misreading prompts,
+            weak essay structure, unclear examiner intent, or rushed answers under timed pressure.
           </p>
         </div>
 
@@ -415,7 +427,7 @@ const Hero = () => {
 
           <div className="v2-animate-fade-up v2-delay-300 v2-text-center">
             <a href={APPLY_HASH} className="v2-btn v2-btn-primary v2-hero-cta">
-              Apply for an Audit <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
+              {PRIMARY_CTA_LABEL} <ChevronRight size={18} strokeWidth={ICON_STROKE} style={{ marginLeft: '0.5rem' }} />
             </a>
             <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: 'var(--v2-text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
               Limited first intake: 30 students
@@ -776,7 +788,7 @@ const FinalEngagement = () => (
       <EngagementBand
         title="If this sounds like you, don't wait until the next exam cycle."
         subtitle="Secure your place while intake is still open."
-        cta="Apply Now"
+        cta={PRIMARY_CTA_LABEL}
       />
     </div>
   </section>
@@ -876,7 +888,7 @@ const PricingCTA = () => (
           price="From $1,440"
           priceNote="Group format: $1,440"
           priceDetails="1-on-1 format: $2,880"
-          cta="Apply For The Sprint"
+          cta={PRIMARY_CTA_LABEL}
           microcopy="Best for students ready for immediate intervention."
         />
 
@@ -891,7 +903,7 @@ const PricingCTA = () => (
           features={snapshotFeatures}
           price="$97"
           priceNote="Credited toward the Sprint if accepted within 7 days."
-          cta="Book The Snapshot"
+          cta={SECONDARY_CTA_LABEL}
           microcopy="Best for students unsure what’s actually causing underperformance."
         />
       </div>
@@ -904,12 +916,24 @@ const PricingCTA = () => (
         <p>
           Choose the entry point that matches what you know right now: start the full program, or get the student’s work assessed first.
         </p>
+        <p>
+          <strong>Choose the Sprint if:</strong>
+        </p>
+        <p>
+          You already know the student is underperforming and want structured correction over 8 weeks.
+        </p>
+        <p>
+          <strong>Choose the Snapshot if:</strong>
+        </p>
+        <p>
+          You are unsure whether the issue is question reading, essay structure, timing, pressure, or examiner intent.
+        </p>
         <div className="v2-program-final-actions">
           <a href={APPLY_HASH} className="v2-btn v2-btn-primary">
-            Apply For The Sprint <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+            {PRIMARY_CTA_LABEL} <ChevronRight size={16} strokeWidth={ICON_STROKE} />
           </a>
           <a href={APPLY_HASH} className="v2-btn v2-program-secondary-action">
-            Book The Snapshot
+            {SECONDARY_CTA_LABEL}
           </a>
         </div>
         <p className="v2-program-final-note">
