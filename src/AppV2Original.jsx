@@ -1126,10 +1126,6 @@ const SnapshotBookingPage = () => {
               <small>Required for Bryan’s live breakdown.</small>
             </label>
 
-            <p className="v2-form-helper-note v2-form-field-full">
-              Click submit to send your application.
-            </p>
-
             <div className="v2-form-actions">
               <button type="submit" className="v2-btn v2-form-submit v2-form-submit-snapshot">
                 Submit Application <ChevronRight size={16} strokeWidth={ICON_STROKE} />
@@ -1204,15 +1200,18 @@ const SnapshotBookedPage = () => (
     <div className="v2-container">
       <article className="v2-card v2-form-shell v2-form-shell-narrow">
         <div className="v2-form-head">
+          <div className="v2-success-motion" role="img" aria-label="Application successfully received">
+            <span className="v2-success-pulse" />
+            <span className="v2-success-core">
+              <span className="v2-success-check" />
+            </span>
+          </div>
           <h1>Your application is successfully received</h1>
           <p>
             A reply will be sent within 24-48 hours.
           </p>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
-          <a href={SPRINT_HASH} className="v2-btn v2-btn-primary">
-            {PRIMARY_CTA_LABEL}
-          </a>
           <a href="#" className="v2-form-text-link">Back Home</a>
         </div>
       </article>
@@ -1509,18 +1508,15 @@ const SprintSubmittedPage = () => (
     <div className="v2-container">
       <article className="v2-card v2-form-shell v2-form-shell-narrow">
         <div className="v2-form-head">
-          <h1>Application Received — Book Your Free Call</h1>
-          <p>
-            Next step: book a free call on Cal.com. If there is a fit, Bryan will close on the call and send a manual payment link after the call.
-          </p>
+          <div className="v2-success-motion" role="img" aria-label="Application successfully received">
+            <span className="v2-success-pulse" />
+            <span className="v2-success-core">
+              <span className="v2-success-check" />
+            </span>
+          </div>
+          <h1>Application Received</h1>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
-          <a href={CAL_SPRINT_FREE_CALL_URL} target="_blank" rel="noreferrer" className="v2-btn v2-btn-primary">
-            Book Free Call on Cal.com
-          </a>
-          <a href={SNAPSHOT_HASH} className="v2-btn v2-form-submit v2-form-submit-snapshot">
-            Prefer to start with the $97 Snapshot
-          </a>
           <a href="#" className="v2-form-text-link">Back Home</a>
         </div>
       </article>

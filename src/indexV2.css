@@ -854,6 +854,80 @@ object {
   max-width: 760px;
 }
 
+.v2-success-motion {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 0 1rem;
+}
+
+.v2-success-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(47, 122, 79, 0.32);
+  animation: v2-success-pulse 1.8s ease-out infinite;
+}
+
+.v2-success-core {
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #2f7a4f 0%, #58a776 100%);
+  box-shadow: 0 14px 32px rgba(47, 122, 79, 0.28);
+  animation: v2-success-core 1.8s ease-in-out infinite;
+}
+
+.v2-success-check {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 24px;
+  height: 14px;
+  border-left: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  animation: v2-success-check 1.8s ease-in-out infinite;
+}
+
+@keyframes v2-success-pulse {
+  0% {
+    transform: scale(0.78);
+    opacity: 0.65;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes v2-success-core {
+  0%,
+  100% {
+    transform: scale(0.98);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes v2-success-check {
+  0%,
+  20% {
+    opacity: 0;
+    transform: translate(-50%, -46%) rotate(-45deg) scale(0.7);
+  }
+  35%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+  }
+}
+
 .v2-form-grid {
   margin-top: 1.3rem;
   display: grid;
