@@ -901,6 +901,44 @@ object {
   font-weight: 500;
 }
 
+.v2-file-input {
+  border: 1px solid #b7d8c2;
+  border-radius: 12px;
+  padding: 0.5rem;
+  background: linear-gradient(180deg, #f6fcf8 0%, #ffffff 100%);
+  color: #2f4a3a;
+}
+
+.v2-file-input::file-selector-button,
+.v2-file-input::-webkit-file-upload-button {
+  border: 1px solid #2f7a4f;
+  border-radius: 10px;
+  padding: 0.58rem 1rem;
+  margin-right: 0.85rem;
+  background: linear-gradient(135deg, #2f7a4f 0%, #3f965f 100%);
+  color: #ffffff;
+  font-family: var(--v2-font-body);
+  font-size: 0.93rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(47, 122, 79, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.v2-file-input:hover::file-selector-button,
+.v2-file-input:hover::-webkit-file-upload-button {
+  filter: brightness(1.03);
+  box-shadow: 0 10px 22px rgba(47, 122, 79, 0.28);
+}
+
+.v2-file-input:focus-within::file-selector-button,
+.v2-file-input:focus-within::-webkit-file-upload-button,
+.v2-file-input:focus::file-selector-button,
+.v2-file-input:focus::-webkit-file-upload-button {
+  transform: translateY(-1px);
+}
+
 .v2-form-helper-note {
   margin: 0.2rem 0 0;
   color: var(--v2-text-secondary);
@@ -972,11 +1010,15 @@ object {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  order: 2;
+  text-align: right;
 }
 
 .v2-issue-picker-trigger-value {
   color: var(--v2-text-muted);
   font-weight: 600;
+  order: 1;
+  text-align: left;
 }
 
 .v2-issue-picker-trigger-value.has-value {
@@ -1003,6 +1045,45 @@ object {
   border-radius: 8px;
   padding: 0.55rem 0.65rem;
   background: #ffffff;
+}
+
+.v2-issue-picker .v2-option-item input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-content: center;
+  border: 1.6px solid #c8b2ad;
+  border-radius: 999px;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.v2-issue-picker .v2-option-item input::before {
+  content: '';
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 999px;
+  background: var(--v2-accent);
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.v2-issue-picker .v2-option-item input:checked {
+  border-color: var(--v2-accent);
+  background: #fff6f4;
+}
+
+.v2-issue-picker .v2-option-item input:checked::before {
+  transform: scale(1);
+}
+
+.v2-issue-picker .v2-option-item input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.18);
 }
 
 .v2-issue-picker .v2-option-item:hover {

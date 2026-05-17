@@ -1040,7 +1040,7 @@ const SnapshotBookingPage = () => {
                 return;
               }
               setMainIssueError('');
-              window.location.hash = SNAPSHOT_CAL_HASH;
+              window.location.hash = SNAPSHOT_BOOKED_HASH;
             }}
           >
           <label className="v2-form-field">
@@ -1116,17 +1116,23 @@ const SnapshotBookingPage = () => {
 
             <label className="v2-form-field v2-form-field-full">
               Upload one recent essay, exam paper, or marked answer
-              <input type="file" name="studentWork" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp" required />
+              <input
+                type="file"
+                name="studentWork"
+                className="v2-file-input"
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp"
+                required
+              />
               <small>Required for Bryan’s live breakdown.</small>
             </label>
 
             <p className="v2-form-helper-note v2-form-field-full">
-              Next step after this form: choose the call time on Cal.com first, then complete payment.
+              Click submit to send your application.
             </p>
 
             <div className="v2-form-actions">
               <button type="submit" className="v2-btn v2-form-submit v2-form-submit-snapshot">
-                Continue to Cal.com Booking <ChevronRight size={16} strokeWidth={ICON_STROKE} />
+                Submit Application <ChevronRight size={16} strokeWidth={ICON_STROKE} />
               </button>
             </div>
           </form>
@@ -1198,9 +1204,9 @@ const SnapshotBookedPage = () => (
     <div className="v2-container">
       <article className="v2-card v2-form-shell v2-form-shell-narrow">
         <div className="v2-form-head">
-          <h1>Snapshot Confirmation</h1>
+          <h1>Your application is successfully received</h1>
           <p>
-            Your Snapshot is booked. Cal.com sends the automatic call link and reminders. Bryan will review the submitted work before the call, and you’ll receive a written report within 24 hours.
+            A reply will be sent within 24-48 hours.
           </p>
         </div>
         <div className="v2-form-actions v2-form-actions-column">
@@ -1215,12 +1221,15 @@ const SnapshotBookedPage = () => (
 );
 
 const SprintApplicationPage = () => {
+  const [showStudentProfileOptions, setShowStudentProfileOptions] = useState(false);
   const [showTriedOptions, setShowTriedOptions] = useState(false);
   const [showWillingnessOptions, setShowWillingnessOptions] = useState(false);
   const [showProgramTypeOptions, setShowProgramTypeOptions] = useState(false);
+  const [selectedStudentProfile, setSelectedStudentProfile] = useState('');
   const [selectedTriedOptions, setSelectedTriedOptions] = useState([]);
   const [selectedWillingness, setSelectedWillingness] = useState('');
   const [selectedProgramType, setSelectedProgramType] = useState('');
+  const [studentProfileError, setStudentProfileError] = useState('');
   const [willingnessError, setWillingnessError] = useState('');
   const [programTypeError, setProgramTypeError] = useState('');
 
@@ -1246,6 +1255,14 @@ const SprintApplicationPage = () => {
             onSubmit={(event) => {
               event.preventDefault();
               let hasError = false;
+              if (!selectedStudentProfile) {
+                setStudentProfileError('Please choose one option before continuing.');
+                setShowStudentProfileOptions(true);
+                hasError = true;
+              } else {
+                setStudentProfileError('');
+              }
+
               if (!selectedWillingness) {
                 setWillingnessError('Please choose one option before continuing.');
                 setShowWillingnessOptions(true);
@@ -1301,15 +1318,41 @@ const SprintApplicationPage = () => {
             <input type="text" name="targetGrade" required />
           </label>
 
-          <label className="v2-form-field v2-form-field-full">
-            What best describes the student?
-            <select name="studentProfile" defaultValue="" required>
-              <option value="" disabled>Select one</option>
-              {STUDENT_PROFILE_OPTIONS.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </label>
+            <fieldset className="v2-form-field v2-form-field-full v2-issue-picker">
+              <legend>What best describes the student?</legend>
+              <button
+                type="button"
+                className={`v2-issue-picker-trigger ${showStudentProfileOptions ? 'is-open' : ''}`}
+                aria-expanded={showStudentProfileOptions}
+                onClick={() => setShowStudentProfileOptions((prev) => !prev)}
+              >
+                <span className="v2-issue-picker-trigger-label">Click to choose one option</span>
+                <span className={`v2-issue-picker-trigger-value ${selectedStudentProfile ? 'has-value' : ''}`}>
+                  {selectedStudentProfile || 'No option selected yet'}
+                </span>
+              </button>
+              <div className={`v2-issue-picker-options ${showStudentProfileOptions ? 'is-open' : ''}`}>
+                <div className="v2-option-grid">
+                  {STUDENT_PROFILE_OPTIONS.map((option) => (
+                    <label key={option} className="v2-option-item">
+                      <input
+                        type="radio"
+                        name="studentProfile"
+                        value={option}
+                        checked={selectedStudentProfile === option}
+                        onChange={() => {
+                          setSelectedStudentProfile(option);
+                          setStudentProfileError('');
+                          setShowStudentProfileOptions(false);
+                        }}
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              {studentProfileError ? <p className="v2-form-error">{studentProfileError}</p> : null}
+            </fieldset>
 
             <fieldset className="v2-form-field v2-form-field-full v2-issue-picker">
               <legend>What has the student already tried?</legend>
