@@ -1025,7 +1025,6 @@ const SnapshotBookingPage = () => {
   const [showMainIssueOptions, setShowMainIssueOptions] = useState(false);
   const [selectedMainIssue, setSelectedMainIssue] = useState('');
   const [mainIssueError, setMainIssueError] = useState('');
-  const [submitError, setSubmitError] = useState('');
 
   return (
     <section className="v2-section v2-program-section" id="snapshot-booking">
@@ -1043,7 +1042,7 @@ const SnapshotBookingPage = () => {
             action={APPLICATION_FORM_ENDPOINT}
             method="POST"
             encType="multipart/form-data"
-            onSubmit={async (event) => {
+            onSubmit={(event) => {
               event.preventDefault();
               if (!selectedMainIssue) {
                 setMainIssueError('Please choose one main issue before continuing.');
@@ -1051,28 +1050,7 @@ const SnapshotBookingPage = () => {
                 return;
               }
               setMainIssueError('');
-              setSubmitError('');
-
-              const form = event.currentTarget;
-              const formData = new FormData(form);
-
-              try {
-                const response = await fetch(form.action, {
-                  method: 'POST',
-                  body: formData,
-                  headers: {
-                    Accept: 'application/json',
-                  },
-                });
-
-                if (!response.ok) {
-                  throw new Error(`Form submission failed with status ${response.status}`);
-                }
-
-                window.location.hash = SNAPSHOT_BOOKED_HASH;
-              } catch (error) {
-                setSubmitError('Submission service is temporarily unavailable. Please try again in 1-2 minutes, or email yongpingbryan@gmail.com directly.');
-              }
+              event.currentTarget.submit();
             }}
           >
           <input type="hidden" name="_subject" value="New Performance Snapshot Application" />
@@ -1172,7 +1150,6 @@ const SnapshotBookingPage = () => {
                 Submit Application <ChevronRight size={16} strokeWidth={ICON_STROKE} />
               </button>
             </div>
-            {submitError ? <p className="v2-form-error v2-form-field-full">{submitError}</p> : null}
           </form>
         </article>
       </div>
@@ -1273,7 +1250,6 @@ const SprintApplicationPage = () => {
   const [studentProfileError, setStudentProfileError] = useState('');
   const [willingnessError, setWillingnessError] = useState('');
   const [programTypeError, setProgramTypeError] = useState('');
-  const [submitError, setSubmitError] = useState('');
 
   const toggleTriedOption = (option) => {
     setSelectedTriedOptions((prev) => (
@@ -1297,7 +1273,7 @@ const SprintApplicationPage = () => {
             action={APPLICATION_FORM_ENDPOINT}
             method="POST"
             encType="multipart/form-data"
-            onSubmit={async (event) => {
+            onSubmit={(event) => {
               event.preventDefault();
               let hasError = false;
               if (!selectedStudentProfile) {
@@ -1325,28 +1301,7 @@ const SprintApplicationPage = () => {
               }
 
               if (hasError) return;
-              setSubmitError('');
-
-              const form = event.currentTarget;
-              const formData = new FormData(form);
-
-              try {
-                const response = await fetch(form.action, {
-                  method: 'POST',
-                  body: formData,
-                  headers: {
-                    Accept: 'application/json',
-                  },
-                });
-
-                if (!response.ok) {
-                  throw new Error(`Form submission failed with status ${response.status}`);
-                }
-
-                window.location.hash = SPRINT_SUBMITTED_HASH;
-              } catch (error) {
-                setSubmitError('Submission service is temporarily unavailable. Please try again in 1-2 minutes, or email yongpingbryan@gmail.com directly.');
-              }
+              event.currentTarget.submit();
             }}
           >
           <input type="hidden" name="_subject" value="New 8-Week Performance Sprint Application" />
@@ -1568,7 +1523,6 @@ const SprintApplicationPage = () => {
               Submit Application
             </button>
           </div>
-          {submitError ? <p className="v2-form-error v2-form-field-full">{submitError}</p> : null}
           </form>
         </article>
       </div>
