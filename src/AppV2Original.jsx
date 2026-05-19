@@ -1063,7 +1063,12 @@ const SnapshotBookingPage = () => {
           </label>
 
           <label className="v2-form-field">
-            Parent email
+            Student name
+            <input type="text" name="studentName" required />
+          </label>
+
+          <label className="v2-form-field">
+            Gmail
             <input type="email" name="email" required />
           </label>
 
@@ -1309,7 +1314,12 @@ const SprintApplicationPage = () => {
           </label>
 
           <label className="v2-form-field">
-            Parent email
+            Student name
+            <input type="text" name="studentName" required />
+          </label>
+
+          <label className="v2-form-field">
+            Gmail
             <input type="email" name="email" required />
           </label>
 
@@ -1502,10 +1512,6 @@ const SprintApplicationPage = () => {
               </div>
               {programTypeError ? <p className="v2-form-error">{programTypeError}</p> : null}
             </fieldset>
-
-          <p className="v2-form-helper-note v2-form-field-full">
-            Next step after submitting: book a free call on Cal.com. No payment on this page.
-          </p>
 
           <label className="v2-form-field v2-form-field-full">
             In one sentence, what result do you want from Bryan’s coaching?
