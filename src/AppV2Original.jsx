@@ -35,6 +35,8 @@ const SECONDARY_CTA_LABEL = 'Apply for the Performance Snapshot';
 const CAL_SNAPSHOT_PAID_BOOKING_URL = 'https://cal.com/your-cal-link/snapshot-paid-booking';
 const CAL_SPRINT_FREE_CALL_URL = 'https://cal.com/your-cal-link/sprint-free-call';
 const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
+const APPLICATION_RECEIVER_EMAIL = 'yongpingbryan@gmail.com';
+const APPLICATION_FORM_ENDPOINT = `https://formsubmit.co/${APPLICATION_RECEIVER_EMAIL}`;
 
 const resolveRouteFromHash = (hash) => {
   switch (hash) {
@@ -55,6 +57,11 @@ const resolveRouteFromHash = (hash) => {
     default:
       return 'home';
   }
+};
+
+const buildReturnUrlForHash = (hash) => {
+  if (typeof window === 'undefined') return hash;
+  return `${window.location.origin}${window.location.pathname}${window.location.search}${hash}`;
 };
 const HERO_DIAGNOSTICS = [
   {
@@ -1032,6 +1039,9 @@ const SnapshotBookingPage = () => {
 
           <form
             className="v2-form-grid"
+            action={APPLICATION_FORM_ENDPOINT}
+            method="POST"
+            encType="multipart/form-data"
             onSubmit={(event) => {
               event.preventDefault();
               if (!selectedMainIssue) {
@@ -1040,9 +1050,13 @@ const SnapshotBookingPage = () => {
                 return;
               }
               setMainIssueError('');
-              window.location.hash = SNAPSHOT_BOOKED_HASH;
+              event.currentTarget.submit();
             }}
           >
+          <input type="hidden" name="_subject" value="New Performance Snapshot Application" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value={buildReturnUrlForHash(SNAPSHOT_BOOKED_HASH)} />
+          <input type="hidden" name="_url" value={buildReturnUrlForHash(SNAPSHOT_HASH)} />
           <label className="v2-form-field">
             Parent name
             <input type="text" name="parentName" required />
@@ -1050,7 +1064,7 @@ const SnapshotBookingPage = () => {
 
           <label className="v2-form-field">
             Parent email
-            <input type="email" name="parentEmail" required />
+            <input type="email" name="email" required />
           </label>
 
           <label className="v2-form-field">
@@ -1251,6 +1265,9 @@ const SprintApplicationPage = () => {
 
           <form
             className="v2-form-grid"
+            action={APPLICATION_FORM_ENDPOINT}
+            method="POST"
+            encType="multipart/form-data"
             onSubmit={(event) => {
               event.preventDefault();
               let hasError = false;
@@ -1279,9 +1296,13 @@ const SprintApplicationPage = () => {
               }
 
               if (hasError) return;
-              window.location.hash = SPRINT_SUBMITTED_HASH;
+              event.currentTarget.submit();
             }}
           >
+          <input type="hidden" name="_subject" value="New 8-Week Performance Sprint Application" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value={buildReturnUrlForHash(SPRINT_SUBMITTED_HASH)} />
+          <input type="hidden" name="_url" value={buildReturnUrlForHash(SPRINT_HASH)} />
           <label className="v2-form-field">
             Parent name
             <input type="text" name="parentName" required />
@@ -1289,7 +1310,7 @@ const SprintApplicationPage = () => {
 
           <label className="v2-form-field">
             Parent email
-            <input type="email" name="parentEmail" required />
+            <input type="email" name="email" required />
           </label>
 
           <label className="v2-form-field">
