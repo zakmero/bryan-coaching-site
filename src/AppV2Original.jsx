@@ -35,8 +35,7 @@ const SECONDARY_CTA_LABEL = 'Apply for the Performance Snapshot';
 const CAL_SNAPSHOT_PAID_BOOKING_URL = 'https://cal.com/your-cal-link/snapshot-paid-booking';
 const CAL_SPRINT_FREE_CALL_URL = 'https://cal.com/your-cal-link/sprint-free-call';
 const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
-const APPLICATION_RECEIVER_EMAIL = 'yongpingbryan@gmail.com';
-const APPLICATION_FORM_ENDPOINT = `https://formsubmit.co/${APPLICATION_RECEIVER_EMAIL}`;
+const APPLICATION_FORM_ENDPOINT = '/api/apply';
 
 const resolveRouteFromHash = (hash) => {
   switch (hash) {
@@ -59,10 +58,6 @@ const resolveRouteFromHash = (hash) => {
   }
 };
 
-const buildReturnUrlForHash = (hash) => {
-  if (typeof window === 'undefined') return hash;
-  return `${window.location.origin}${window.location.pathname}${window.location.search}${hash}`;
-};
 const HERO_DIAGNOSTICS = [
   {
     icon: SearchX,
@@ -1025,6 +1020,8 @@ const SnapshotBookingPage = () => {
   const [showMainIssueOptions, setShowMainIssueOptions] = useState(false);
   const [selectedMainIssue, setSelectedMainIssue] = useState('');
   const [mainIssueError, setMainIssueError] = useState('');
+  const hasSubmitError = typeof window !== 'undefined'
+    && new URLSearchParams(window.location.search).get('submit') === 'error';
 
   return (
     <section className="v2-section v2-program-section" id="snapshot-booking">
@@ -1035,6 +1032,7 @@ const SnapshotBookingPage = () => {
             <p>
               A 20-minute diagnostic to identify where the student is losing marks: question interpretation, structure, timing, or pressure execution.
             </p>
+            {hasSubmitError ? <p className="v2-form-error">Submission failed this time. Please submit again now.</p> : null}
           </div>
 
           <form
@@ -1050,13 +1048,15 @@ const SnapshotBookingPage = () => {
                 return;
               }
               setMainIssueError('');
+              if (window.location.search) {
+                window.history.replaceState(null, '', `${window.location.pathname}${window.location.hash || ''}`);
+              }
               event.currentTarget.submit();
             }}
           >
-          <input type="hidden" name="_subject" value="New Performance Snapshot Application" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value={buildReturnUrlForHash(SNAPSHOT_BOOKED_HASH)} />
-          <input type="hidden" name="_url" value={buildReturnUrlForHash(SNAPSHOT_HASH)} />
+          <input type="hidden" name="formType" value="snapshot" />
+          <input type="hidden" name="successHash" value={SNAPSHOT_BOOKED_HASH} />
+          <input type="hidden" name="errorHash" value={SNAPSHOT_HASH} />
           <label className="v2-form-field">
             Parent name
             <input type="text" name="parentName" required />
@@ -1250,6 +1250,8 @@ const SprintApplicationPage = () => {
   const [studentProfileError, setStudentProfileError] = useState('');
   const [willingnessError, setWillingnessError] = useState('');
   const [programTypeError, setProgramTypeError] = useState('');
+  const hasSubmitError = typeof window !== 'undefined'
+    && new URLSearchParams(window.location.search).get('submit') === 'error';
 
   const toggleTriedOption = (option) => {
     setSelectedTriedOptions((prev) => (
@@ -1266,6 +1268,7 @@ const SprintApplicationPage = () => {
             <p>
               For students ready to rebuild how they decode questions, structure answers, and perform under exam pressure.
             </p>
+            {hasSubmitError ? <p className="v2-form-error">Submission failed this time. Please submit again now.</p> : null}
           </div>
 
           <form
@@ -1301,13 +1304,15 @@ const SprintApplicationPage = () => {
               }
 
               if (hasError) return;
+              if (window.location.search) {
+                window.history.replaceState(null, '', `${window.location.pathname}${window.location.hash || ''}`);
+              }
               event.currentTarget.submit();
             }}
           >
-          <input type="hidden" name="_subject" value="New 8-Week Performance Sprint Application" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value={buildReturnUrlForHash(SPRINT_SUBMITTED_HASH)} />
-          <input type="hidden" name="_url" value={buildReturnUrlForHash(SPRINT_HASH)} />
+          <input type="hidden" name="formType" value="sprint" />
+          <input type="hidden" name="successHash" value={SPRINT_SUBMITTED_HASH} />
+          <input type="hidden" name="errorHash" value={SPRINT_HASH} />
           <label className="v2-form-field">
             Parent name
             <input type="text" name="parentName" required />
@@ -1406,7 +1411,10 @@ const SprintApplicationPage = () => {
                         name="tried"
                         value={option}
                         checked={selectedTriedOptions.includes(option)}
-                        onChange={() => toggleTriedOption(option)}
+                        onChange={() => {
+                          toggleTriedOption(option);
+                          setShowTriedOptions(false);
+                        }}
                       />
                       <span>{option}</span>
                     </label>
