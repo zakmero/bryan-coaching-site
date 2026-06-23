@@ -1,5 +1,5 @@
 const DEFAULT_RECEIVER_EMAIL = 'yongpingbryan@gmail.com';
-const DEFAULT_FROM_EMAIL = 'Bryan Applications <onboarding@resend.dev>';
+const DEFAULT_FROM_EMAIL = 'Bryan Applications <apply@fullestlife.store>';
 
 const escapeHtml = (value) => String(value)
   .replace(/&/g, '&amp;')
@@ -113,6 +113,7 @@ export async function POST(request) {
   const fromEmail = process.env.RESEND_FROM_EMAIL || DEFAULT_FROM_EMAIL;
 
   if (!resendApiKey) {
+    console.error('Missing RESEND_API_KEY environment variable.');
     return Response.redirect(makeErrorRedirectUrl(origin, values.errorHash || '#/'), 303);
   }
 
@@ -141,10 +142,16 @@ export async function POST(request) {
     });
     return Response.redirect(successRedirect, 303);
   } catch (error) {
+    console.error('Application email failed:', error);
     return Response.redirect(makeErrorRedirectUrl(origin, values.errorHash || '#/'), 303);
   }
 }
 
 export async function GET() {
-  return new Response('Method not allowed', { status: 405 });
+  return Response.json({
+    ok: true,
+    resendConfigured: Boolean(process.env.RESEND_API_KEY),
+    fromDomain: (process.env.RESEND_FROM_EMAIL || DEFAULT_FROM_EMAIL).match(/@([^>]+)/)?.[1] || null,
+    receiverConfigured: Boolean(process.env.FORM_RECEIVER_EMAIL || DEFAULT_RECEIVER_EMAIL),
+  });
 }
