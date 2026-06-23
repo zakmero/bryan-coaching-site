@@ -95,18 +95,18 @@ const sendWithResend = async ({ apiKey, from, to, replyTo, subject, html, text, 
 
 export async function POST(request) {
   const origin = new URL(request.url).origin;
+  const siteOrigin = process.env.FORM_SITE_URL || origin;
   let formData;
 
   try {
     formData = await request.formData();
   } catch (error) {
-    return Response.redirect(makeErrorRedirectUrl(origin, '#/'), 303);
+    return Response.redirect(makeErrorRedirectUrl(siteOrigin, '#/'), 303);
   }
 
   const values = readFormValues(formData);
   const formType = values.formType === 'snapshot' ? 'snapshot' : 'sprint';
-  const successRedirect = makeAbsoluteUrl(origin, values.successHash || '#');
-  const errorRedirect = makeAbsoluteUrl(origin, values.errorHash || '#');
+  const successRedirect = makeAbsoluteUrl(siteOrigin, values.successHash || '#');
 
   const resendApiKey = process.env.RESEND_API_KEY;
   const receiverEmail = process.env.FORM_RECEIVER_EMAIL || DEFAULT_RECEIVER_EMAIL;
@@ -114,7 +114,7 @@ export async function POST(request) {
 
   if (!resendApiKey) {
     console.error('Missing RESEND_API_KEY environment variable.');
-    return Response.redirect(makeErrorRedirectUrl(origin, values.errorHash || '#/'), 303);
+    return Response.redirect(makeErrorRedirectUrl(siteOrigin, values.errorHash || '#/'), 303);
   }
 
   const { title, html, text } = buildEmailBody(values, formType);
@@ -143,7 +143,7 @@ export async function POST(request) {
     return Response.redirect(successRedirect, 303);
   } catch (error) {
     console.error('Application email failed:', error);
-    return Response.redirect(makeErrorRedirectUrl(origin, values.errorHash || '#/'), 303);
+    return Response.redirect(makeErrorRedirectUrl(siteOrigin, values.errorHash || '#/'), 303);
   }
 }
 

@@ -35,7 +35,10 @@ const SECONDARY_CTA_LABEL = 'Apply for the Performance Snapshot';
 const CAL_SNAPSHOT_PAID_BOOKING_URL = 'https://cal.com/your-cal-link/snapshot-paid-booking';
 const CAL_SPRINT_FREE_CALL_URL = 'https://cal.com/your-cal-link/sprint-free-call';
 const HERO_EYEBROW_TEXT = 'NOT AN ENGLISH TUTORING PROGRAM, AN EXAM THINKING DIAGNOSTIC';
-const APPLICATION_FORM_ENDPOINT = '/api/apply';
+const APPLICATION_FORM_ENDPOINT = import.meta.env.VITE_APPLICATION_FORM_ENDPOINT
+  || (import.meta.env.DEV
+    ? '/api/apply'
+    : 'https://bryan-coaching-site-vert.vercel.app/api/apply');
 
 const resolveRouteFromHash = (hash) => {
   switch (hash) {

@@ -11,6 +11,7 @@ The forms now submit to the local API route `POST /api/apply`, which sends appli
    - `RESEND_API_KEY`
    - `RESEND_FROM_EMAIL` = `Bryan Applications <apply@fullestlife.store>`
    - `FORM_RECEIVER_EMAIL` (defaults to `yongpingbryan@gmail.com` if omitted)
+   - `FORM_SITE_URL` = `https://fullestlife.store`
 3. Make sure your `RESEND_FROM_EMAIL` domain is verified in Resend. The verified domain is `fullestlife.store`.
 4. After redeploying, visit `/api/apply` on the production domain. It should return JSON with `"resendConfigured": true`.
 
