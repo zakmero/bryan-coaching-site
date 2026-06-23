@@ -2,7 +2,7 @@
 
 ## Application Delivery (Vercel + Resend)
 
-The forms now submit to the local API route `POST /api/apply`, which sends applications by email using Resend.
+The forms now submit to the local API route `POST /api/apply`, which sends applications by email using Resend. This route must be served by Vercel or another serverless host; it will not run on GitHub Pages.
 
 ### One-time setup
 
