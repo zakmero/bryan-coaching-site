@@ -141,15 +141,6 @@ const EngagementBand = ({ title, subtitle, cta = PRIMARY_CTA_LABEL }) => (
 const StoryVision = () => (
   <section className="v2-section" id="story">
     <div className="v2-container">
-      <div className="v2-card v2-story-pain v2-animate-fade-up">
-        <h3>The real problem is not that your child needs "more English."</h3>
-        <ul>
-          <li>They know the content, but lose marks because they do not decode the question properly.</li>
-          <li>They practise papers, but repeat the same thinking mistakes.</li>
-          <li>They write more, but still do not know what the examiner is rewarding.</li>
-          <li>They revise harder, but panic when the wording changes.</li>
-        </ul>
-      </div>
 
       <div className="v2-story-section-head">
         <div className="v2-badge v2-animate-fade-up">Founder Story</div>
