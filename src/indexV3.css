@@ -171,6 +171,10 @@ object {
   letter-spacing: -0.03em;
 }
 
+.v3-title-accent {
+  color: var(--v3-accent);
+}
+
 .v3-chip-row {
   margin: 1rem 0;
   display: flex;
