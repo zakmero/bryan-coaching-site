@@ -398,8 +398,9 @@ const Hero = () => {
           <p className="v2-hero-eyebrow v2-hero-eyebrow-mobile">{HERO_EYEBROW_TEXT}</p>
           <p className="v2-hero-eyebrow v2-hero-eyebrow-desktop">{HERO_EYEBROW_TEXT}</p>
           <h1 className="v2-hero-title v2-animate-fade-up v2-delay-100">
-            Improve your English exam score by <br />
-            <span className="v2-title-accent">+1 to +3 bands in 8-12 weeks</span> without doing more practice papers
+            Guide a capable student to improve their English exam score by <span className="v2-title-accent">+1 to +3 bands in 8–12 weeks</span>
+            <br />
+            without doing more practice papers.
           </h1>
           </div>
           <p className="v2-hero-subtitle v2-hero-copy-subtitle v2-animate-fade-up v2-delay-200">

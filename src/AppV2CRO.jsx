@@ -58,7 +58,7 @@ function Hero() {
           <div className="v3-hero-content">
             <p className="v3-eyebrow">Premium Exam Performance Coaching</p>
             <h1>
-              Improve your English exam score by +1 to +3 bands in 8-12 weeks - without doing more practice papers
+              Guide a capable student to improve their English exam score by +1 to +3 bands in 8–12 weeks without doing more practice papers.
             </h1>
             <p className="v3-subtitle">
               For IELTS, TOEFL, IB, A-Level, and similar English exam students who study hard but still lose marks from misreading prompts, weak essay structure, unclear examiner intent, or rushed answers under timed pressure.
