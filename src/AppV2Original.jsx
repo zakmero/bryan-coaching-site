@@ -427,7 +427,7 @@ const Hero = () => {
             className="v2-hero-diagnostics v2-animate-fade-up v2-delay-200"
             aria-label="Performance diagnostic warning signs"
           >
-            <p className="v2-hero-diagnostic-kicker">Performance Diagnostic</p>
+            <p className="v2-hero-diagnostic-kicker">Here’s where capable students usually get stuck:</p>
             <ul>
               {HERO_DIAGNOSTICS.map(({ icon: Icon, label, title, detail, tone }, index) => (
                 <li
