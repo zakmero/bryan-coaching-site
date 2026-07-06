@@ -66,7 +66,7 @@ const HERO_DIAGNOSTICS = [
     icon: SearchX,
     tone: 'red',
     label: 'MISREAD',
-    title: 'They are losing marks because under exam pressure, the question changes shape, and their answer no longer matches what the examiner is actually rewarding.',
+    title: 'Under pressure, they lose marks because they stop answering what the examiner is actually asking.',
     detail: 'So they spend more hours revising, complete more papers, and still walk out unsure.',
   },
   {
