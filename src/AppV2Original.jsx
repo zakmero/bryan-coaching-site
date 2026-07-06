@@ -418,7 +418,7 @@ const Hero = () => {
 
           <div className="v2-hero-message v2-animate-fade-up v2-delay-200" role="note" aria-label="Core transformation message">
             <p>Most students don’t fail because they lack knowledge. They fail because they think incorrectly under pressure.</p>
-            <p>We train students to think like top-band examiners.</p>
+            <p>Many capable students work hard, revise often, and still fall short, not because they lack ability, but because they have never been trained to turn pressure into clear, examiner-ready thinking.</p>
           </div>
 
           <div
